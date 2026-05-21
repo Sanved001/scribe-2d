@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dpi0ycbu741x0"]
+
+[ext_resource type="Script" uid="uid://volf3pihsc3l" path="res://scripts/Game_UI.gd" id="1_yubou"]
+
+[node name="Game_UI" type="CanvasLayer" unique_id=1250416770 node_paths=PackedStringArray("Health_Label")]
+layer = 5
+script = ExtResource("1_yubou")
+Health_Label = NodePath("VBoxContainer/Top_Bar/MarginContainer/HBoxContainer/Health_Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=678358786]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Top_Bar" type="PanelContainer" parent="VBoxContainer" unique_id=1711459117]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Top_Bar" unique_id=732602506]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Top_Bar/MarginContainer" unique_id=1237637297]
+layout_mode = 2
+
+[node name="Health_Label" type="Label" parent="VBoxContainer/Top_Bar/MarginContainer/HBoxContainer" unique_id=281378910]
+layout_mode = 2
+text = "Health: 100"

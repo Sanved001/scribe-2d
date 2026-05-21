@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://hodm7nflxj1h"]
+
+[ext_resource type="Texture2D" uid="uid://c7r7hulfgrbqn" path="res://assets/sprites/yuri/yuri.png" id="1_uij01"]
+[ext_resource type="Script" uid="uid://n5fcmu23017a" path="res://scripts/NPCs/npc_yuri.gd" id="1_xnkqq"]
+[ext_resource type="PackedScene" uid="uid://mc4q4d73kf18" path="res://scenes/NPCs/functions/npc_event_handler.tscn" id="2_xehle"]
+
+[sub_resource type="Animation" id="Animation_xehle"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Yuri:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Yuri:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Yuri:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xnkqq"]
+resource_name = "glow_idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Yuri:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.56666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 1]
+}
+
+[sub_resource type="Animation" id="Animation_mr80r"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Yuri:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pgpx6"]
+_data = {
+&"RESET": SubResource("Animation_xehle"),
+&"glow_idle": SubResource("Animation_xnkqq"),
+&"idle": SubResource("Animation_mr80r")
+}
+
+[node name="NPC_Yuri" type="Node2D" unique_id=572243532]
+script = ExtResource("1_xnkqq")
+
+[node name="Yuri" type="Sprite2D" parent="." unique_id=1649924279]
+position = Vector2(0, -16)
+texture = ExtResource("1_uij01")
+hframes = 2
+frame = 1
+
+[node name="NPC_EventHandler" parent="." unique_id=1487834774 node_paths=PackedStringArray("Character_Sprite", "npc_Animation_Player") instance=ExtResource("2_xehle")]
+Character_Sprite = NodePath("../Yuri")
+npc_collision_padding = Vector2(-20, 20)
+npc_Animation_Player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1446596221]
+libraries/ = SubResource("AnimationLibrary_pgpx6")
+autoplay = &"idle"

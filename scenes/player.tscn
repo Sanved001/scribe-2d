@@ -1,0 +1,268 @@
+[gd_scene format=3 uid="uid://bpemxwa2sj5wc"]
+
+[ext_resource type="Script" uid="uid://cpdbilgnrdgjl" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://cfys0j2f5os0c" path="res://assets/sprites/player/player.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://bxu5brtbg84he" path="res://assets/sprites/weapons/red_sword/red_sword.png" id="3_qhqgy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
+radius = 4.0
+height = 22.0
+
+[sub_resource type="Animation" id="Animation_g2els"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(10, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponPiviot/red_sword:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, -9)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponPiviot/red_sword:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0943952]
+}
+
+[sub_resource type="Animation" id="Animation_smehm"]
+resource_name = "player_idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "player_jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_qhqgy"]
+resource_name = "player_run"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "player_wall_slide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(10, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
+_data = {
+&"RESET": SubResource("Animation_g2els"),
+&"player_idle": SubResource("Animation_smehm"),
+&"player_jump": SubResource("Animation_dqkch"),
+&"player_run": SubResource("Animation_qhqgy"),
+&"player_wall_slide": SubResource("Animation_qlg0r")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(3.8476639, 21.151737)
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPiviot/red_sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, -9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPiviot/red_sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0943952]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponPiviot/red_sword:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "red_sword_swing_right"
+length = 1.1
+step = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPiviot/red_sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(11, 7), Vector2(16, 3.0000005), Vector2(20, -2.9999995), Vector2(21, -7.9999995), Vector2(21, -12), Vector2(20.999998, -15.999999), Vector2(19, -20), Vector2(15.999998, -25), Vector2(13, -28), Vector2(10, -30), Vector2(5.999999, -32), Vector2(9.536743e-07, -32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPiviot/red_sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.0943952, 1.379628, 1.0562322, 0.77658045, 0.58165467, 0.1768342, -0.12152618, -0.30725527, -0.4812883, -0.6438488, -0.7616119, -1.0601739]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponPiviot/red_sword:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0001, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
+_data = {
+&"RESET": SubResource("Animation_fjrip"),
+&"red_sword_swing_right": SubResource("Animation_tuyoq")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(6, 22)
+
+[node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player_run", "sword_animation_player", "weaponpiviot")]
+script = ExtResource("1_g2els")
+my_animation_player = NodePath("AnimationPlayer")
+sprite_player_run = NodePath("player")
+sword_animation_player = NodePath("swordAnimationPlayer")
+weaponpiviot = NodePath("WeaponPiviot")
+
+[node name="player" type="Sprite2D" parent="." unique_id=563086844]
+position = Vector2(0, -16)
+texture = ExtResource("2_g2els")
+hframes = 12
+frame = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=945096778]
+position = Vector2(0, -11)
+shape = SubResource("CapsuleShape2D_3vyb7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1794575316]
+libraries/ = SubResource("AnimationLibrary_dqkch")
+
+[node name="WeaponPiviot" type="Node2D" parent="." unique_id=1342991568]
+
+[node name="red_sword" type="Sprite2D" parent="WeaponPiviot" unique_id=1697028554]
+position = Vector2(12, -9)
+rotation = 2.0943952
+texture = ExtResource("3_qhqgy")
+
+[node name="Area2D" type="Area2D" parent="WeaponPiviot/red_sword" unique_id=1223578794]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponPiviot/red_sword/Area2D" unique_id=1034479831]
+position = Vector2(5.8346663, -6.013249)
+rotation = 0.7703262
+shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="swordAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1764912105]
+libraries/ = SubResource("AnimationLibrary_fjrip")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1770532182]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2045791906]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_dqkch")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

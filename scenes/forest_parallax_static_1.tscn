@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bynj1kjy6alra"]
+
+[ext_resource type="Texture2D" uid="uid://cbk4q7byqhfqh" path="res://assets/backgrounds/parallax/parallax_forest_1/parralax01_Sky.png" id="1_yxbts"]
+[ext_resource type="Texture2D" uid="uid://b7nkw7ohnmym5" path="res://assets/backgrounds/parallax/parallax_forest_1/parralax01_clouds_far.png" id="2_tpbrr"]
+[ext_resource type="Texture2D" uid="uid://37chft1i7y0h" path="res://assets/backgrounds/parallax/parallax_forest_1/parralax01_clouds_mid.png" id="3_rtkql"]
+[ext_resource type="Texture2D" uid="uid://kc1hyl338sio" path="res://assets/backgrounds/parallax/parallax_forest_1/parralax01_clouds_near.png" id="4_p7q6i"]
+[ext_resource type="Texture2D" uid="uid://3lknx1p68utm" path="res://assets/backgrounds/parallax/parallax_forest_1/parralax01_forest_far.png" id="5_ra5jg"]
+[ext_resource type="Texture2D" uid="uid://bangefsdydihy" path="res://assets/backgrounds/parallax/parallax_forest_1/parralax01_forest_mid.png" id="6_krwod"]
+[ext_resource type="Texture2D" uid="uid://dng5akbjr88ut" path="res://assets/backgrounds/parallax/parallax_forest_1/parralax01_forest_near.png" id="7_u67b0"]
+
+[node name="forest parallax static 1" type="Node2D" unique_id=1426544196]
+
+[node name="sky" type="Parallax2D" parent="." unique_id=1908223230]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(3840, 0)
+repeat_times = 3
+
+[node name="sky" type="Sprite2D" parent="sky" unique_id=1214820052]
+texture = ExtResource("1_yxbts")
+
+[node name="clouds far" type="Parallax2D" parent="." unique_id=629508309]
+scale = Vector2(0.3, 0.3)
+scroll_scale = Vector2(0.26, 0.26)
+repeat_size = Vector2(3840, 0)
+autoscroll = Vector2(0.25, 0)
+repeat_times = 3
+
+[node name="clouds far" type="Sprite2D" parent="clouds far" unique_id=1275502982]
+texture = ExtResource("2_tpbrr")
+
+[node name="clouds mid" type="Parallax2D" parent="." unique_id=1149897725]
+scale = Vector2(0.3, 0.3)
+scroll_scale = Vector2(0.28, 0.28)
+repeat_size = Vector2(3840, 0)
+autoscroll = Vector2(0.5, 0)
+repeat_times = 3
+
+[node name="clouds mid" type="Sprite2D" parent="clouds mid" unique_id=1218515434]
+texture = ExtResource("3_rtkql")
+
+[node name="clouds near" type="Parallax2D" parent="." unique_id=28229140]
+scale = Vector2(0.3, 0.3)
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(3840, 0)
+autoscroll = Vector2(1, 0)
+repeat_times = 3
+
+[node name="clouds near" type="Sprite2D" parent="clouds near" unique_id=1899437178]
+texture = ExtResource("4_p7q6i")
+
+[node name="forest far" type="Parallax2D" parent="." unique_id=236974882]
+scale = Vector2(0.3, 0.3)
+scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(0, 44)
+repeat_size = Vector2(3840, 0)
+repeat_times = 3
+
+[node name="forest far" type="Sprite2D" parent="forest far" unique_id=2121843602]
+texture = ExtResource("5_ra5jg")
+
+[node name="forest mid" type="Parallax2D" parent="." unique_id=801421060]
+scale = Vector2(0.3, 0.3)
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(0, 22)
+repeat_size = Vector2(3840, 0)
+repeat_times = 3
+
+[node name="forest mid" type="Sprite2D" parent="forest mid" unique_id=1893542579]
+texture = ExtResource("6_krwod")
+
+[node name="forest near" type="Parallax2D" parent="." unique_id=876235580]
+scale = Vector2(0.3, 0.3)
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(3840, 0)
+repeat_times = 3
+
+[node name="forest near" type="Sprite2D" parent="forest near" unique_id=888295457]
+texture = ExtResource("7_u67b0")
