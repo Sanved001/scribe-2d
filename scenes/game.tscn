@@ -2,17 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dp4qb8dj4rcuo" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bpemxwa2sj5wc" path="res://scenes/player.tscn" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://bynj1kjy6alra" path="res://scenes/forest_parallax_static_1.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://c3gf6s06y5o6k" path="res://scenes/DialogueManager/dialog_manager.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://dpi0ycbu741x0" path="res://scenes/game_ui.tscn" id="5_iywne"]
 
 [node name="Game" type="Node2D" unique_id=995285545 node_paths=PackedStringArray("Level_Container")]
 script = ExtResource("1_lnu2h")
 Level_Container = NodePath("Level Container")
-
-[node name="Forest Parallax Static 1" parent="." unique_id=1426544196 instance=ExtResource("3_lnu2h")]
-z_index = -1
-position = Vector2(0, 18)
 
 [node name="player" parent="." unique_id=1261008140 instance=ExtResource("1_yqjtg")]
 z_index = 5

@@ -5,20 +5,24 @@ extends CharacterBody2D
 @export var weaponpiviot:Node2D
 @onready var red_sword: Sprite2D = $WeaponPiviot/red_sword
 
-var last_direction:float = 1.0
+var last_direction:float = 0.0
 var input_is_busy:bool = false
-var wall_jump:int = 1
+var dash_count:int = 1
+var player_is_dashing:bool = false
 var damage_grace_period_is_active:bool = false
 var health:int = 100
 var damage_resistance_physical:float = 0.0
 var calculated_damage:float
 var block_weapon_input:bool = false
+var dash_cooldown:bool = false
+
 
 
 
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -350.0
+const DASH_SPEED = 600.0
 
 
 func player_take_damage(damage:int):
@@ -71,13 +75,18 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if (is_on_floor() or is_on_wall()):
+		last_direction = 0.0
+		if not player_is_dashing:
+			dash_count = 1
+	
 	
 
 
 	
 	
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and not player_is_dashing:
 		
 		if velocity.y <= 0:
 			velocity += get_gravity() * delta
@@ -96,12 +105,12 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_pressed("left"):
 				velocity.x += 50
 				velocity.y = JUMP_VELOCITY-10
-				input_cooldown(0.2)
+				await input_cooldown(0.2)
 				
 			elif Input.is_action_pressed("right"):
 				velocity.x -= 50
 				velocity.y = JUMP_VELOCITY-10
-				input_cooldown(0.2)
+				await input_cooldown(0.2)
 
 	if not input_is_busy:
 		# Get the input direction and handle the movement/deceleration.
@@ -115,8 +124,18 @@ func _physics_process(delta: float) -> void:
 
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+			playanimation("" , 0.0)
 
-		playanimation("", direction)
+		
+		if dash_count != 0 and not dash_cooldown:
+			
+			if Input.is_action_just_pressed("dash") and last_direction != 0:
+				dash_count -= 1
+				velocity.x = DASH_SPEED * last_direction
+				player_is_dashing_input_cooldown(0.2)
+				dash_cooldown_start(1)
+
+		
 		 
 		
 	if not block_weapon_input:
@@ -135,14 +154,11 @@ func _physics_process(delta: float) -> void:
 			
 			
 			
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		playanimation("" , 0.0)
 
 	if Input.is_action_just_pressed("debug"):
 		pass
 
-
+	playanimation("", last_direction)
 	move_and_slide()
 	
 	
@@ -157,9 +173,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	match area.entity_damage_type:
 		"physical": 
 			calculated_damage = roundi(area.entity_base_damage - (area.entity_base_damage * damage_resistance_physical))
-			print("Calculated Damage: %s" % calculated_damage)
 			player_take_damage(calculated_damage)
-			print("Health: %s" % health)
 		
 		"god":
 			player_take_damage(area.entity_base_damage)
@@ -173,3 +187,13 @@ func input_cooldown(cooldown_time, m_block_weapon_input:bool = false):
 	await get_tree().create_timer(cooldown_time).timeout
 	block_weapon_input = false
 	input_is_busy = false
+	
+func player_is_dashing_input_cooldown(value:float):
+	velocity.y = 0
+	player_is_dashing = true
+	await input_cooldown(value)
+	player_is_dashing = false
+func dash_cooldown_start(value:float = 1):
+	dash_cooldown = true
+	await get_tree().create_timer(value).timeout
+	dash_cooldown = false
