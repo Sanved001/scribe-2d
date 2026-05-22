@@ -4,17 +4,17 @@
 [ext_resource type="Script" uid="uid://bbo8a8xdmf8ir" path="res://scenes/traps/Spikes_1_hitbox.gd" id="2_6irkx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6irkx"]
-size = Vector2(29, 14)
+size = Vector2(14, 14)
 
 [node name="Spikes_1" type="Node2D" unique_id=746565905]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=313361011]
-position = Vector2(0, -16)
+position = Vector2(0, -8)
 texture = ExtResource("1_p2tyg")
 
 [node name="hitbox" type="Area2D" parent="." unique_id=1983766534]
 script = ExtResource("2_6irkx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1575524310]
-position = Vector2(0.5, -7)
+position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_6irkx")

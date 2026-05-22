@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var sprite_player_run:Node
 @export var sword_animation_player:Node
 @export var weaponpiviot:Node2D
+@onready var red_sword: Sprite2D = $WeaponPiviot/red_sword
 
 var last_direction:float = 1.0
 var input_is_busy:bool = false
@@ -11,11 +12,13 @@ var damage_grace_period_is_active:bool = false
 var health:int = 100
 var damage_resistance_physical:float = 0.0
 var calculated_damage:float
+var block_weapon_input:bool = false
+
 
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -350.0
 
 
 func player_take_damage(damage:int):
@@ -31,9 +34,14 @@ func player_take_damage(damage:int):
 	
 
 
+func playanimation(animation_name:String = "", m_direction:float = 0.0):
+	if not animation_name == "":
+		my_animation_player.play(animation_name)
+	else:
+		playanimation_direction(m_direction)
 
 
-func playanimation(direction:float, weapon_slash:bool = false):
+func playanimation_direction(direction:float):
 	if not is_on_floor():
 		# jump
 		if not is_on_wall():
@@ -58,6 +66,8 @@ func _is_my_input_busy(value:bool):
 func _ready() -> void:
 	sword_animation_player.speed_scale = 3
 	SignalBus.Input_Is_Busy.connect(_is_my_input_busy)
+	red_sword.visible = false
+	
 
 
 func _physics_process(delta: float) -> void:
@@ -84,12 +94,14 @@ func _physics_process(delta: float) -> void:
 			
 		elif Input.is_action_just_pressed("jump") and is_on_wall():
 			if Input.is_action_pressed("left"):
-				velocity.x += 200
-				velocity.y = JUMP_VELOCITY
+				velocity.x += 50
+				velocity.y = JUMP_VELOCITY-10
+				input_cooldown(0.2)
 				
 			elif Input.is_action_pressed("right"):
-				velocity.x -= 200
-				velocity.y = JUMP_VELOCITY
+				velocity.x -= 50
+				velocity.y = JUMP_VELOCITY-10
+				input_cooldown(0.2)
 
 	if not input_is_busy:
 		# Get the input direction and handle the movement/deceleration.
@@ -104,9 +116,10 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
-		playanimation(direction)
+		playanimation("", direction)
 		 
-
+		
+	if not block_weapon_input:
 		if Input.is_action_just_pressed("attack"):
 			if (last_direction > 0):
 				if is_on_wall():
@@ -121,9 +134,10 @@ func _physics_process(delta: float) -> void:
 			sword_animation_player.play('red_sword_swing_right')
 			
 			
+			
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		playanimation(0.0)
+		playanimation("" , 0.0)
 
 	if Input.is_action_just_pressed("debug"):
 		pass
@@ -152,3 +166,10 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		
 		"fixed":
 			player_take_damage(area.entity_base_damage)
+			
+func input_cooldown(cooldown_time, m_block_weapon_input:bool = false):
+	input_is_busy = true
+	block_weapon_input = m_block_weapon_input
+	await get_tree().create_timer(cooldown_time).timeout
+	block_weapon_input = false
+	input_is_busy = false
