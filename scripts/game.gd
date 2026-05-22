@@ -13,7 +13,7 @@ func Load_Level(path_to_node, ClearPrevious:bool=false, ClearAll=false):
 		var Level_To_Load = load(path_to_node)
 		Current_Level = Level_To_Load.instantiate()
 		Level_Container.add_child(Current_Level)
-		print("Successfully loaded: %s" % Current_Level)
+		#print("Successfully loaded: %s" % Current_Level)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
