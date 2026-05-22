@@ -160,8 +160,9 @@ offset_left = 2.0
 offset_top = -36.0
 offset_right = 81.0
 offset_bottom = -25.0
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("5_0et0p")
-theme_override_font_sizes/font_size = 5
+theme_override_font_sizes/font_size = 16
 text = "Press Space to jump"
 horizontal_alignment = 1
 
@@ -170,8 +171,9 @@ offset_left = 195.0
 offset_top = -38.0
 offset_right = 248.0
 offset_bottom = -31.0
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("5_0et0p")
-theme_override_font_sizes/font_size = 5
+theme_override_font_sizes/font_size = 16
 text = "SHIFT to dash"
 horizontal_alignment = 1
 
@@ -180,8 +182,9 @@ offset_left = 900.0
 offset_top = -224.0
 offset_right = 982.0
 offset_bottom = -209.0
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("5_0et0p")
-theme_override_font_sizes/font_size = 5
+theme_override_font_sizes/font_size = 16
 text = "Pressing into an wall
 will slow you down"
 horizontal_alignment = 1
@@ -192,8 +195,9 @@ offset_top = -187.0
 offset_right = 988.0
 offset_bottom = -180.0
 rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("5_0et0p")
-theme_override_font_sizes/font_size = 5
+theme_override_font_sizes/font_size = 16
 text = "->"
 horizontal_alignment = 1
 
@@ -202,8 +206,9 @@ offset_left = 1220.0
 offset_top = -34.0
 offset_right = 1309.0
 offset_bottom = -19.0
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("5_0et0p")
-theme_override_font_sizes/font_size = 5
+theme_override_font_sizes/font_size = 16
 text = "you can also jump 
 while holding the wall "
 horizontal_alignment = 1
