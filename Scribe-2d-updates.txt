@@ -1,0 +1,13 @@
+# Current Version:
+Added Dash when pressing SHIFT
+Added a new Tutorial Level
+
+# Current Commit
+Bugfixes
+Player is now invincible during dashing
+removed some temporary variables
+Death Animation
+Added A new boot script but it is not implemented yet so do not use it or it my cause issues
+the main scene is now boot.tscn instead of game.tscn
+Added Mrs. Crook who is intented to be an temporary enemy
+

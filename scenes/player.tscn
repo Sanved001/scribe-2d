@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://bpemxwa2sj5wc"]
 
 [ext_resource type="Script" uid="uid://cpdbilgnrdgjl" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Shader" uid="uid://dw1c0lrvs0dbw" path="res://scenes/player.gdshader" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://cfys0j2f5os0c" path="res://assets/sprites/player/player.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://bxu5brtbg84he" path="res://assets/sprites/weapons/red_sword/red_sword.png" id="3_qhqgy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qlg0r"]
+shader = ExtResource("2_dqkch")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
 radius = 4.0
@@ -230,6 +234,7 @@ sword_animation_player = NodePath("swordAnimationPlayer")
 weaponpiviot = NodePath("WeaponPiviot")
 
 [node name="player" type="Sprite2D" parent="." unique_id=563086844]
+material = SubResource("ShaderMaterial_qlg0r")
 position = Vector2(0, -16)
 texture = ExtResource("2_g2els")
 hframes = 12

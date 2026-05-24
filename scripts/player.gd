@@ -15,7 +15,7 @@ var damage_resistance_physical:float = 0.0
 var calculated_damage:float
 var block_weapon_input:bool = false
 var dash_cooldown:bool = false
-
+var last_animation_direction:float = 0.0
 
 
 
@@ -25,15 +25,28 @@ const JUMP_VELOCITY = -350.0
 const DASH_SPEED = 600.0
 
 
-func player_take_damage(damage:int):
+func player_take_damage(damage:int, source_area:Area2D = null):
 	if damage == 0:
 		return
 	else: 
 		health -= damage
+	
+	if source_area != null:
+		var knockback_direction = global_position - source_area.global_position
+		knockback_direction = knockback_direction.normalized()
+		velocity = knockback_direction * source_area.entity_knockback_strength
+	
 	if health <= 0:
-		get_tree().reload_current_scene()
-		
+		SignalBus.Slow_motion_start.emit(0.1)
+		await get_tree().create_timer(0.2).timeout
+		SignalBus.Slow_motion_stop.emit()
+		get_tree().call_deferred("reload_current_scene")
+		return
 	SignalBus.Update_Health_Label.emit("Health: %s" % health)
+	
+	
+	damage_grace_period_cooldown_start(0.1)
+	
 	
 	
 
@@ -71,12 +84,12 @@ func _ready() -> void:
 	sword_animation_player.speed_scale = 3
 	SignalBus.Input_Is_Busy.connect(_is_my_input_busy)
 	red_sword.visible = false
-	
+
 
 
 func _physics_process(delta: float) -> void:
 	if (is_on_floor() or is_on_wall()):
-		last_direction = 0.0
+		last_animation_direction = 0.0
 		if not player_is_dashing:
 			dash_count = 1
 	
@@ -118,6 +131,7 @@ func _physics_process(delta: float) -> void:
 		var direction := Input.get_axis("left", "right")
 	
 		if (direction != 0):
+			last_animation_direction = direction
 			last_direction = direction
 			if direction:
 				velocity.x = direction * SPEED
@@ -158,7 +172,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("debug"):
 		pass
 
-	playanimation("", last_direction)
+	playanimation("", last_animation_direction)
 	move_and_slide()
 	
 	
@@ -167,33 +181,45 @@ func _physics_process(delta: float) -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if not area is Hitbox:
 		return
+	if area.entity_type == "Void":
+		player_take_damage(area.entity_base_damage)
+		return
+	
 	if damage_grace_period_is_active:
 		return
 	
 	match area.entity_damage_type:
 		"physical": 
 			calculated_damage = roundi(area.entity_base_damage - (area.entity_base_damage * damage_resistance_physical))
-			player_take_damage(calculated_damage)
+			player_take_damage(calculated_damage, area)
 		
 		"god":
-			player_take_damage(area.entity_base_damage)
+			player_take_damage(area.entity_base_damage, area)
 		
 		"fixed":
-			player_take_damage(area.entity_base_damage)
-			
+			player_take_damage(area.entity_base_damage, area)
+
+
 func input_cooldown(cooldown_time, m_block_weapon_input:bool = false):
 	input_is_busy = true
 	block_weapon_input = m_block_weapon_input
 	await get_tree().create_timer(cooldown_time).timeout
 	block_weapon_input = false
 	input_is_busy = false
-	
 func player_is_dashing_input_cooldown(value:float):
 	velocity.y = 0
 	player_is_dashing = true
+	last_animation_direction = 0.0
+	damage_grace_period_cooldown_start(value)
 	await input_cooldown(value)
 	player_is_dashing = false
 func dash_cooldown_start(value:float = 1):
 	dash_cooldown = true
 	await get_tree().create_timer(value).timeout
 	dash_cooldown = false
+func damage_grace_period_cooldown_start(value:float):
+	if damage_grace_period_is_active:
+		return
+	damage_grace_period_is_active = true
+	await  get_tree().create_timer(value).timeout
+	damage_grace_period_is_active = false

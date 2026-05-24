@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bggcep8a63wb5"]
+
+[ext_resource type="Texture2D" uid="uid://diyowyb15fvd1" path="res://assets/sprites/enemies/mrs crook/mrs crock.png" id="1_egf1j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjp2l"]
+size = Vector2(23, 63)
+
+[sub_resource type="Animation" id="Animation_egf1j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vjp2l"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o7wcw"]
+_data = {
+&"RESET": SubResource("Animation_egf1j"),
+&"idle": SubResource("Animation_vjp2l")
+}
+
+[node name="enemy mrs crock" type="Node2D" unique_id=1734327400]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1755054806]
+position = Vector2(0, -32)
+texture = ExtResource("1_egf1j")
+hframes = 8
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=973070659]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=24826951]
+position = Vector2(-2.5, -31.5)
+shape = SubResource("RectangleShape2D_vjp2l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1294067142]
+libraries/ = SubResource("AnimationLibrary_o7wcw")
+autoplay = &"idle"

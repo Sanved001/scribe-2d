@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="scribe2d"
-run/main_scene="uid://bitqf5m6b6pg4"
+run/main_scene="uid://c62ywfb2hax5l"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

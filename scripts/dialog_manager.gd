@@ -3,8 +3,7 @@ extends CanvasLayer
 
 @onready var name_label: Label = $PanelContainer/MarginContainer/VBoxContainer/NameLabel
 @onready var body_label: Label = $PanelContainer/MarginContainer/VBoxContainer/BodyLabel
-var Debug_Mode:bool = false
-
+var Debug_Mode:bool = OS.is_debug_build()
 
 
 
