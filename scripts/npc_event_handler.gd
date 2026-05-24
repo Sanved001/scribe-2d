@@ -5,14 +5,14 @@ extends Node2D
 @export var Character_Sprite:Sprite2D
 @export var npc_collision_padding:Vector2 = Vector2(0,0)
 @export var npc_Animation_Player:AnimationPlayer 
+@export var npc_dialog_key:String = "default"
 
 
-
+var Debug_Mode:bool = OS.is_debug_build()
 var player_in_range:bool = false
 var Character_Sprite_initial_position:Vector2 = Vector2(0,0)
 var FIP_tween: Tween
 var npc_root
-var Debug_Mode: bool = false
 var interaction_cooldown_active:bool = false
 var Dialog_UI_Is_Busy:bool = false
 
@@ -120,7 +120,9 @@ func npc_interact():
 	if not interaction_cooldown_active:
 		if not Dialog_UI_Is_Busy:
 			if "npc_dialog" in npc_root:
+				var my_dialog_array:Array[String] = []
+				my_dialog_array.assign(npc_root.npc_dialog[npc_dialog_key])
 				if Debug_Mode:
-					print("DEBUG: Emitting npc_name:", npc_root.npc_name, " Emitting Dialog Array:", npc_root.npc_dialog)
+					print("DEBUG: Emitting npc_name:", npc_root.npc_name, " Emitting Dialog Array:", my_dialog_array)
 				interaction_cooldown_start()
-				SignalBus.Dialog_Request.emit(npc_root.npc_name, npc_root.npc_dialog)
+				SignalBus.Dialog_Request.emit(npc_root.npc_name, my_dialog_array)

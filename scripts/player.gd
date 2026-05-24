@@ -12,6 +12,7 @@ var player_is_dashing:bool = false
 var damage_grace_period_is_active:bool = false
 var health:int = 100
 var damage_resistance_physical:float = 0.0
+var damage_resistance_acid:float = 0.0
 var calculated_damage:float
 var block_weapon_input:bool = false
 var dash_cooldown:bool = false
@@ -35,6 +36,15 @@ func player_take_damage(damage:int, source_area:Area2D = null):
 		var knockback_direction = global_position - source_area.global_position
 		knockback_direction = knockback_direction.normalized()
 		velocity = knockback_direction * source_area.entity_knockback_strength
+		if velocity.x > 0 and velocity.x <= 200: velocity.x = 200
+		elif velocity.x < 0 and velocity.x >= -200: velocity.x = -200
+		if knockback_direction.y > 0:
+			if velocity.y > 0 and velocity.y <= 200:
+				velocity.y = 200
+		elif knockback_direction.y <= 0:
+			if velocity.y <= 0 and velocity.y >= -200:
+				velocity.y = -200
+		input_cooldown(0.2)
 	
 	if health <= 0:
 		SignalBus.Slow_motion_start.emit(0.1)
@@ -191,6 +201,9 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	match area.entity_damage_type:
 		"physical": 
 			calculated_damage = roundi(area.entity_base_damage - (area.entity_base_damage * damage_resistance_physical))
+			player_take_damage(calculated_damage, area)
+		"acid":
+			calculated_damage = roundi(area.entity_base_damage - (area.entity_base_damage * damage_resistance_acid))
 			player_take_damage(calculated_damage, area)
 		
 		"god":

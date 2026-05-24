@@ -93,6 +93,7 @@ frame = 1
 Character_Sprite = NodePath("../Yuri")
 npc_collision_padding = Vector2(-20, 20)
 npc_Animation_Player = NodePath("../AnimationPlayer")
+npc_dialog_key = "fall"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1446596221]
 libraries/ = SubResource("AnimationLibrary_pgpx6")

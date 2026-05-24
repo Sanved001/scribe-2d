@@ -13,6 +13,7 @@ position = Vector2(0, -8)
 texture = ExtResource("1_p2tyg")
 
 [node name="hitbox" type="Area2D" parent="." unique_id=1983766534]
+collision_layer = 2
 script = ExtResource("2_6irkx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1575524310]
