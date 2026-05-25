@@ -68,12 +68,8 @@ func this_entity_take_damage(damage: float,source_area: Area2D):
 				entity_velocity.x = -200 # move left
 
 	if health <= 0:
-		SignalBus.Slow_motion_start.emit(0.1)
-		await get_tree().create_timer(0.2).timeout
-		SignalBus.Slow_motion_stop.emit()
-		get_tree().call_deferred("reload_current_scene")
-		return
-	SignalBus.Update_Health_Label.emit("Health: %s" % health)
+		pass
+
 	
 	
 
