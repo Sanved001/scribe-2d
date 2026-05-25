@@ -1,6 +1,6 @@
 extends CharacterBody2D
 @export var my_animation_player:Node
-@export var sprite_player_run:Node
+@export var sprite_player:Node
 @export var sword_animation_player:Node
 @export var weaponpiviot:Node2D
 @onready var red_sword: Sprite2D = $WeaponPiviot/red_sword
@@ -10,7 +10,7 @@ var input_is_busy:bool = false
 var dash_count:int = 1
 var player_is_dashing:bool = false
 var damage_grace_period_is_active:bool = false
-var health:int = 100
+var health:float = 100
 var damage_resistance_physical:float = 0.0
 var damage_resistance_acid:float = 0.0
 var calculated_damage:float
@@ -26,24 +26,46 @@ const JUMP_VELOCITY = -350.0
 const DASH_SPEED = 600.0
 
 
-func player_take_damage(damage:int, source_area:Area2D = null):
+func player_take_damage(damage:float, source_area:Area2D = null):
 	if damage == 0:
 		return
 	else: 
 		health -= damage
 	
+	
+	
 	if source_area != null:
 		var knockback_direction = global_position - source_area.global_position
 		knockback_direction = knockback_direction.normalized()
 		velocity = knockback_direction * source_area.entity_knockback_strength
-		if velocity.x > 0 and velocity.x <= 200: velocity.x = 200
-		elif velocity.x < 0 and velocity.x >= -200: velocity.x = -200
-		if knockback_direction.y > 0:
-			if velocity.y > 0 and velocity.y <= 200:
-				velocity.y = 200
-		elif knockback_direction.y <= 0:
-			if velocity.y <= 0 and velocity.y >= -200:
-				velocity.y = -200
+		velocity.y -= 1 # MAKE THE PLAYER JUMP EVEN IF AT 0 Y VELOCITY
+		if velocity.x != 0:
+			var sign_x = sign(velocity.x)
+			if abs(velocity.x) < 200:
+				velocity.x = sign_x * 200
+		
+		if velocity.y != 0:
+			var sign_y = sign(velocity.y)
+			if abs(velocity.y) < 200:
+				velocity.y = sign_y * 200
+		
+		if velocity.y == 0:
+			velocity.y = -200
+		if velocity.x == 0:
+			if global_position.x >= source_area.global_position.x:
+				velocity.x = 200 # move right
+			else: 
+				velocity.x = -200 # move left
+		
+		#if velocity.x > 0 and velocity.x <= 200: velocity.x = 200
+		#elif velocity.x < 0 and velocity.x >= -200: velocity.x = -200
+		#if knockback_direction.y > 0:
+			#if velocity.y > 0 and velocity.y <= 200:
+				#velocity.y = 200
+		#elif knockback_direction.y <= 0:
+			#if velocity.y <= 0 and velocity.y >= -200:
+				#velocity.y = -200
+		Player_Flash()
 		input_cooldown(0.2)
 	
 	if health <= 0:
@@ -83,7 +105,7 @@ func playanimation_direction(direction:float):
 		my_animation_player.play("player_idle")
 		
 	if direction != 0:
-		sprite_player_run.flip_h = (direction < 0)
+		sprite_player.flip_h = (direction < 0)
 	
 		
 func _is_my_input_busy(value:bool):
@@ -200,17 +222,15 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	
 	match area.entity_damage_type:
 		"physical": 
-			calculated_damage = roundi(area.entity_base_damage - (area.entity_base_damage * damage_resistance_physical))
+			calculated_damage = area.entity_base_damage - (area.entity_base_damage * damage_resistance_physical)
 			player_take_damage(calculated_damage, area)
 		"acid":
-			calculated_damage = roundi(area.entity_base_damage - (area.entity_base_damage * damage_resistance_acid))
+			calculated_damage = area.entity_base_damage - (area.entity_base_damage * damage_resistance_acid)
 			player_take_damage(calculated_damage, area)
 		
 		"god":
 			player_take_damage(area.entity_base_damage, area)
 		
-		"fixed":
-			player_take_damage(area.entity_base_damage, area)
 
 
 func input_cooldown(cooldown_time, m_block_weapon_input:bool = false):
@@ -236,3 +256,8 @@ func damage_grace_period_cooldown_start(value:float):
 	damage_grace_period_is_active = true
 	await  get_tree().create_timer(value).timeout
 	damage_grace_period_is_active = false
+func Player_Flash(value:float = 0.2):
+	sprite_player.material.set_shader_parameter('Flash_White', true)
+	await get_tree().create_timer(value).timeout
+	sprite_player.material.set_shader_parameter('Flash_White', false)
+	

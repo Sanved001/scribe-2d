@@ -8,9 +8,13 @@ Death Animation
 Added A new boot script but it is not implemented yet so do not use it or it my cause issues
 the main scene is now boot.tscn instead of game.tscn
 Added Mrs. Crook who is intented to be an temporary enemy
-
-# Current Commit:
 Added One New enemy Which is yet to be fully integrated
 Switched Yuri's Dialog mechanic so now her dialogs are stored in a dictionary and not an Array like before which allows for new use cases
 Player now only detects hitboxes on Layer2 and Enemies and Traps are located on Layer 2 and detect hitboxes on Layer2
 Expanded the world Ever so slightly
+
+
+# Current Commit:
+Wrote a shader so now the player flashes after taking damage
+added an unfinished enemy hurtbox script Work in Progress
+

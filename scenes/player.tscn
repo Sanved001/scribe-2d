@@ -7,6 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qlg0r"]
 shader = ExtResource("2_dqkch")
+shader_parameter/Flash_White = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
 radius = 4.0
@@ -226,10 +227,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(6, 22)
 
-[node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player_run", "sword_animation_player", "weaponpiviot")]
+[node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player", "sword_animation_player", "weaponpiviot")]
 script = ExtResource("1_g2els")
 my_animation_player = NodePath("AnimationPlayer")
-sprite_player_run = NodePath("player")
+sprite_player = NodePath("player")
 sword_animation_player = NodePath("swordAnimationPlayer")
 weaponpiviot = NodePath("WeaponPiviot")
 

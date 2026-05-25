@@ -1,5 +1,6 @@
 shader_type canvas_item;
 //uniform vec3 my_colors;
+uniform bool Flash_White = false;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -9,10 +10,10 @@ void vertex() {
 }
 
 void fragment() {
-	// Called for every pixel the material is visible on.
-	//COLOR = texture(TEXTURE, UV);
-	//COLOR = vec4(my_colors, 0.1);
-	
+	vec4 current_color = texture(TEXTURE, UV);
+	if (Flash_White){
+	COLOR = vec4(1.0, 1.0, 1.0, current_color.a);
+	};
 }
 
 //void light() {

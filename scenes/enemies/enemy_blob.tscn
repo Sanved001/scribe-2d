@@ -2,12 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://d2ew43tuel743" path="res://assets/sprites/enemies/blob/enemy_blob.png" id="1_v8m5c"]
 [ext_resource type="Script" uid="uid://c51mwkiap85ch" path="res://scenes/enemies/hitbox_blob.gd" id="2_nbo6i"]
+[ext_resource type="PackedScene" uid="uid://by0knda11q7c5" path="res://scenes/entity_hurtbox.tscn" id="3_fp8nd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8m5c"]
 size = Vector2(20, 26)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbo6i"]
-size = Vector2(30, 28)
 
 [node name="enemy_blob" type="Node2D" unique_id=2122885595]
 
@@ -21,11 +19,9 @@ collision_layer = 2
 script = ExtResource("2_nbo6i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1614664637]
-position = Vector2(0, -14)
+position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_v8m5c")
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=1701821955]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1741445821]
-position = Vector2(0, -14)
-shape = SubResource("RectangleShape2D_nbo6i")
+[node name="entity_hurtbox" parent="." unique_id=1024989410 instance=ExtResource("3_fp8nd")]
+position = Vector2(0, -13)
+entity_hurtbox_collider_size = Vector2(25, 40)
