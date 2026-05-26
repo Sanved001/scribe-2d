@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var sword_animation_player:Node
 @export var weaponpiviot:Node2D
 @onready var red_sword: Sprite2D = $WeaponPiviot/red_sword
+@onready var red_sword_hitbox_collider: CollisionShape2D = $WeaponPiviot/red_sword/Hitbox/red_sword_hitbox_collider
+
 
 var last_direction:float = 0.0
 var input_is_busy:bool = false
@@ -116,6 +118,9 @@ func _ready() -> void:
 	sword_animation_player.speed_scale = 3
 	SignalBus.Input_Is_Busy.connect(_is_my_input_busy)
 	red_sword.visible = false
+	red_sword_hitbox_collider.disabled = true
+	
+	
 
 
 

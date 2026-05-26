@@ -14,7 +14,15 @@ Player now only detects hitboxes on Layer2 and Enemies and Traps are located on 
 Expanded the world Ever so slightly
 Wrote a shader so now the player flashes after taking damage
 added an unfinished enemy hurtbox script Work in Progress
-
-# Current Commit:
 Fixed Some issues with the enemy hurtbox script
 
+
+# Current Commit:
+fixed an bug where entities were sliding till the end of time after getting hit
+i.e Added Friction
+Changed some Collision masks and layers so now:
+	LAYER 1: Player Hurtbox
+	LAYER 2: ENEMY HITBOX
+	LAYER 3: ENEMY HURTBOX
+	LAYER 4: ENEMY COLLISIONSHAPE
+	LAYER 5: PLAYER HITBOX

@@ -1,5 +1,15 @@
 extends Node2D
 
+# LAYER 1: Player Hurtbox
+# LAYER 2: ENEMY HITBOX
+# LAYER 3: ENEMY HURTBOX
+# LAYER 4: ENEMY COLLISIONSHAPE
+# LAYER 5: PLAYER HITBOX
+
+
+
+
+
 @export var Level_Container:Node2D
 
 var Current_Level:Node2D = null

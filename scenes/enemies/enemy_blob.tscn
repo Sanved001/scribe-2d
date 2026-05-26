@@ -1,5 +1,6 @@
-[gd_scene format=3 uid="uid://fgwxxsaeb4tr"]
+[gd_scene format=3 uid="uid://dlu3skrg3wen4"]
 
+[ext_resource type="Script" uid="uid://ckqk2eyl4off5" path="res://scenes/enemies/enemy_blob.gd" id="1_ooa02"]
 [ext_resource type="Texture2D" uid="uid://d2ew43tuel743" path="res://assets/sprites/enemies/blob/enemy_blob.png" id="1_v8m5c"]
 [ext_resource type="Script" uid="uid://c51mwkiap85ch" path="res://scenes/enemies/hitbox_blob.gd" id="2_nbo6i"]
 [ext_resource type="PackedScene" uid="uid://by0knda11q7c5" path="res://scenes/entity_hurtbox.tscn" id="3_fp8nd"]
@@ -7,7 +8,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8m5c"]
 size = Vector2(20, 26)
 
-[node name="enemy_blob" type="Node2D" unique_id=2122885595]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp8nd"]
+size = Vector2(25, 30)
+
+[node name="enemy_blob" type="CharacterBody2D" unique_id=2073000293]
+collision_layer = 8
+script = ExtResource("1_ooa02")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=248584851]
 position = Vector2(0, -16)
@@ -22,6 +28,11 @@ script = ExtResource("2_nbo6i")
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_v8m5c")
 
-[node name="entity_hurtbox" parent="." unique_id=1024989410 instance=ExtResource("3_fp8nd")]
+[node name="entity_hurtbox" parent="." unique_id=1024989410 node_paths=PackedStringArray("root_node") instance=ExtResource("3_fp8nd")]
 position = Vector2(0, -13)
 entity_hurtbox_collider_size = Vector2(25, 40)
+root_node = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=244941735]
+position = Vector2(0.5, -15)
+shape = SubResource("RectangleShape2D_fp8nd")
