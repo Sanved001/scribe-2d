@@ -82,6 +82,7 @@ _data = {
 
 [node name="NPC_Yuri" type="Node2D" unique_id=572243532]
 script = ExtResource("1_xnkqq")
+dialog_key = "dash"
 
 [node name="Yuri" type="Sprite2D" parent="." unique_id=1649924279]
 position = Vector2(0, -16)
@@ -93,7 +94,6 @@ frame = 1
 Character_Sprite = NodePath("../Yuri")
 npc_collision_padding = Vector2(-20, 20)
 npc_Animation_Player = NodePath("../AnimationPlayer")
-npc_dialog_key = "fall"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1446596221]
 libraries/ = SubResource("AnimationLibrary_pgpx6")

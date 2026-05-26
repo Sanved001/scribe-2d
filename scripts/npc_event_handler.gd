@@ -5,7 +5,7 @@ extends Node2D
 @export var Character_Sprite:Sprite2D
 @export var npc_collision_padding:Vector2 = Vector2(0,0)
 @export var npc_Animation_Player:AnimationPlayer 
-@export var npc_dialog_key:String = "default"
+#@export var npc_dialog_key:String = "default"
 
 
 var Debug_Mode:bool = OS.is_debug_build()
@@ -121,6 +121,7 @@ func npc_interact():
 		if not Dialog_UI_Is_Busy:
 			if "npc_dialog" in npc_root:
 				var my_dialog_array:Array[String] = []
+				var npc_dialog_key = npc_root.dialog_key
 				my_dialog_array.assign(npc_root.npc_dialog[npc_dialog_key])
 				if Debug_Mode:
 					print("DEBUG: Emitting npc_name:", npc_root.npc_name, " Emitting Dialog Array:", my_dialog_array)

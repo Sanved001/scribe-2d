@@ -6,6 +6,7 @@ extends Node2D
 @export var Damage_Ressistance_physical:float = 0.0
 @export var Damage_Ressistance_acid:float = 0.0
 @export var root_node: CharacterBody2D
+@export var entity_sprite:Sprite2D
 
 
 var grace_period_is_active:bool = false
@@ -76,7 +77,7 @@ func this_entity_take_damage(damage: float,source_area: Area2D):
 		root_node.queue_free()
 
 
-
+	Entity_Flash()
 
 
 
@@ -98,3 +99,10 @@ func _on_entity_hurtbox_area_entered(area: Area2D) -> void:
 		"acid":
 			calculated_damage = area.entity_base_damage - (area.entity_base_damage * Damage_Ressistance_acid)
 			this_entity_take_damage(calculated_damage, area)
+
+
+func Entity_Flash(value:float = 0.2):
+	if entity_sprite:
+		entity_sprite.material.set_shader_parameter('Flash_White', true)
+		await get_tree().create_timer(value).timeout
+		entity_sprite.material.set_shader_parameter('Flash_White', false)

@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var red_sword_hitbox_collider: CollisionShape2D = $WeaponPiviot/red_sword/Hitbox/red_sword_hitbox_collider
 
 
+
 var last_direction:float = 0.0
 var input_is_busy:bool = false
 var dash_count:int = 1
@@ -23,9 +24,9 @@ var last_animation_direction:float = 0.0
 
 
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = -350.0
-const DASH_SPEED = 600.0
+const DASH_SPEED = 400.0
 
 
 func player_take_damage(damage:float, source_area:Area2D = null):
@@ -166,7 +167,7 @@ func _physics_process(delta: float) -> void:
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var direction := Input.get_axis("left", "right")
-	
+		
 		if (direction != 0):
 			last_animation_direction = direction
 			last_direction = direction

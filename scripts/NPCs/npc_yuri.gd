@@ -1,5 +1,7 @@
 extends Node2D
 
+
+@export var dialog_key:String = 'default'
 var npc_name:String = "Yuri"
 var npc_dialog:Dictionary[String, Array] = {
 	'default': ["I Love Cake",
@@ -12,4 +14,6 @@ var npc_dialog:Dictionary[String, Array] = {
 		"Well then, I'll see you in the next update!"],
 	'fall': ["Did you know that you can fall?",
 		"so you did? meh"],
+	'dash': ["Did you know that you're invincible while dashing?",
+		"Well, Now you do!"],
 }

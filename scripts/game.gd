@@ -9,12 +9,15 @@ extends Node2D
 
 
 
-
+@onready var camera_2d: Camera2D = $player/Camera2D
+@onready var player: CharacterBody2D = $player
 @export var Level_Container:Node2D
 
 var Current_Level:Node2D = null
-
 var Slow_motion_is_active:bool = false
+
+
+#const CAMERA_MOVE_SPEED = 100
 
 func Load_Level(path_to_node, ClearPrevious:bool=false, ClearAll=false):
 	if ClearPrevious == true:
@@ -39,7 +42,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
 	
 #https://forum.godotengine.org/t/create-a-slow-motion-effect-with-only-a-few-lines-of-code/36098
 # This will make the game play at half-speed by default.
