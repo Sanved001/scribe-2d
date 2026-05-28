@@ -20,6 +20,7 @@ var calculated_damage:float
 var block_weapon_input:bool = false
 var dash_cooldown:bool = false
 var last_animation_direction:float = 0.0
+var Plane_Shift:bool = false
 
 
 
@@ -162,6 +163,17 @@ func _physics_process(delta: float) -> void:
 				velocity.x -= 50
 				velocity.y = JUMP_VELOCITY-10
 				await input_cooldown(0.2)
+				
+				
+		# PLANE SHIFTING
+		if not input_is_busy:
+			if Input.is_action_just_pressed("shift_plane"):
+				if Plane_Shift:
+					SignalBus.Plane_shift.emit(false)
+					Plane_Shift = false
+				else: 
+					SignalBus.Plane_shift.emit(true)
+					Plane_Shift = true
 
 	if not input_is_busy:
 		# Get the input direction and handle the movement/deceleration.

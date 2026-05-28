@@ -9,7 +9,6 @@ extends Node2D
 
 
 
-@onready var camera_2d: Camera2D = $player/Camera2D
 @onready var player: CharacterBody2D = $player
 @export var Level_Container:Node2D
 
