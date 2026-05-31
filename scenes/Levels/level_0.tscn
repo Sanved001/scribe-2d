@@ -9,8 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://hodm7nflxj1h" path="res://scenes/NPCs/npc_yuri.tscn" id="6_4vjxo"]
 [ext_resource type="PackedScene" uid="uid://bggcep8a63wb5" path="res://scenes/enemies/enemy_mrs_crock.tscn" id="7_phstr"]
 [ext_resource type="PackedScene" uid="uid://dlu3skrg3wen4" path="res://scenes/enemies/enemy_blob.tscn" id="8_8f6fy"]
+[ext_resource type="PackedScene" uid="uid://dkxwgxl82xtjf" path="res://scenes/change_scene_trigger.tscn" id="10_h6kal"]
+[ext_resource type="PackedScene" uid="uid://bpemxwa2sj5wc" path="res://scenes/player.tscn" id="11_aa8mw"]
+[ext_resource type="Script" uid="uid://csxoa0xcr1t24" path="res://scripts/player_camera.gd" id="12_bg0a1"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgppn"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ipi18"]
 texture = ExtResource("1_qpt33")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -5.0078125, -5.0078125, -4.9921875, -4.980069, 8, -8, 8, -8, -5.006706, -8, -8, 8, -8)
@@ -66,7 +69,7 @@ texture = ExtResource("1_qpt33")
 
 [sub_resource type="TileSet" id="TileSet_p4813"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_wgppn")
+sources/0 = SubResource("TileSetAtlasSource_ipi18")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wgppn"]
 
@@ -87,14 +90,6 @@ tile_set = SubResource("TileSet_p4813")
 [node name="Forest Parallax Static 1" parent="Plane_1" unique_id=1426544196 instance=ExtResource("2_wgppn")]
 z_index = -1
 position = Vector2(0, 17)
-
-[node name="Void" type="Area2D" parent="Plane_1" unique_id=1623737934]
-collision_layer = 2
-script = ExtResource("3_p4813")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Plane_1/Void" unique_id=1754378556]
-position = Vector2(0, 180)
-shape = SubResource("WorldBoundaryShape2D_wgppn")
 
 [node name="Spikes" type="Node2D" parent="Plane_1" unique_id=1981474716]
 
@@ -241,3 +236,32 @@ position = Vector2(1817, -368)
 rotation = 0.0006271678
 tile_map_data = PackedByteArray("AAAPAAUAAAABAAEAAAAPAAQAAAABAAEAAAAPAAMAAAABAAEAAAAPAAIAAAABAAEAAAAPAAEAAAABAAEAAAAPAAAAAAABAAEAAAAOAAAAAAABAAEAAAANAAAAAAABAAEAAAAMAAAAAAABAAEAAAALAAAAAAABAAEAAAAKAAAAAAABAAEAAAAKAAEAAAABAAEAAAAKAAIAAAABAAEAAAAKAAMAAAABAAEAAAAKAAQAAAABAAEAAAAKAAUAAAABAAEAAAALAAUAAAABAAEAAAALAAQAAAABAAEAAAALAAMAAAABAAEAAAALAAIAAAABAAEAAAALAAEAAAABAAEAAAAMAAEAAAABAAEAAAAMAAIAAAABAAEAAAAMAAMAAAABAAEAAAAMAAQAAAABAAEAAAAMAAUAAAABAAEAAAANAAUAAAABAAEAAAANAAQAAAABAAEAAAANAAMAAAABAAEAAAANAAIAAAABAAEAAAANAAEAAAABAAEAAAAOAAEAAAABAAEAAAAOAAIAAAABAAEAAAAOAAMAAAABAAEAAAAOAAQAAAABAAEAAAAOAAUAAAABAAEAAAAQAAAAAAABAAEAAAARAAAAAAABAAEAAAASAAAAAAABAAEAAAATAAAAAAABAAEAAAAUAAAAAAABAAEAAAAVAAAAAAABAAEAAAAWAAAAAAABAAEAAAAXAAAAAAABAAEAAAAYAAAAAAABAAEAAAAZAAAAAAABAAEAAAAaAAAAAAABAAEAAAAbAAAAAAABAAEAAAAcAAAAAAABAAEAAAAdAAAAAAABAAEAAAAdAAEAAAABAAEAAAAdAAIAAAABAAEAAAAdAAMAAAABAAEAAAAdAAQAAAABAAEAAAAdAAUAAAABAAEAAAAeAAUAAAABAAEAAAAeAAQAAAABAAEAAAAeAAMAAAABAAEAAAAeAAIAAAABAAEAAAAeAAEAAAABAAEAAAAeAAAAAAABAAEAAAAfAAAAAAABAAEAAAAfAAEAAAABAAEAAAAfAAIAAAABAAEAAAAfAAMAAAABAAEAAAAfAAQAAAABAAEAAAAfAAUAAAABAAEAAAAgAAUAAAABAAEAAAAgAAQAAAABAAEAAAAgAAMAAAABAAEAAAAgAAIAAAABAAEAAAAgAAEAAAABAAEAAAAgAAAAAAABAAEAAAAhAAAAAAABAAEAAAAhAAEAAAABAAEAAAAhAAIAAAABAAEAAAAhAAMAAAABAAEAAAAhAAQAAAABAAEAAAAhAAUAAAABAAEAAAAiAAUAAAABAAEAAAAiAAQAAAABAAEAAAAiAAMAAAABAAEAAAAiAAIAAAABAAEAAAAiAAEAAAABAAEAAAAiAAAAAAABAAEAAAAjAAAAAAABAAEAAAAjAAEAAAABAAEAAAAjAAIAAAABAAEAAAAjAAMAAAABAAEAAAAjAAQAAAABAAEAAAAjAAUAAAABAAEAAAAkAAUAAAABAAEAAAAkAAQAAAABAAEAAAAkAAMAAAABAAEAAAAkAAIAAAABAAEAAAAkAAEAAAABAAEAAAAkAAAAAAABAAEAAAAlAAAAAAABAAEAAAAlAAEAAAABAAEAAAAlAAIAAAABAAEAAAAlAAMAAAABAAEAAAAlAAQAAAABAAEAAAAlAAUAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_p4813")
+
+[node name="Change_Scene_Trigger" parent="." unique_id=1770343858 instance=ExtResource("10_h6kal")]
+position = Vector2(2069, -409)
+trigger_area_collider_size = Vector2(50, 50)
+change_scene_to = "res://scenes/Levels/level_0_boss.tscn"
+ClearPrevious = true
+
+[node name="player" parent="." unique_id=1261008140 instance=ExtResource("11_aa8mw")]
+z_index = 5
+collision_layer = 2
+
+[node name="PlayerCamera" type="Camera2D" parent="player" unique_id=1208006582]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+script = ExtResource("12_bg0a1")
+lerp_speed = 0.4
+
+[node name="Void" type="Area2D" parent="." unique_id=1623737934]
+collision_layer = 2
+script = ExtResource("3_p4813")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Void" unique_id=1754378556]
+position = Vector2(0, 180)
+shape = SubResource("WorldBoundaryShape2D_wgppn")

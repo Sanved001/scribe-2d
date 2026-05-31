@@ -1,7 +1,5 @@
 #Current Stable Version:
 
-
-# Current Version:
 Added Dash when pressing SHIFT
 Added a new Tutorial Level
 Bugfixes
@@ -27,6 +25,12 @@ Changed some Collision masks and layers so now:
 	LAYER 4: ENEMY COLLISIONSHAPE
 	LAYER 5: PLAYER HITBOX
 
-# Current Commit:
+# Current Version:
+
 Added A bit of Camera Motion
 And now the enemy moves towards the player
+Camera changes
+
+# Current Commit:
+Moved the player to the level instead of the base scene
+added a new mechanic to load scenes from witin an scene... just like changing maps

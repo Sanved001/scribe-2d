@@ -1,29 +1,12 @@
 [gd_scene format=3 uid="uid://bitqf5m6b6pg4"]
 
 [ext_resource type="Script" uid="uid://dp4qb8dj4rcuo" path="res://scripts/game.gd" id="1_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://bpemxwa2sj5wc" path="res://scenes/player.tscn" id="1_yqjtg"]
-[ext_resource type="Script" uid="uid://csxoa0xcr1t24" path="res://scripts/player_camera.gd" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://c3gf6s06y5o6k" path="res://scenes/DialogueManager/dialog_manager.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://dpi0ycbu741x0" path="res://scenes/game_ui.tscn" id="5_iywne"]
 
 [node name="Game" type="Node2D" unique_id=995285545 node_paths=PackedStringArray("Level_Container")]
 script = ExtResource("1_lnu2h")
 Level_Container = NodePath("Level Container")
-
-[node name="player" parent="." unique_id=1261008140 instance=ExtResource("1_yqjtg")]
-z_index = 5
-collision_layer = 2
-
-[node name="PlayerCamera" type="Camera2D" parent="player" unique_id=488843160]
-zoom = Vector2(3, 3)
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_left_margin = 0.0
-drag_top_margin = 0.0
-drag_right_margin = 0.0
-drag_bottom_margin = 0.0
-script = ExtResource("3_iywne")
-lerp_speed = 0.4
 
 [node name="Level Container" type="Node2D" parent="." unique_id=806687034]
 

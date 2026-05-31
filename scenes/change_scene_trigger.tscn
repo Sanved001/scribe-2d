@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dkxwgxl82xtjf"]
+
+[ext_resource type="Script" uid="uid://c84cqqwr0wtgw" path="res://scenes/change_scene_trigger.gd" id="1_fvd3s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpfoh"]
+
+[node name="Change_Scene_Trigger" type="Node2D" unique_id=1770343858]
+script = ExtResource("1_fvd3s")
+
+[node name="TriggerArea" type="Area2D" parent="." unique_id=1415824983]
+
+[node name="TriggerAreaCollider" type="CollisionShape2D" parent="TriggerArea" unique_id=811483087]
+shape = SubResource("RectangleShape2D_jpfoh")
+
+[connection signal="area_entered" from="TriggerArea" to="." method="_on_trigger_area_area_entered"]
