@@ -9,4 +9,7 @@ func _ready() -> void:
 	pass
 	
 func _process(delta: float) -> void:
+	
 	offset = offset.lerp(player.velocity, delta * lerp_speed)
+	#if offset.x >= 50: offset.x = 50
+	offset = offset.clamp(Vector2(-50,-50), Vector2(50,50))
