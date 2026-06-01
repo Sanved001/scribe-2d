@@ -220,7 +220,7 @@ func _physics_process(delta: float) -> void:
 			
 
 	if Input.is_action_just_pressed("debug"):
-		pass
+		SignalBus.ChangeCurrentScene.emit("res://scenes/Levels/level_0_boss.tscn", "change level", true)
 
 	playanimation("", last_animation_direction)
 	move_and_slide()

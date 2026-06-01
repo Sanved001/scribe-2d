@@ -30,7 +30,8 @@ Changed some Collision masks and layers so now:
 Added A bit of Camera Motion
 And now the enemy moves towards the player
 Camera changes
-
-# Current Commit:
 Moved the player to the level instead of the base scene
 added a new mechanic to load scenes from witin an scene... just like changing maps
+
+# Current Commit:
+Tweeked the map a bit
