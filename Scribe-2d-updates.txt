@@ -32,6 +32,8 @@ And now the enemy moves towards the player
 Camera changes
 Moved the player to the level instead of the base scene
 added a new mechanic to load scenes from witin an scene... just like changing maps
+Tweeked the map a bit
 
 # Current Commit:
-Tweeked the map a bit
+Removed the boss level for level_0 or "Tutorial Leval"
+Added a TODO.md

@@ -240,7 +240,7 @@ tile_set = SubResource("TileSet_p4813")
 [node name="Change_Scene_Trigger" parent="." unique_id=1770343858 instance=ExtResource("10_h6kal")]
 position = Vector2(2118, -151)
 trigger_area_collider_size = Vector2(100, 50)
-change_scene_to = "res://scenes/Levels/level_0_boss.tscn"
+change_scene_to = "null"
 ClearPrevious = true
 
 [node name="player" parent="." unique_id=1261008140 instance=ExtResource("11_aa8mw")]
