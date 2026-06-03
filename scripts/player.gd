@@ -147,7 +147,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = min(velocity.y , 150)
 	
 		elif velocity.y > 0:
-			velocity.y += get_gravity().y * 1.5 * delta
+			velocity.y += get_gravity().y * 1.25 * delta
 	# Handle jump.
 	if not input_is_busy:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
