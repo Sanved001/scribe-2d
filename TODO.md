@@ -10,6 +10,7 @@
 - SFX
 - Add actual art
 - Add Animations
+- Make it so that Players can only wallclimb certain tiles/walls
 
 # DONE:
 - Core Mechanics
