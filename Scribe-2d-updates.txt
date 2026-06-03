@@ -35,7 +35,8 @@ added a new mechanic to load scenes from witin an scene... just like changing ma
 Tweeked the map a bit
 Removed the boss level for level_0 or "Tutorial Leval"
 Added a TODO.md
+Modified Gravity so that when ascending it's 1x and when descending it's 1.25x instead of 1.5x as it was in the past
 
 # Current Commit:
 
-Modified Gravity so that when ascending it's 1x and when descending it's 1.25x instead of 1.5x as it was in the past
+Turned on Physics Interpolation so that the jitter on high refresh rate is solved
