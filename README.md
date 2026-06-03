@@ -1,4 +1,54 @@
 # scribe-2d
+
+## Installation:
+### 1. Hassle Free Installation: 
+If you just want to play the game you can follow the steps below
+
+Step 1:
+Go to the [installation page](https://github.com/Sanved001/scribe-2d/releases) and then download the Windows or Linux Zip depending on your OS. Mac executables are not provided.
+
+Step 2:
+Extract the zip and then run the executable file!
+Also, an .pck file is present in the zip so please do not separate the two files.
+And you are done!
+
+### 2. Not So Hassle Free Installation:
+If you want the latest updates and don't want to keep waiting for the releases this method is for you!
+Requirements: Needs Godot, Latest version is recommended. Download it from [here](https://godotengine.org/)
+
+
+Step 1:
+Navigate to where you want to save the game
+for ex: `/path/to/game/Games`
+The next step will automatically create a folder inside this folder so you don't have to make a new folder now
+
+Step 2:
+Open your terminal and move to the folder by using the "cd" cmd
+for ex: `cd /path/to/game/Games`
+
+Step 3:
+Now that you are in the folder type the following cmd to clone the repo:
+`git clone https://github.com/Sanved001/scribe-2d/`
+
+Step 4:
+Move into the folder by running
+`cd ./scribe-2d/` or `cd path/to/game/Games/scribe-2d/`
+Note that you must add "scribe-2d/" to the path
+And you are almost done!
+
+Step 5:
+Open Godot and click "Import" button then navigate to the scribe-2d folder and you will find a "project.godot" file double click that.
+You can open the project and press F5 or the run button on the top right to play the game.
+
+To update the game,
+First close Godot, you can also do it while it's open but if you have unsaved changes it may cause issues
+Then open the terminal and navigate to the scribe-2d folder and run the following cmd
+`git pull` -> it will download the update
+and after that you can open the project again in Godot and play the new update!
+And you are Done!
+
+
+
 ## License & Usage Notice
 
 
