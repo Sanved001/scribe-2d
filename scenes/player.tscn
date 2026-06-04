@@ -292,7 +292,7 @@ shape = SubResource("RectangleShape2D_qhqgy")
 [node name="swordAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1764912105]
 libraries/ = SubResource("AnimationLibrary_fjrip")
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=1770532182]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1770532182 groups=["player"]]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2045791906]

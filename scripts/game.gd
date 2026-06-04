@@ -5,11 +5,6 @@ extends Node2D
 # LAYER 3: ENEMY HURTBOX
 # LAYER 4: ENEMY COLLISIONSHAPE
 # LAYER 5: PLAYER HITBOX
-
-
-
-
-@onready var player: CharacterBody2D = $player
 @export var Level_Container:Node2D
 
 var Current_Level:Node2D = null

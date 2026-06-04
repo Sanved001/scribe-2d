@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dkxwgxl82xtjf" path="res://scenes/change_scene_trigger.tscn" id="10_h6kal"]
 [ext_resource type="PackedScene" uid="uid://bpemxwa2sj5wc" path="res://scenes/player.tscn" id="11_aa8mw"]
 [ext_resource type="Script" uid="uid://csxoa0xcr1t24" path="res://scripts/player_camera.gd" id="12_bg0a1"]
+[ext_resource type="PackedScene" uid="uid://dgtac5jeqd7f2" path="res://scenes/coin.tscn" id="13_bg0a1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ipi18"]
 texture = ExtResource("1_qpt33")
@@ -234,7 +235,7 @@ position = Vector2(1817, -368)
 
 [node name="Foreground" type="TileMapLayer" parent="Plane_2" unique_id=2012213484]
 rotation = 0.0006271678
-tile_map_data = PackedByteArray("AAAPAAUAAAABAAEAAAAPAAQAAAABAAEAAAAPAAMAAAABAAEAAAAPAAIAAAABAAEAAAAPAAEAAAABAAEAAAAPAAAAAAABAAEAAAAOAAAAAAABAAEAAAANAAAAAAABAAEAAAAMAAAAAAABAAEAAAALAAAAAAABAAEAAAAKAAAAAAABAAEAAAAKAAEAAAABAAEAAAAKAAIAAAABAAEAAAAKAAMAAAABAAEAAAAKAAQAAAABAAEAAAAKAAUAAAABAAEAAAALAAUAAAABAAEAAAALAAQAAAABAAEAAAALAAMAAAABAAEAAAALAAIAAAABAAEAAAALAAEAAAABAAEAAAAMAAEAAAABAAEAAAAMAAIAAAABAAEAAAAMAAMAAAABAAEAAAAMAAQAAAABAAEAAAAMAAUAAAABAAEAAAANAAUAAAABAAEAAAANAAQAAAABAAEAAAANAAMAAAABAAEAAAANAAIAAAABAAEAAAANAAEAAAABAAEAAAAOAAEAAAABAAEAAAAOAAIAAAABAAEAAAAOAAMAAAABAAEAAAAOAAQAAAABAAEAAAAOAAUAAAABAAEAAAAQAAAAAAABAAEAAAARAAAAAAABAAEAAAASAAAAAAABAAEAAAATAAAAAAABAAEAAAAUAAAAAAABAAEAAAAVAAAAAAABAAEAAAAWAAAAAAABAAEAAAAXAAAAAAABAAEAAAAYAAAAAAABAAEAAAAZAAAAAAABAAEAAAAaAAAAAAABAAEAAAAbAAAAAAABAAEAAAAcAAAAAAABAAEAAAAdAAAAAAABAAEAAAAdAAEAAAABAAEAAAAdAAIAAAABAAEAAAAdAAMAAAABAAEAAAAdAAQAAAABAAEAAAAdAAUAAAABAAEAAAAeAAUAAAABAAEAAAAeAAQAAAABAAEAAAAeAAMAAAABAAEAAAAeAAIAAAABAAEAAAAeAAEAAAABAAEAAAAeAAAAAAABAAEAAAAfAAAAAAABAAEAAAAfAAEAAAABAAEAAAAfAAIAAAABAAEAAAAfAAMAAAABAAEAAAAfAAQAAAABAAEAAAAfAAUAAAABAAEAAAAgAAUAAAABAAEAAAAgAAQAAAABAAEAAAAgAAMAAAABAAEAAAAgAAIAAAABAAEAAAAgAAEAAAABAAEAAAAgAAAAAAABAAEAAAAhAAAAAAABAAEAAAAhAAEAAAABAAEAAAAhAAIAAAABAAEAAAAhAAMAAAABAAEAAAAhAAQAAAABAAEAAAAhAAUAAAABAAEAAAAiAAUAAAABAAEAAAAiAAQAAAABAAEAAAAiAAMAAAABAAEAAAAiAAIAAAABAAEAAAAiAAEAAAABAAEAAAAiAAAAAAABAAEAAAAjAAAAAAABAAEAAAAjAAEAAAABAAEAAAAjAAIAAAABAAEAAAAjAAMAAAABAAEAAAAjAAQAAAABAAEAAAAjAAUAAAABAAEAAAAkAAUAAAABAAEAAAAkAAQAAAABAAEAAAAkAAMAAAABAAEAAAAkAAIAAAABAAEAAAAkAAEAAAABAAEAAAAkAAAAAAABAAEAAAAlAAAAAAABAAEAAAAlAAEAAAABAAEAAAAlAAIAAAABAAEAAAAlAAMAAAABAAEAAAAlAAQAAAABAAEAAAAlAAUAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAAPAAUAAAABAAEAAAAPAAQAAAABAAEAAAAPAAMAAAABAAEAAAAPAAIAAAABAAEAAAAPAAEAAAABAAEAAAAPAAAAAAABAAEAAAAOAAAAAAABAAEAAAANAAAAAAABAAEAAAAMAAAAAAABAAEAAAALAAAAAAABAAEAAAAKAAAAAAABAAEAAAAKAAEAAAABAAEAAAAKAAIAAAABAAEAAAAKAAMAAAABAAEAAAAKAAQAAAABAAEAAAAKAAUAAAABAAEAAAALAAUAAAABAAEAAAALAAQAAAABAAEAAAALAAMAAAABAAEAAAALAAIAAAABAAEAAAALAAEAAAABAAEAAAAMAAEAAAABAAEAAAAMAAIAAAABAAEAAAAMAAMAAAABAAEAAAAMAAQAAAABAAEAAAAMAAUAAAABAAEAAAANAAUAAAABAAEAAAANAAQAAAABAAEAAAANAAMAAAABAAEAAAANAAIAAAABAAEAAAANAAEAAAABAAEAAAAOAAEAAAABAAEAAAAOAAIAAAABAAEAAAAOAAMAAAABAAEAAAAOAAQAAAABAAEAAAAOAAUAAAABAAEAAAAQAAAAAAABAAEAAAARAAAAAAABAAEAAAASAAAAAAABAAEAAAATAAAAAAABAAEAAAAUAAAAAAABAAEAAAAVAAAAAAABAAEAAAAWAAAAAAABAAEAAAAXAAAAAAABAAEAAAAYAAAAAAABAAEAAAAZAAAAAAABAAEAAAAaAAAAAAABAAEAAAAbAAAAAAABAAEAAAAcAAAAAAABAAEAAAAdAAAAAAABAAEAAAAdAAEAAAABAAEAAAAdAAIAAAABAAEAAAAdAAMAAAABAAEAAAAdAAQAAAABAAEAAAAdAAUAAAABAAEAAAAeAAUAAAABAAEAAAAeAAQAAAABAAEAAAAeAAMAAAABAAEAAAAeAAIAAAABAAEAAAAeAAEAAAABAAEAAAAeAAAAAAABAAEAAAAfAAAAAAABAAEAAAAfAAEAAAABAAEAAAAfAAIAAAABAAEAAAAfAAMAAAABAAEAAAAfAAQAAAABAAEAAAAfAAUAAAABAAEAAAAgAAUAAAABAAEAAAAgAAQAAAABAAEAAAAgAAMAAAABAAEAAAAgAAIAAAABAAEAAAAgAAEAAAABAAEAAAAgAAAAAAABAAEAAAAhAAAAAAABAAEAAAAhAAEAAAABAAEAAAAhAAIAAAABAAEAAAAhAAMAAAABAAEAAAAhAAQAAAABAAEAAAAhAAUAAAABAAEAAAAiAAUAAAABAAEAAAAiAAQAAAABAAEAAAAiAAMAAAABAAEAAAAiAAIAAAABAAEAAAAiAAEAAAABAAEAAAAiAAAAAAABAAEAAAAjAAAAAAABAAEAAAAjAAEAAAABAAEAAAAjAAIAAAABAAEAAAAjAAMAAAABAAEAAAAjAAQAAAABAAEAAAAjAAUAAAABAAEAAAAkAAUAAAABAAEAAAAkAAQAAAABAAEAAAAkAAMAAAABAAEAAAAkAAIAAAABAAEAAAAkAAEAAAABAAEAAAAkAAAAAAABAAEAAAAlAAAAAAABAAEAAAAlAAEAAAABAAEAAAAlAAIAAAABAAEAAAAlAAMAAAABAAEAAAAlAAQAAAABAAEAAAAlAAUAAAABAAEAAAAVAPv/AAABAAEAAAAWAPv/AAABAAEAAAAXAPv/AAABAAEAAAAbAPf/AAABAAEAAAAcAPf/AAABAAEAAAAdAPf/AAABAAEAAAARAPf/AAABAAEAAAAQAPf/AAABAAEAAAAPAPf/AAABAAEAAAAXAPP/AAABAAEAAAAWAPP/AAABAAEAAAAVAPP/AAABAAEAAAA=")
 tile_set = SubResource("TileSet_p4813")
 
 [node name="Change_Scene_Trigger" parent="." unique_id=1770343858 instance=ExtResource("10_h6kal")]
@@ -265,3 +266,107 @@ script = ExtResource("3_p4813")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Void" unique_id=1754378556]
 position = Vector2(0, 180)
 shape = SubResource("WorldBoundaryShape2D_wgppn")
+
+[node name="coins" type="Node2D" parent="." unique_id=466677771]
+
+[node name="coin" parent="coins" unique_id=1881695675 instance=ExtResource("13_bg0a1")]
+position = Vector2(358, -8)
+
+[node name="coin2" parent="coins" unique_id=962800825 instance=ExtResource("13_bg0a1")]
+position = Vector2(360, -88)
+
+[node name="coin3" parent="coins" unique_id=62320171 instance=ExtResource("13_bg0a1")]
+position = Vector2(376, -88)
+
+[node name="coin4" parent="coins" unique_id=1990018526 instance=ExtResource("13_bg0a1")]
+position = Vector2(344, -88)
+
+[node name="coin5" parent="coins" unique_id=2082545586 instance=ExtResource("13_bg0a1")]
+position = Vector2(439, -151)
+
+[node name="coin6" parent="coins" unique_id=1186258725 instance=ExtResource("13_bg0a1")]
+position = Vector2(456, -151)
+
+[node name="coin7" parent="coins" unique_id=735459252 instance=ExtResource("13_bg0a1")]
+position = Vector2(472, -151)
+
+[node name="coin8" parent="coins" unique_id=1131347126 instance=ExtResource("13_bg0a1")]
+position = Vector2(359, -215)
+
+[node name="coin9" parent="coins" unique_id=195584327 instance=ExtResource("13_bg0a1")]
+position = Vector2(344, -215)
+
+[node name="coin10" parent="coins" unique_id=989815938 instance=ExtResource("13_bg0a1")]
+position = Vector2(374, -215)
+
+[node name="coin11" parent="coins" unique_id=653346619 instance=ExtResource("13_bg0a1")]
+position = Vector2(248, -151)
+
+[node name="coin12" parent="coins" unique_id=2089978953 instance=ExtResource("13_bg0a1")]
+position = Vector2(263, -151)
+
+[node name="coin13" parent="coins" unique_id=1332891422 instance=ExtResource("13_bg0a1")]
+position = Vector2(278, -151)
+
+[node name="coin14" parent="coins" unique_id=1596790127 instance=ExtResource("13_bg0a1")]
+position = Vector2(343, -8)
+
+[node name="coin15" parent="coins" unique_id=1433299443 instance=ExtResource("13_bg0a1")]
+position = Vector2(373, -8)
+
+[node name="coin16" parent="coins" unique_id=2020321773 instance=ExtResource("13_bg0a1")]
+position = Vector2(968, -155)
+
+[node name="coin17" parent="coins" unique_id=1916208060 instance=ExtResource("13_bg0a1")]
+position = Vector2(968, -139)
+
+[node name="coin18" parent="coins" unique_id=166053489 instance=ExtResource("13_bg0a1")]
+position = Vector2(968, -123)
+
+[node name="coin19" parent="coins" unique_id=535226138 instance=ExtResource("13_bg0a1")]
+position = Vector2(968, -107)
+
+[node name="coin20" parent="coins" unique_id=1841787522 instance=ExtResource("13_bg0a1")]
+position = Vector2(968, -91)
+
+[node name="coin21" parent="coins" unique_id=809218379 instance=ExtResource("13_bg0a1")]
+position = Vector2(929, -327)
+
+[node name="coin22" parent="coins" unique_id=1456362876 instance=ExtResource("13_bg0a1")]
+position = Vector2(944, -327)
+
+[node name="coin23" parent="coins" unique_id=266400384 instance=ExtResource("13_bg0a1")]
+position = Vector2(959, -327)
+
+[node name="coin24" parent="coins" unique_id=897157831 instance=ExtResource("13_bg0a1")]
+position = Vector2(974, -327)
+
+[node name="coin25" parent="coins" unique_id=381634254 instance=ExtResource("13_bg0a1")]
+position = Vector2(989, -327)
+
+[node name="coin26" parent="coins" unique_id=1998926934 instance=ExtResource("13_bg0a1")]
+position = Vector2(1004, -327)
+
+[node name="coin27" parent="coins" unique_id=1903063629 instance=ExtResource("13_bg0a1")]
+position = Vector2(1019, -327)
+
+[node name="coin28" parent="coins" unique_id=1686730490 instance=ExtResource("13_bg0a1")]
+position = Vector2(1034, -327)
+
+[node name="coin29" parent="coins" unique_id=1721612222 instance=ExtResource("13_bg0a1")]
+position = Vector2(1359, -73)
+
+[node name="coin30" parent="coins" unique_id=592701930 instance=ExtResource("13_bg0a1")]
+position = Vector2(1340, -141)
+
+[node name="coin31" parent="coins" unique_id=1490623268 instance=ExtResource("13_bg0a1")]
+position = Vector2(1360, -199)
+
+[node name="coin32" parent="coins" unique_id=1787374448 instance=ExtResource("13_bg0a1")]
+position = Vector2(1342, -266)
+
+[node name="coin33" parent="coins" unique_id=297846162 instance=ExtResource("13_bg0a1")]
+position = Vector2(1363, -333)
+
+[node name="coin34" parent="coins" unique_id=218719595 instance=ExtResource("13_bg0a1")]
+position = Vector2(1342, -396)
