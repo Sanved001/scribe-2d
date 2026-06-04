@@ -1,5 +1,9 @@
 # scribe-2d
 
+## Socials
+Discord: [Discord](https://discord.gg/fhyQMpRUWV)
+If the above link dosen't work copy paste this in your browser: https://discord.gg/fhyQMpRUWV
+
 ## Installation:
 ### 1. Hassle Free Installation: 
 If you just want to play the game you can follow the steps below
