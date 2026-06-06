@@ -40,7 +40,8 @@ Turned on Physics Interpolation so that the jitter on high refresh rate is solve
 Added Coins that can be collected. It does not have a use yet but will be added later
 Laid the foundation for Climbable Walls. I know walls are climbable but I don't want all of them to be climbable
 The Game Now Successfully Detects whether a wall is climbable or not but the full mechanic is yet to be implemented
+Added Specific Climbable walls, now players can only wall jump on specific walls which makes my work of keeping the players in the map easier
+Added an Extra RayCast2D node so the players can wall jump more easily
 
 # Current Commit:
-
-Added Specific Climbable walls, now players can only wall jump on specific walls which makes my work of keeping the players in the map easier
+Addied Crate Push and Pull soon to be reworked
