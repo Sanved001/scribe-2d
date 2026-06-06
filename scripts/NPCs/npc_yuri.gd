@@ -16,4 +16,6 @@ var npc_dialog:Dictionary[String, Array] = {
 		"so you did? meh"],
 	'dash': ["Did you know that you're invincible while dashing?",
 		"Well, Now you do!"],
+	'cant_reach_coins_level_0': ["Huh, you can't reach some coins at the start of the level?",
+		"Maybe try pressing 'F'"],
 }

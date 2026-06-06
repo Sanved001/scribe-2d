@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var sword_animation_player:Node
 @export var weaponpiviot:Node2D
 @export var Wall_Climb_RayCast2D:RayCast2D
+@export var Wall_Climb_RayCast2D2:RayCast2D
 
 @onready var red_sword: Sprite2D = $WeaponPiviot/red_sword
 @onready var red_sword_hitbox_collider: CollisionShape2D = $WeaponPiviot/red_sword/Hitbox/red_sword_hitbox_collider
@@ -113,6 +114,7 @@ func playanimation_direction(direction:float):
 	if direction != 0:
 		sprite_player.flip_h = (direction < 0)
 		Wall_Climb_RayCast2D.rotation = PI if direction < 0 else 0.0
+		Wall_Climb_RayCast2D2.rotation = PI if direction < 0 else 0.0
 
 	
 		
@@ -158,16 +160,16 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_VELOCITY
 			
 		elif Input.is_action_just_pressed("jump") and is_on_wall():
-			is_wall_climbable(global_position)
-			if Input.is_action_pressed("left"):
-				velocity.x += 50
-				velocity.y = JUMP_VELOCITY-10
-				await input_cooldown(0.2)
-				
-			elif Input.is_action_pressed("right"):
-				velocity.x -= 50
-				velocity.y = JUMP_VELOCITY-10
-				await input_cooldown(0.2)
+			if is_wall_climbable():
+				if Input.is_action_pressed("left"):
+					velocity.x += 50
+					velocity.y = JUMP_VELOCITY-10
+					await input_cooldown(0.2)
+					
+				elif Input.is_action_pressed("right"):
+					velocity.x -= 50
+					velocity.y = JUMP_VELOCITY-10
+					await input_cooldown(0.2)
 				
 				
 		# PLANE SHIFTING
@@ -289,7 +291,7 @@ func Player_Flash(value:float = 0.2):
 	
 	
 
-func is_wall_climbable(m_position):
+func is_wall_climbable():
 	if Wall_Climb_RayCast2D.is_colliding():
 		var tilemap = Wall_Climb_RayCast2D.get_collider()
 		if tilemap is TileMapLayer:
@@ -313,3 +315,31 @@ func is_wall_climbable(m_position):
 			
 				if Debug_Mode:
 					print("Tile ", climbable_tile_data, "is Climbable: ", is_climbable )
+					
+				return is_climbable
+				
+	elif Wall_Climb_RayCast2D2.is_colliding():
+		var tilemap = Wall_Climb_RayCast2D2.get_collider()
+		if tilemap is TileMapLayer:
+			var climable_raycast2d2_collision_point = Wall_Climb_RayCast2D2.get_collision_point()
+			var local_coordinate = tilemap.to_local(climable_raycast2d2_collision_point)
+			var tile_cordinate = tilemap.local_to_map(local_coordinate)
+			# fix the grid being shifted by one to the right when facing left
+			var m_collision_normal = Wall_Climb_RayCast2D2.get_collision_normal()
+			if m_collision_normal.x > 0:
+				tile_cordinate.x -= 1
+			
+			
+			if Debug_Mode:
+				print("Next to valid tilemap: %s", tilemap)
+				print("Local Coordinate: ", local_coordinate)
+				print("Tile Coordinate: ", tile_cordinate)
+				
+			var climbable_tile_data = tilemap.get_cell_tile_data(tile_cordinate)
+			if climbable_tile_data != null:
+				var is_climbable:bool = climbable_tile_data.get_custom_data("climbable")
+			
+				if Debug_Mode:
+					print("Tile ", climbable_tile_data, "is Climbable: ", is_climbable )
+					
+				return is_climbable
