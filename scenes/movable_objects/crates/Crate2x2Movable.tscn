@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://xs5250xaegvp"]
 
-[ext_resource type="Script" uid="uid://k2vn7vb23iyr" path="res://scenes/movable_objects/crates/crate_2x_2_movable.gd" id="1_8hiyg"]
+[ext_resource type="Script" uid="uid://doak1j2b2sd3v" path="res://scenes/movable_objects/crates/crate_2x_2_movable.gd" id="1_8hiyg"]
 [ext_resource type="Texture2D" uid="uid://bnsw758peqa7q" path="res://assets/sprites/movable_objects/crate 2x2.png" id="1_qdlqd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7c64l"]
 size = Vector2(32, 32)
 
-[node name="Crate2x2Movable" type="CharacterBody2D" unique_id=407075049]
+[node name="Crate2x2Movable" type="RigidBody2D" unique_id=84730968]
 collision_layer = 32
 script = ExtResource("1_8hiyg")
 
@@ -15,11 +15,3 @@ texture = ExtResource("1_qdlqd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1451931001]
 shape = SubResource("RectangleShape2D_7c64l")
-
-[node name="PlayerDetector" type="RayCast2D" parent="." unique_id=1204375126]
-target_position = Vector2(20, 0)
-collision_mask = 3
-
-[node name="PlayerDetector2" type="RayCast2D" parent="." unique_id=1312892368]
-target_position = Vector2(-20, 0)
-collision_mask = 3

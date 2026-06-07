@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://cywigvtni4mxu"]
 
-[ext_resource type="Script" uid="uid://c4km6aycot7gp" path="res://scripts/functions/push_and_pull_handler.gd" id="1_gfv4e"]
+[ext_resource type="Script" uid="uid://c4km6aycot7gp" path="res://scripts/functions/push_and_pull_handler.gd" id="1_ko8gx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_px6mr"]
 
-[node name="PushAndPullHandler" type="Node2D" unique_id=564638226]
-script = ExtResource("1_gfv4e")
+[node name="RigidBody2dPushAndPullHandler" type="Node2D" unique_id=564638226]
+script = ExtResource("1_ko8gx")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=518890271]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1775047916]
 shape = SubResource("RectangleShape2D_px6mr")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=813493254]
