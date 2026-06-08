@@ -252,7 +252,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(6, 22)
 
-[node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player", "sword_animation_player", "weaponpiviot", "Wall_Climb_RayCast2D", "Wall_Climb_RayCast2D2") groups=["player"]]
+[node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player", "sword_animation_player", "weaponpiviot", "Wall_Climb_RayCast2D", "Wall_Climb_RayCast2D2", "Interaction_raycast") groups=["player"]]
 collision_mask = 33
 script = ExtResource("1_g2els")
 my_animation_player = NodePath("AnimationPlayer")
@@ -261,6 +261,7 @@ sword_animation_player = NodePath("swordAnimationPlayer")
 weaponpiviot = NodePath("WeaponPiviot")
 Wall_Climb_RayCast2D = NodePath("Wall_Climb_RayCast2D")
 Wall_Climb_RayCast2D2 = NodePath("Wall_Climb_RayCast2D2")
+Interaction_raycast = NodePath("Interaction RayCast")
 
 [node name="player" type="Sprite2D" parent="." unique_id=563086844]
 material = SubResource("ShaderMaterial_qlg0r")
@@ -309,5 +310,10 @@ target_position = Vector2(11, 0)
 [node name="Wall_Climb_RayCast2D2" type="RayCast2D" parent="." unique_id=523253771]
 position = Vector2(0, -7)
 target_position = Vector2(11, 0)
+
+[node name="Interaction RayCast" type="RayCast2D" parent="." unique_id=1114961271]
+position = Vector2(0, -11)
+target_position = Vector2(5, 0)
+collision_mask = 32
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

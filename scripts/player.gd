@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var weaponpiviot:Node2D
 @export var Wall_Climb_RayCast2D:RayCast2D
 @export var Wall_Climb_RayCast2D2:RayCast2D
+@export var Interaction_raycast:RayCast2D
 
 @onready var red_sword: Sprite2D = $WeaponPiviot/red_sword
 @onready var red_sword_hitbox_collider: CollisionShape2D = $WeaponPiviot/red_sword/Hitbox/red_sword_hitbox_collider
@@ -24,6 +25,7 @@ var block_weapon_input:bool = false
 var dash_cooldown:bool = false
 var last_animation_direction:float = 0.0
 var Plane_Shift:bool = false
+var intended_velocity:Vector2 = Vector2(0,0)
 
 
 
@@ -115,6 +117,7 @@ func playanimation_direction(direction:float):
 		sprite_player.flip_h = (direction < 0)
 		Wall_Climb_RayCast2D.rotation = PI if direction < 0 else 0.0
 		Wall_Climb_RayCast2D2.rotation = PI if direction < 0 else 0.0
+		Interaction_raycast.rotation = PI if direction < 0 else 0.0
 
 	
 		
@@ -133,6 +136,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
 	if (is_on_floor() or is_on_wall()):
 		last_animation_direction = 0.0
 		if not player_is_dashing:
@@ -193,10 +197,11 @@ func _physics_process(delta: float) -> void:
 			#RaycastPiviot.scale.x = 1
 			if direction:
 				velocity.x = direction * SPEED
-
+				intended_velocity.x = velocity.x
 		else:
 			#RaycastPiviot.scale.x = -1
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+			intended_velocity.x = velocity.x
 			playanimation("" , 0.0)
 
 		
@@ -207,6 +212,15 @@ func _physics_process(delta: float) -> void:
 				velocity.x = DASH_SPEED * last_direction
 				player_is_dashing_input_cooldown(0.2)
 				dash_cooldown_start(1)
+				
+		if Input.is_action_just_pressed("interact"):
+			
+			if Interaction_raycast.is_colliding():
+				var interaction_collider = Interaction_raycast.get_collider()
+				if Debug_Mode:
+					print(Interaction_raycast, " Is Colliding With ", interaction_collider)
+				if interaction_collider is RigidBody2D:
+					SignalBus.Player_Interact_Movable_Object.emit(interaction_collider, self)
 
 		
 		 

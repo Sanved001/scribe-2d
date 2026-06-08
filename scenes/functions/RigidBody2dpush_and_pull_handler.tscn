@@ -11,5 +11,3 @@ script = ExtResource("1_ko8gx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1775047916]
 shape = SubResource("RectangleShape2D_px6mr")
-
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=813493254]

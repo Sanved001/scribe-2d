@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://doak1j2b2sd3v" path="res://scenes/movable_objects/crates/crate_2x_2_movable.gd" id="1_8hiyg"]
 [ext_resource type="Texture2D" uid="uid://bnsw758peqa7q" path="res://assets/sprites/movable_objects/crate 2x2.png" id="1_qdlqd"]
+[ext_resource type="PackedScene" uid="uid://cywigvtni4mxu" path="res://scenes/functions/RigidBody2dpush_and_pull_handler.tscn" id="3_lmg1r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7c64l"]
 size = Vector2(32, 32)
@@ -15,3 +16,5 @@ texture = ExtResource("1_qdlqd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1451931001]
 shape = SubResource("RectangleShape2D_7c64l")
+
+[node name="RigidBody2dPushAndPullHandler" parent="." unique_id=564638226 instance=ExtResource("3_lmg1r")]

@@ -42,7 +42,10 @@ Laid the foundation for Climbable Walls. I know walls are climbable but I don't 
 The Game Now Successfully Detects whether a wall is climbable or not but the full mechanic is yet to be implemented
 Added Specific Climbable walls, now players can only wall jump on specific walls which makes my work of keeping the players in the map easier
 Added an Extra RayCast2D node so the players can wall jump more easily
-
-# Current Commit:
 Added a new 2x2 Crate sprite
 Added Crate Push soon to be reworked
+
+# Current Commit:
+Progress on Crate push and pull
+The crate Push and pull mechanic is still in devlopment
+Added Intended Velocity
