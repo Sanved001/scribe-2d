@@ -44,8 +44,11 @@ Added Specific Climbable walls, now players can only wall jump on specific walls
 Added an Extra RayCast2D node so the players can wall jump more easily
 Added a new 2x2 Crate sprite
 Added Crate Push soon to be reworked
-
-# Current Commit:
 Progress on Crate push and pull
 The crate Push and pull mechanic is still in devlopment
 Added Intended Velocity
+
+# Current Commit:
+
+Progress on crate push and pull mechanic
+TileMap Changes

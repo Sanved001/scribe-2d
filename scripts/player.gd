@@ -6,6 +6,10 @@ extends CharacterBody2D
 @export var Wall_Climb_RayCast2D:RayCast2D
 @export var Wall_Climb_RayCast2D2:RayCast2D
 @export var Interaction_raycast:RayCast2D
+@export var Interaction_Zone:Area2D
+@export var Interaction_Zone_Piviot:Node2D
+
+
 
 @onready var red_sword: Sprite2D = $WeaponPiviot/red_sword
 @onready var red_sword_hitbox_collider: CollisionShape2D = $WeaponPiviot/red_sword/Hitbox/red_sword_hitbox_collider
@@ -26,7 +30,8 @@ var dash_cooldown:bool = false
 var last_animation_direction:float = 0.0
 var Plane_Shift:bool = false
 var intended_velocity:Vector2 = Vector2(0,0)
-
+var player_is_holding_objects:Array[Node2D]
+var Objects_In_Interaction_Zone:Array[Node2D]
 
 
 
@@ -118,7 +123,12 @@ func playanimation_direction(direction:float):
 		Wall_Climb_RayCast2D.rotation = PI if direction < 0 else 0.0
 		Wall_Climb_RayCast2D2.rotation = PI if direction < 0 else 0.0
 		Interaction_raycast.rotation = PI if direction < 0 else 0.0
-
+		
+		if player_is_holding_objects.size() == 0:
+			if direction > 0:
+				Interaction_Zone_Piviot.scale.x = 1 
+			else:
+				Interaction_Zone_Piviot.scale.x = -1
 	
 		
 func _is_my_input_busy(value:bool):
@@ -214,15 +224,23 @@ func _physics_process(delta: float) -> void:
 				dash_cooldown_start(1)
 				
 		if Input.is_action_just_pressed("interact"):
+			#if not player_is_holding_object:
+				# CODE TO BE RE WRITTEN 
+				#if Interaction_raycast.is_colliding():
+					#var interaction_collider = Interaction_raycast.get_collider()
+					#if Debug_Mode:
+						#print(Interaction_raycast, " Is Colliding With ", interaction_collider)
+					#if interaction_collider is RigidBody2D:
+						#SignalBus.Player_Interact_Movable_Object.emit(interaction_collider, self)
+				# CODE TO BE RE WRITTEN/REPLACED TILL HERE ^^^^^^^^^^^^^^^^^^
 			
-			if Interaction_raycast.is_colliding():
-				var interaction_collider = Interaction_raycast.get_collider()
-				if Debug_Mode:
-					print(Interaction_raycast, " Is Colliding With ", interaction_collider)
-				if interaction_collider is RigidBody2D:
-					SignalBus.Player_Interact_Movable_Object.emit(interaction_collider, self)
 
-		
+			if Objects_In_Interaction_Zone.size() != 0:
+				SignalBus.Player_Interact_Movable_Object.emit(Objects_In_Interaction_Zone[0], self, true)
+				player_is_holding_objects.append(Objects_In_Interaction_Zone[0])
+				if Debug_Mode:
+					print("DEBUG: Player Is Holding Objecs: %s " % player_is_holding_objects)
+					print("DEBG: Objects in Interaction Zone: %s " % Objects_In_Interaction_Zone.size())
 		 
 		
 	if not block_weapon_input:
@@ -357,3 +375,30 @@ func is_wall_climbable():
 					print("Tile ", climbable_tile_data, "is Climbable: ", is_climbable )
 					
 				return is_climbable
+
+
+	
+
+
+
+
+func _on_interaction_zone_body_entered(body: Node2D) -> void:
+	Objects_In_Interaction_Zone.append(body)
+	
+	if Debug_Mode:
+		print("DEBUG: Object %s Entered The Interaction Zone" % body)
+		print("DEBUG: Objects In Interaction Zone: ", Objects_In_Interaction_Zone)
+		print("DEBG: Objects in Interaction Zone: %s " % Objects_In_Interaction_Zone.size())
+	
+
+
+func _on_interaction_zone_body_exited(body: Node2D) -> void:
+	Objects_In_Interaction_Zone.erase(body)
+	SignalBus.Player_Interact_Movable_Object.emit(body, self, false)
+	player_is_holding_objects.erase(body)
+	
+	if Debug_Mode:
+		print("DEBUG: Object %s Left The Interaction Zone" % body)
+		print("DEBUG: Objects In Interaction Zone: ", Objects_In_Interaction_Zone)
+		print("DEBUG: Player Is Holding Objecs: %s " % player_is_holding_objects)
+		print("DEBG: Objects in Interaction Zone: %s " % Objects_In_Interaction_Zone.size())

@@ -252,7 +252,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(6, 22)
 
-[node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player", "sword_animation_player", "weaponpiviot", "Wall_Climb_RayCast2D", "Wall_Climb_RayCast2D2", "Interaction_raycast") groups=["player"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
+size = Vector2(3, 4)
+
+[node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player", "sword_animation_player", "weaponpiviot", "Wall_Climb_RayCast2D", "Wall_Climb_RayCast2D2", "Interaction_raycast", "Interaction_Zone", "Interaction_Zone_Piviot") groups=["player"]]
 collision_mask = 33
 script = ExtResource("1_g2els")
 my_animation_player = NodePath("AnimationPlayer")
@@ -262,6 +265,8 @@ weaponpiviot = NodePath("WeaponPiviot")
 Wall_Climb_RayCast2D = NodePath("Wall_Climb_RayCast2D")
 Wall_Climb_RayCast2D2 = NodePath("Wall_Climb_RayCast2D2")
 Interaction_raycast = NodePath("Interaction RayCast")
+Interaction_Zone = NodePath("Interaction Zone Piviot/Interaction Zone")
+Interaction_Zone_Piviot = NodePath("Interaction Zone Piviot")
 
 [node name="player" type="Sprite2D" parent="." unique_id=563086844]
 material = SubResource("ShaderMaterial_qlg0r")
@@ -316,4 +321,15 @@ position = Vector2(0, -11)
 target_position = Vector2(5, 0)
 collision_mask = 32
 
+[node name="Interaction Zone Piviot" type="Node2D" parent="." unique_id=1599857745]
+
+[node name="Interaction Zone" type="Area2D" parent="Interaction Zone Piviot" unique_id=1666575261]
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Zone Piviot/Interaction Zone" unique_id=183276001]
+position = Vector2(6, -11)
+shape = SubResource("RectangleShape2D_qlg0r")
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Interaction Zone Piviot/Interaction Zone" to="." method="_on_interaction_zone_body_entered"]
+[connection signal="body_exited" from="Interaction Zone Piviot/Interaction Zone" to="." method="_on_interaction_zone_body_exited"]

@@ -11,7 +11,7 @@
 - Add actual art
 - Add Animations
 - Add Movable Crates
-
+- Use the Area2D Node instead of the RayCast2D Node to handel the push-pull mechanic
 
 # DONE:
 - Core Mechanics

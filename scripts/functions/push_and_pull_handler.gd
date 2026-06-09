@@ -38,21 +38,18 @@ func _physics_process(delta: float) -> void:
 		if Player_Hold:
 			ParentRigidBody.linear_velocity.x = my_character.intended_velocity.x
 
-func player_interact_movable_object(myobject:RigidBody2D,CharacterNode:CharacterBody2D):
+func player_interact_movable_object(myobject:Node2D,CharacterNode:CharacterBody2D, is_holding:bool):
 	if myobject == my_parent:
-		set_player_hold()
+		set_player_hold(is_holding)
 		if OS.is_debug_build():
 			print(Player_Hold)
 			print("Signal Caputred Successfully")
 			print("Recieved Object:", myobject, "\nMy Parnet:", my_parent, "Recieved Character: ", CharacterNode)
 		my_character = CharacterNode
-	
+		
 	else:
 		pass
 		
 
-func set_player_hold():
-	if Player_Hold: Player_Hold = false
-	else: 
-		Player_Hold = true
-	
+func set_player_hold(value:bool):
+	Player_Hold = value
