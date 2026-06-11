@@ -30,13 +30,16 @@ func _process(delta: float) -> void:
 			#ParentRigidBody.apply_force(push_or_pull_vector)
 		#if Input.is_action_pressed("left"):
 			#ParentRigidBody.apply_force(push_or_pull_vector)
-			
+		
 			
 
 func _physics_process(delta: float) -> void:
 	if my_character != null:
 		if Player_Hold:
 			ParentRigidBody.linear_velocity.x = my_character.intended_velocity.x
+		if Input.is_action_just_pressed("left"):
+			pass
+	
 
 func player_interact_movable_object(myobject:Node2D,CharacterNode:CharacterBody2D, is_holding:bool):
 	if myobject == my_parent:
@@ -45,6 +48,7 @@ func player_interact_movable_object(myobject:Node2D,CharacterNode:CharacterBody2
 			print(Player_Hold)
 			print("Signal Caputred Successfully")
 			print("Recieved Object:", myobject, "\nMy Parnet:", my_parent, "Recieved Character: ", CharacterNode)
+		#SignalBus.Input_Is_Busy.emit(is_holding)
 		my_character = CharacterNode
 		
 	else:

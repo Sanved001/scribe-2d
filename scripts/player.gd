@@ -32,8 +32,7 @@ var Plane_Shift:bool = false
 var intended_velocity:Vector2 = Vector2(0,0)
 var player_is_holding_objects:Array[Node2D]
 var Objects_In_Interaction_Zone:Array[Node2D]
-
-
+var is_player_holding_object:bool = false
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -350.0
@@ -123,14 +122,9 @@ func playanimation_direction(direction:float):
 		Wall_Climb_RayCast2D.rotation = PI if direction < 0 else 0.0
 		Wall_Climb_RayCast2D2.rotation = PI if direction < 0 else 0.0
 		Interaction_raycast.rotation = PI if direction < 0 else 0.0
-		
-		if player_is_holding_objects.size() == 0:
-			if direction > 0:
-				Interaction_Zone_Piviot.scale.x = 1 
-			else:
-				Interaction_Zone_Piviot.scale.x = -1
 	
-		
+
+
 func _is_my_input_busy(value:bool):
 	input_is_busy = value
 	
@@ -200,7 +194,8 @@ func _physics_process(delta: float) -> void:
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var direction := Input.get_axis("left", "right")
-		
+		Change_Interaction_Zone_Piviot(direction)
+			
 		if (direction != 0):
 			last_animation_direction = direction
 			last_direction = direction
@@ -266,6 +261,7 @@ func _physics_process(delta: float) -> void:
 		
 	playanimation("", last_animation_direction)
 	move_and_slide()
+
 	
 	
 
@@ -396,9 +392,20 @@ func _on_interaction_zone_body_exited(body: Node2D) -> void:
 	Objects_In_Interaction_Zone.erase(body)
 	SignalBus.Player_Interact_Movable_Object.emit(body, self, false)
 	player_is_holding_objects.erase(body)
-	
+
 	if Debug_Mode:
 		print("DEBUG: Object %s Left The Interaction Zone" % body)
 		print("DEBUG: Objects In Interaction Zone: ", Objects_In_Interaction_Zone)
 		print("DEBUG: Player Is Holding Objecs: %s " % player_is_holding_objects)
 		print("DEBG: Objects in Interaction Zone: %s " % Objects_In_Interaction_Zone.size())
+		
+	
+func Change_Interaction_Zone_Piviot(direction:float):
+	if player_is_holding_objects.size() > 1: is_player_holding_object = true
+	if is_player_holding_object == false:
+		if player_is_holding_objects.size() == 0:
+			if direction != 0:
+				if direction > 0:
+					Interaction_Zone_Piviot.scale.x = 1 
+				else:
+					Interaction_Zone_Piviot.scale.x = -1

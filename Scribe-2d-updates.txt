@@ -47,8 +47,8 @@ Added Crate Push soon to be reworked
 Progress on Crate push and pull
 The crate Push and pull mechanic is still in devlopment
 Added Intended Velocity
-
-# Current Commit:
-
 Progress on crate push and pull mechanic
 TileMap Changes
+
+# Current Commit:
+Progress on the Crate Push And Pull Mechanic
