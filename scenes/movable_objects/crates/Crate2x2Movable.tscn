@@ -17,4 +17,11 @@ texture = ExtResource("1_qdlqd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1451931001]
 shape = SubResource("RectangleShape2D_7c64l")
 
-[node name="RigidBody2dPushAndPullHandler" parent="." unique_id=564638226 instance=ExtResource("3_lmg1r")]
+[node name="RigidBody2dPushAndPullHandler" parent="." unique_id=564638226 node_paths=PackedStringArray("character_hold_marker", "character_hold_marker_piviot") instance=ExtResource("3_lmg1r")]
+character_hold_marker = NodePath("../CharacterHoldMarkerPiviot/CharacterHoldMarker")
+character_hold_marker_piviot = NodePath("../CharacterHoldMarkerPiviot")
+
+[node name="CharacterHoldMarkerPiviot" type="Node2D" parent="." unique_id=1285822938]
+
+[node name="CharacterHoldMarker" type="Marker2D" parent="CharacterHoldMarkerPiviot" unique_id=333980505]
+position = Vector2(16, 16)

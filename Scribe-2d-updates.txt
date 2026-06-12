@@ -49,6 +49,8 @@ The crate Push and pull mechanic is still in devlopment
 Added Intended Velocity
 Progress on crate push and pull mechanic
 TileMap Changes
+Progress on the Crate Push And Pull Mechanic
 
 # Current Commit:
-Progress on the Crate Push And Pull Mechanic
+Progress on the Crate Push And Pull Mechanic, Some bugs still remain such as if you push an crate into an wall you push through the crate
+ 

@@ -1,11 +1,16 @@
 extends Node2D
 @export var friction:float = 0.0 
+@export var character_hold_marker:Marker2D
+@export var character_hold_marker_piviot:Node2D
 
 var ParentRigidBody:RigidBody2D
 var Player_Hold:bool = false
 var push_or_pull_vector:Vector2 = Vector2(0,0)
 var my_parent:Node
 var my_character:CharacterBody2D = null
+var character_joint:PinJoint2D
+var object_can_move:bool = true
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,20 +41,33 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if my_character != null:
 		if Player_Hold:
+			
 			ParentRigidBody.linear_velocity.x = my_character.intended_velocity.x
-		if Input.is_action_just_pressed("left"):
-			pass
-	
+			
+			
+			if Input.is_action_just_pressed("left"):
+				pass
+			
+
+		
 
 func player_interact_movable_object(myobject:Node2D,CharacterNode:CharacterBody2D, is_holding:bool):
 	if myobject == my_parent:
+		my_character = CharacterNode
+		#SignalBus.Input_Is_Busy.emit(is_holding)
+		if not my_character.sprite_player.flip_h:
+			character_hold_marker_piviot.scale.x = -1
+		elif my_character.sprite_player.flip_h:
+			character_hold_marker_piviot.scale.x = 1
 		set_player_hold(is_holding)
+		
+
+		
+		
 		if OS.is_debug_build():
 			print(Player_Hold)
 			print("Signal Caputred Successfully")
 			print("Recieved Object:", myobject, "\nMy Parnet:", my_parent, "Recieved Character: ", CharacterNode)
-		#SignalBus.Input_Is_Busy.emit(is_holding)
-		my_character = CharacterNode
 		
 	else:
 		pass
@@ -57,3 +75,23 @@ func player_interact_movable_object(myobject:Node2D,CharacterNode:CharacterBody2
 
 func set_player_hold(value:bool):
 	Player_Hold = value
+	ParentRigidBody.lock_rotation = value
+	
+	if Player_Hold:
+		if character_joint == null:
+			my_character.global_position = character_hold_marker.global_position
+			character_joint = PinJoint2D.new()
+			character_joint.global_position = character_hold_marker.global_position
+			character_joint.node_a = ParentRigidBody.get_path()
+			character_joint.node_b = my_character.get_path()
+			ParentRigidBody.add_child(character_joint)
+		
+	elif  not Player_Hold:
+		if character_joint!= null:
+			character_joint.queue_free()
+			
+func stop_crate_movement_check():
+	if my_character.is_on_wall():
+		pass
+	# Make it so that if pulling while running into an wall the object does not squish you
+	

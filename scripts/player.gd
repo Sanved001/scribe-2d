@@ -32,7 +32,9 @@ var Plane_Shift:bool = false
 var intended_velocity:Vector2 = Vector2(0,0)
 var player_is_holding_objects:Array[Node2D]
 var Objects_In_Interaction_Zone:Array[Node2D]
-var is_player_holding_object:bool = false
+var interaction_cooldown_is_active:bool = false
+var jump_disabled:bool = false
+
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -350.0
@@ -164,20 +166,27 @@ func _physics_process(delta: float) -> void:
 			velocity.y += get_gravity().y * 1.25 * delta
 	# Handle jump.
 	if not input_is_busy:
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
-			
-		elif Input.is_action_just_pressed("jump") and is_on_wall():
-			if is_wall_climbable():
-				if Input.is_action_pressed("left"):
-					velocity.x += 50
-					velocity.y = JUMP_VELOCITY-10
-					await input_cooldown(0.2)
-					
-				elif Input.is_action_pressed("right"):
-					velocity.x -= 50
-					velocity.y = JUMP_VELOCITY-10
-					await input_cooldown(0.2)
+		if not jump_disabled:
+			# If player jumped while holding an object LET IT GO!
+			if Input.is_action_just_pressed("jump"):
+				if player_is_holding_objects.size() > 0:
+					var released_object = player_is_holding_objects[0]
+					SignalBus.Player_Interact_Movable_Object.emit(released_object, self, false)
+				
+			if Input.is_action_just_pressed("jump") and is_on_floor():
+				velocity.y = JUMP_VELOCITY
+				
+			elif Input.is_action_just_pressed("jump") and is_on_wall():
+				if is_wall_climbable():
+					if Input.is_action_pressed("left"):
+						velocity.x += 50
+						velocity.y = JUMP_VELOCITY-10
+						await input_cooldown(0.2)
+						
+					elif Input.is_action_pressed("right"):
+						velocity.x -= 50
+						velocity.y = JUMP_VELOCITY-10
+						await input_cooldown(0.2)
 				
 				
 		# PLANE SHIFTING
@@ -219,24 +228,31 @@ func _physics_process(delta: float) -> void:
 				dash_cooldown_start(1)
 				
 		if Input.is_action_just_pressed("interact"):
-			#if not player_is_holding_object:
-				# CODE TO BE RE WRITTEN 
-				#if Interaction_raycast.is_colliding():
-					#var interaction_collider = Interaction_raycast.get_collider()
-					#if Debug_Mode:
-						#print(Interaction_raycast, " Is Colliding With ", interaction_collider)
-					#if interaction_collider is RigidBody2D:
-						#SignalBus.Player_Interact_Movable_Object.emit(interaction_collider, self)
-				# CODE TO BE RE WRITTEN/REPLACED TILL HERE ^^^^^^^^^^^^^^^^^^
+			if not interaction_cooldown_is_active:
 			
-
-			if Objects_In_Interaction_Zone.size() != 0:
-				SignalBus.Player_Interact_Movable_Object.emit(Objects_In_Interaction_Zone[0], self, true)
-				player_is_holding_objects.append(Objects_In_Interaction_Zone[0])
-				if Debug_Mode:
-					print("DEBUG: Player Is Holding Objecs: %s " % player_is_holding_objects)
-					print("DEBG: Objects in Interaction Zone: %s " % Objects_In_Interaction_Zone.size())
-		 
+			
+				#if not player_is_holding_object:
+					# CODE TO BE RE WRITTEN 
+					#if Interaction_raycast.is_colliding():
+						#var interaction_collider = Interaction_raycast.get_collider()
+						#if Debug_Mode:
+							#print(Interaction_raycast, " Is Colliding With ", interaction_collider)
+						#if interaction_collider is RigidBody2D:
+							#SignalBus.Player_Interact_Movable_Object.emit(interaction_collider, self)
+					# CODE TO BE RE WRITTEN/REPLACED TILL HERE ^^^^^^^^^^^^^^^^^^
+				
+				if player_is_holding_objects.size() > 0:
+					var released_object = player_is_holding_objects[0]
+					SignalBus.Player_Interact_Movable_Object.emit(released_object, self, false)
+					player_is_holding_objects.clear()
+				elif Objects_In_Interaction_Zone.size() != 0:
+					SignalBus.Player_Interact_Movable_Object.emit(Objects_In_Interaction_Zone[0], self, true)
+					player_is_holding_objects.append(Objects_In_Interaction_Zone[0])
+					if Debug_Mode:
+						print("DEBUG: Player Is Holding Objecs: %s " % player_is_holding_objects)
+						print("DEBG: Objects in Interaction Zone: %s " % Objects_In_Interaction_Zone.size())
+					
+				Interaction_Cooldown_Start(0.1)
 		
 	if not block_weapon_input:
 		if Input.is_action_just_pressed("attack"):
@@ -401,11 +417,15 @@ func _on_interaction_zone_body_exited(body: Node2D) -> void:
 		
 	
 func Change_Interaction_Zone_Piviot(direction:float):
-	if player_is_holding_objects.size() > 1: is_player_holding_object = true
-	if is_player_holding_object == false:
+
 		if player_is_holding_objects.size() == 0:
 			if direction != 0:
 				if direction > 0:
 					Interaction_Zone_Piviot.scale.x = 1 
 				else:
 					Interaction_Zone_Piviot.scale.x = -1
+
+func Interaction_Cooldown_Start(value:float):
+	interaction_cooldown_is_active = true
+	await get_tree().create_timer(value).timeout
+	interaction_cooldown_is_active = false
