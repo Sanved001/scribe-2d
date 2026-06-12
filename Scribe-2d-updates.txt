@@ -50,7 +50,8 @@ Added Intended Velocity
 Progress on crate push and pull mechanic
 TileMap Changes
 Progress on the Crate Push And Pull Mechanic
+Progress on the Crate Push And Pull Mechanic, Some bugs still remain such as if you push an crate into an wall you push through the crate
 
 # Current Commit:
-Progress on the Crate Push And Pull Mechanic, Some bugs still remain such as if you push an crate into an wall you push through the crate
- 
+Working on a way to toggle the Lookahead camera and to make it look good even when It's off
+Progress on wall push and pull mechanic

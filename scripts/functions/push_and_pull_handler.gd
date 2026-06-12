@@ -1,7 +1,8 @@
 extends Node2D
 @export var friction:float = 0.0 
 @export var character_hold_marker:Marker2D
-@export var character_hold_marker_piviot:Node2D
+@export var piviot_node:Node2D
+@export var wall_raycast:RayCast2D
 
 var ParentRigidBody:RigidBody2D
 var Player_Hold:bool = false
@@ -10,6 +11,7 @@ var my_parent:Node
 var my_character:CharacterBody2D = null
 var character_joint:PinJoint2D
 var object_can_move:bool = true
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -41,12 +43,13 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if my_character != null:
 		if Player_Hold:
+			#stop_crate_movement_check()
+			if object_can_move:
+				ParentRigidBody.linear_velocity.x = my_character.intended_velocity.x
 			
-			ParentRigidBody.linear_velocity.x = my_character.intended_velocity.x
 			
-			
-			if Input.is_action_just_pressed("left"):
-				pass
+				if Input.is_action_just_pressed("left"):
+					pass
 			
 
 		
@@ -56,9 +59,9 @@ func player_interact_movable_object(myobject:Node2D,CharacterNode:CharacterBody2
 		my_character = CharacterNode
 		#SignalBus.Input_Is_Busy.emit(is_holding)
 		if not my_character.sprite_player.flip_h:
-			character_hold_marker_piviot.scale.x = -1
+			piviot_node.scale.x = -1
 		elif my_character.sprite_player.flip_h:
-			character_hold_marker_piviot.scale.x = 1
+			piviot_node.scale.x = 1
 		set_player_hold(is_holding)
 		
 
@@ -91,7 +94,9 @@ func set_player_hold(value:bool):
 			character_joint.queue_free()
 			
 func stop_crate_movement_check():
-	if my_character.is_on_wall():
-		pass
-	# Make it so that if pulling while running into an wall the object does not squish you
+	# Make it so that if you push the object into an wall, you don't enter the object
+	if wall_raycast.is_colliding():
+		object_can_move = false
+		
+	
 	
