@@ -12,6 +12,7 @@
 - Add Animations
 - Add Movable Crates
 - Fix Bugs with the crate push and pull mechanic
+- Fix Bug: when you talk with yuri with a crate near you..... when you press Interact again after talking... the crate flies off
 
 # DONE:
 - Core Mechanics

@@ -25,7 +25,7 @@ wall_raycast = NodePath("../PiviotNode/Wall_Raycast")
 [node name="PiviotNode" type="Node2D" parent="." unique_id=1285822938]
 
 [node name="CharacterHoldMarker" type="Marker2D" parent="PiviotNode" unique_id=333980505]
-position = Vector2(21, 16)
+position = Vector2(16, 16)
 
 [node name="Wall_Raycast" type="RayCast2D" parent="PiviotNode" unique_id=1142810913]
 target_position = Vector2(18, 0)
