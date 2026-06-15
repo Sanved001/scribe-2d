@@ -57,7 +57,8 @@ Fixed a small mistake in Crate2x2Movable.tscn where I forgot to push the charact
 Updated TODO.md
 Crate push and pull now does not use the PinJoint2D node and fixed some issues
 The crate push and pull mechanic is now complete
-
-# Current Commit:
 Fixed an bug where if you were interacting with an character while moving and holding a crate the crate will keep moving
 Fixed an bug where if you interacted with an character while moving you keep moving
+
+# Current Commit:
+Fixed an bug with the new bugfix that you coulden't dash after talking to yuri

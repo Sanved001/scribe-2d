@@ -453,3 +453,9 @@ func Interaction_Cooldown_Start(value:float):
 
 func is_dialog_ui_busy(value:bool):
 	dialog_ui_is_busy = value
+	if dialog_ui_is_busy:
+		is_dialog_ui_busy_reset_timer()
+		
+func is_dialog_ui_busy_reset_timer():
+		await get_tree().create_timer(0.5).timeout
+		dialog_ui_is_busy = false
