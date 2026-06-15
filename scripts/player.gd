@@ -452,5 +452,4 @@ func Interaction_Cooldown_Start(value:float):
 
 
 func is_dialog_ui_busy(value:bool):
-	print("DIALOG UI BUSYYYYYYYYY: ", value)
 	dialog_ui_is_busy = value
