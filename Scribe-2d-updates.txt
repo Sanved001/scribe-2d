@@ -56,6 +56,8 @@ Progress on wall push and pull mechanic
 Fixed a small mistake in Crate2x2Movable.tscn where I forgot to push the character hold marker back to it's orignal place
 Updated TODO.md
 Crate push and pull now does not use the PinJoint2D node and fixed some issues
+The crate push and pull mechanic is now complete
 
 # Current Commit:
-The crate push and pull mechanic is now complete
+Fixed an bug where if you were interacting with an character while moving and holding a crate the crate will keep moving
+Fixed an bug where if you interacted with an character while moving you keep moving

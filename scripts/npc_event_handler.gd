@@ -103,11 +103,13 @@ func Floating_Interaction_Prompt() -> void:
 func Is_Dialog_UI_Busy(value):
 	if value == true:
 		Dialog_UI_Is_Busy = true
+		SignalBus.Dialog_UI_Is_Busy_To_Player.emit(Dialog_UI_Is_Busy)
 	else:
 		Dialog_UI_Is_Busy = true
+		SignalBus.Dialog_UI_Is_Busy_To_Player.emit(Dialog_UI_Is_Busy)
 		await get_tree().create_timer(2).timeout
 		Dialog_UI_Is_Busy = false
-		
+		SignalBus.Dialog_UI_Is_Busy_To_Player.emit(Dialog_UI_Is_Busy)
 
 
 func interaction_cooldown_start():

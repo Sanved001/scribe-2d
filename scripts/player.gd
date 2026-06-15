@@ -34,6 +34,7 @@ var player_is_holding_objects:Array[Node2D]
 var Objects_In_Interaction_Zone:Array[Node2D]
 var interaction_cooldown_is_active:bool = false
 var jump_disabled:bool = false
+var dialog_ui_is_busy:bool = false
 
 
 const SPEED = 200.0
@@ -130,10 +131,12 @@ func playanimation_direction(direction:float):
 func _is_my_input_busy(value:bool):
 	input_is_busy = value
 	
+	
 
 func _ready() -> void:
 	sword_animation_player.speed_scale = 3
 	SignalBus.Input_Is_Busy.connect(_is_my_input_busy)
+	SignalBus.Dialog_UI_Is_Busy_To_Player.connect(is_dialog_ui_busy)
 	red_sword.visible = false
 	red_sword_hitbox_collider.disabled = true
 	
@@ -276,6 +279,12 @@ func _physics_process(delta: float) -> void:
 			intended_velocity.x = -1.0
 		elif intended_velocity.x < 0:
 			intended_velocity.x = 1.0
+	if input_is_busy and dialog_ui_is_busy:
+		intended_velocity.x = 0.0
+		velocity.x = 0.0 
+		
+		
+	
 	
 
 	if Input.is_action_just_pressed("debug"):
@@ -440,3 +449,8 @@ func Interaction_Cooldown_Start(value:float):
 	interaction_cooldown_is_active = true
 	await get_tree().create_timer(value).timeout
 	interaction_cooldown_is_active = false
+
+
+func is_dialog_ui_busy(value:bool):
+	print("DIALOG UI BUSYYYYYYYYY: ", value)
+	dialog_ui_is_busy = value
