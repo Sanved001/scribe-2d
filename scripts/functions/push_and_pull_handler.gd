@@ -4,6 +4,10 @@ extends Node2D
 @export var piviot_node:Node2D
 @export var wall_raycast:RayCast2D
 
+
+
+var no_friction_materal:PhysicsMaterial
+var orignal_material:PhysicsMaterial
 var ParentRigidBody:RigidBody2D
 var Player_Hold:bool = false
 var push_or_pull_vector:Vector2 = Vector2(0,0)
@@ -11,8 +15,8 @@ var my_parent:Node
 var my_character:CharacterBody2D = null
 var character_joint:PinJoint2D
 var object_can_move:bool = true
-
-
+var player_move:bool = true
+var orignal_damp:float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +25,11 @@ func _ready() -> void:
 		if  OS.is_debug_build(): 
 			print("Parent %s Is A RigidBody2D" % my_parent)
 		ParentRigidBody = my_parent
+		orignal_material = ParentRigidBody.physics_material_override
+		
+		no_friction_materal = PhysicsMaterial.new()
+		no_friction_materal.friction = 0.0
+		
 	elif not my_parent is RigidBody2D and OS.is_debug_build():
 		print("Parent %s Is Not A RigidBody2D It may cause errors" % my_parent)
 	
@@ -43,13 +52,12 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if my_character != null:
 		if Player_Hold:
-			#stop_crate_movement_check()
+			stop_player_movement_check()
 			if object_can_move:
 				ParentRigidBody.linear_velocity.x = my_character.intended_velocity.x
-			
-			
-				if Input.is_action_just_pressed("left"):
-					pass
+				
+			else: 
+				ParentRigidBody.linear_velocity.x = 0
 			
 
 		
@@ -83,20 +91,37 @@ func set_player_hold(value:bool):
 	if Player_Hold:
 		if character_joint == null:
 			my_character.global_position = character_hold_marker.global_position
-			character_joint = PinJoint2D.new()
-			character_joint.global_position = character_hold_marker.global_position
-			character_joint.node_a = ParentRigidBody.get_path()
-			character_joint.node_b = my_character.get_path()
-			ParentRigidBody.add_child(character_joint)
-		
-	elif  not Player_Hold:
-		if character_joint!= null:
-			character_joint.queue_free()
+			if ParentRigidBody:
+				ParentRigidBody.linear_damp = 0.0
+				
+				ParentRigidBody.physics_material_override = no_friction_materal
+			#character_joint = PinJoint2D.new()
+			#
+			#character_joint.disable_collision = false
+			#
+			#character_joint.global_position = character_hold_marker.global_position
+			#character_joint.node_a = ParentRigidBody.get_path()
+			#character_joint.node_b = my_character.get_path()
+			#ParentRigidBody.add_child(character_joint)
 			
-func stop_crate_movement_check():
+			
+	elif not Player_Hold:
+		if ParentRigidBody:
+				ParentRigidBody.linear_damp = orignal_damp
+				ParentRigidBody.physics_material_override = orignal_material
+		#if character_joint!= null:
+			#character_joint.queue_free()
+			
+func stop_player_movement_check():
 	# Make it so that if you push the object into an wall, you don't enter the object
 	if wall_raycast.is_colliding():
 		object_can_move = false
+		player_move = false
+		if my_character != null:
+			my_character.velocity.x = 0
+	else:
+		object_can_move = true
+		player_move = true
 		
 	
 	

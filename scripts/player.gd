@@ -171,6 +171,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("jump"):
 				if player_is_holding_objects.size() > 0:
 					var released_object = player_is_holding_objects[0]
+					player_is_holding_objects.erase(released_object)
 					SignalBus.Player_Interact_Movable_Object.emit(released_object, self, false)
 				
 			if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -406,14 +407,19 @@ func _on_interaction_zone_body_entered(body: Node2D) -> void:
 
 func _on_interaction_zone_body_exited(body: Node2D) -> void:
 	Objects_In_Interaction_Zone.erase(body)
+	
+	if player_is_holding_objects.has(body):
+		if Debug_Mode:
+			print("DEBUG: Object lagged behind, ignoring drop")
+		return
+
 	SignalBus.Player_Interact_Movable_Object.emit(body, self, false)
 	player_is_holding_objects.erase(body)
-
 	if Debug_Mode:
 		print("DEBUG: Object %s Left The Interaction Zone" % body)
 		print("DEBUG: Objects In Interaction Zone: ", Objects_In_Interaction_Zone)
 		print("DEBUG: Player Is Holding Objecs: %s " % player_is_holding_objects)
-		print("DEBG: Objects in Interaction Zone: %s " % Objects_In_Interaction_Zone.size())
+		print("DEUBG: Objects in Interaction Zone: %s " % Objects_In_Interaction_Zone.size())
 		
 	
 func Change_Interaction_Zone_Piviot(direction:float):

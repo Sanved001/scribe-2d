@@ -53,7 +53,8 @@ Progress on the Crate Push And Pull Mechanic
 Progress on the Crate Push And Pull Mechanic, Some bugs still remain such as if you push an crate into an wall you push through the crate
 Working on a way to toggle the Lookahead camera and to make it look good even when It's off
 Progress on wall push and pull mechanic
-
-# Current Commit:
 Fixed a small mistake in Crate2x2Movable.tscn where I forgot to push the character hold marker back to it's orignal place
 Updated TODO.md
+
+# Current Commit:
+Crate push and pull now does not use the PinJoint2D node and fixed some issues
