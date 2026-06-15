@@ -17,6 +17,7 @@ var character_joint:PinJoint2D
 var object_can_move:bool = true
 var player_move:bool = true
 var orignal_damp:float = 0.0
+var grab_offset_x:float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -54,7 +55,11 @@ func _physics_process(delta: float) -> void:
 		if Player_Hold:
 			stop_player_movement_check()
 			if object_can_move:
-				ParentRigidBody.linear_velocity.x = my_character.intended_velocity.x
+				
+				var target_x = my_character.global_position.x + grab_offset_x
+				var distance_correction = (target_x - ParentRigidBody.global_position.x) * 20.0
+
+				ParentRigidBody.linear_velocity.x = my_character.intended_velocity.x + distance_correction
 				
 			else: 
 				ParentRigidBody.linear_velocity.x = 0
@@ -89,21 +94,22 @@ func set_player_hold(value:bool):
 	ParentRigidBody.lock_rotation = value
 	
 	if Player_Hold:
-		if character_joint == null:
-			my_character.global_position = character_hold_marker.global_position
-			if ParentRigidBody:
-				ParentRigidBody.linear_damp = 0.0
-				
-				ParentRigidBody.physics_material_override = no_friction_materal
-			#character_joint = PinJoint2D.new()
-			#
-			#character_joint.disable_collision = false
-			#
-			#character_joint.global_position = character_hold_marker.global_position
-			#character_joint.node_a = ParentRigidBody.get_path()
-			#character_joint.node_b = my_character.get_path()
-			#ParentRigidBody.add_child(character_joint)
+
+		#my_character.global_position = character_hold_marker.global_position
+		if ParentRigidBody:
+			ParentRigidBody.linear_damp = 0.0
 			
+			ParentRigidBody.physics_material_override = no_friction_materal
+			grab_offset_x = ParentRigidBody.global_position.x - my_character.global_position.x
+		#character_joint = PinJoint2D.new()
+		#
+		#character_joint.disable_collision = false
+		#
+		#character_joint.global_position = character_hold_marker.global_position
+		#character_joint.node_a = ParentRigidBody.get_path()
+		#character_joint.node_b = my_character.get_path()
+		#ParentRigidBody.add_child(character_joint)
+		
 			
 	elif not Player_Hold:
 		if ParentRigidBody:
@@ -113,12 +119,14 @@ func set_player_hold(value:bool):
 			#character_joint.queue_free()
 			
 func stop_player_movement_check():
+	
 	# Make it so that if you push the object into an wall, you don't enter the object
 	if wall_raycast.is_colliding():
-		object_can_move = false
-		player_move = false
+		#object_can_move = false
+		#player_move = false
 		if my_character != null:
-			my_character.velocity.x = 0
+			pass
+			#my_character.velocity.x = 0
 	else:
 		object_can_move = true
 		player_move = true

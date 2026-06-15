@@ -271,11 +271,16 @@ func _physics_process(delta: float) -> void:
 			
 			
 			
+	if Wall_Climb_RayCast2D.is_colliding() or Wall_Climb_RayCast2D2.is_colliding():
+		if intended_velocity.x > 0:
+			intended_velocity.x = -1.0
+		elif intended_velocity.x < 0:
+			intended_velocity.x = 1.0
+	
 
 	if Input.is_action_just_pressed("debug"):
 		#SignalBus.ChangeCurrentScene.emit("res://scenes/Levels/level_0_boss.tscn", "change level", true)
 		pass
-		
 	playanimation("", last_animation_direction)
 	move_and_slide()
 
