@@ -1,5 +1,7 @@
 
 # TODOs:
+- Clean The Code
+- Add Documentation or Comments
 - Make a Inventory System
 - Add some puzzels
 - Add A Loading Screen
@@ -10,8 +12,11 @@
 - SFX
 - Add actual art
 - Add Animations
+- Add opening/closing doors
+- Add A button/lever that when pressed does something
 
 # DONE:
+- Add a Button / Pressure Plate that activates when you or the box is placed above it
 - Add Movable Crates
 - Fix Bug: when you talk with yuri with a crate near you..... when you press Interact again after talking... the crate flies off
 - Fix Bugs with the crate push and pull mechanic
