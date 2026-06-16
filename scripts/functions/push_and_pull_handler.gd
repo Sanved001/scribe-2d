@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 			if object_can_move:
 				
 				var target_x = my_character.global_position.x + grab_offset_x
-				var distance_correction = (target_x - ParentRigidBody.global_position.x) * 20.0
+				var distance_correction = (target_x - ParentRigidBody.global_position.x) * 25.0
 
 				ParentRigidBody.linear_velocity.x = my_character.intended_velocity.x + distance_correction
 				

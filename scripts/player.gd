@@ -457,5 +457,5 @@ func is_dialog_ui_busy(value:bool):
 		is_dialog_ui_busy_reset_timer()
 		
 func is_dialog_ui_busy_reset_timer():
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.01).timeout
 		dialog_ui_is_busy = false

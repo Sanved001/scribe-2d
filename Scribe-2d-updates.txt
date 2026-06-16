@@ -24,9 +24,6 @@ Changed some Collision masks and layers so now:
 	LAYER 3: ENEMY HURTBOX
 	LAYER 4: ENEMY COLLISIONSHAPE
 	LAYER 5: PLAYER HITBOX
-
-# Current Version:
-
 Added A bit of Camera Motion
 And now the enemy moves towards the player
 Camera changes
@@ -59,6 +56,10 @@ Crate push and pull now does not use the PinJoint2D node and fixed some issues
 The crate push and pull mechanic is now complete
 Fixed an bug where if you were interacting with an character while moving and holding a crate the crate will keep moving
 Fixed an bug where if you interacted with an character while moving you keep moving
+Fixed an bug with the new bugfix that you coulden't dash after talking to yuri
+
+# Current Version:
 
 # Current Commit:
-Fixed an bug with the new bugfix that you coulden't dash after talking to yuri
+Bug Fix: Fixed abug with the crate push and pull mechanic where the camera will fall down when you move into an wall while pulling an box
+Bug Fixes: Adjusted the timer on the dialog_ui_is_busy function in player.gd
