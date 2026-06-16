@@ -14,6 +14,7 @@
 - Add Animations
 - Add opening/closing doors
 - Add A button/lever that when pressed does something
+- Make Objects Glow when in Interaction Zone
 
 # DONE:
 - Add a Button / Pressure Plate that activates when you or the box is placed above it
