@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7c64l"]
 size = Vector2(32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmg1r"]
+size = Vector2(32, 32)
+
 [node name="Crate2x2Movable" type="RigidBody2D" unique_id=84730968]
 collision_layer = 32
 script = ExtResource("1_8hiyg")
@@ -29,3 +32,9 @@ position = Vector2(16, 16)
 
 [node name="Wall_Raycast" type="RayCast2D" parent="PiviotNode" unique_id=1142810913]
 target_position = Vector2(-18, 0)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1665667127]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=178132893]
+shape = SubResource("RectangleShape2D_lmg1r")
