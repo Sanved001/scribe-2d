@@ -71,8 +71,10 @@ Map updates
 Added an extra door to level_0 cuz WHY NOT
 forgot to change the level previously
 The door movement is now complete (Ignore the bugs.... 1/20 chance you'll actually encounter them, yes i pulled that number out of thin air)
-
-# Current Commit:
 Reset player position
 Added one more label 
 map changes
+
+# Current Commit:
+
+Working on the Main Menu

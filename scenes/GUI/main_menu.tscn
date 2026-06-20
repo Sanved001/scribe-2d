@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dmjg6l388qkvn"]
+
+[node name="Main Menu" type="CanvasLayer" unique_id=1477620384]
+
+[node name="ItemList" type="ItemList" parent="." unique_id=785538148]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemList" unique_id=1147394958]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ItemList/VBoxContainer" unique_id=1582934871]
+layout_mode = 2
+text = "Hola"
+
+[node name="Label2" type="Label" parent="ItemList/VBoxContainer" unique_id=1603107406]
+layout_mode = 2
+text = "lora
+"
