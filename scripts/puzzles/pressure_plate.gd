@@ -1,5 +1,7 @@
 extends Node2D
 @export var animation_player:AnimationPlayer
+@export var player_press:bool = true
+@export var entity_press:bool = true
 
 var objets_in_area:Array[Node2D] = []
 var is_pressed:bool = false
@@ -32,8 +34,13 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	objets_in_area.append(area)
-	Change_Animation()
+	if area.is_in_group("player"):
+		if player_press == true:
+			objets_in_area.append(area)
+			Change_Animation()
+	elif entity_press:
+		objets_in_area.append(area)
+		Change_Animation()
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	objets_in_area.erase(area)

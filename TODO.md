@@ -15,6 +15,7 @@
 - Add opening/closing doors
 - Add A button/lever that when pressed does something
 - Make Objects Glow when in Interaction Zone
+- BUG: When two crates are within each other they gain infinite velocity ig
 
 # DONE:
 - Add a Button / Pressure Plate that activates when you or the box is placed above it

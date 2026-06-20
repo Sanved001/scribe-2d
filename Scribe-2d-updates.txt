@@ -65,6 +65,9 @@ Bug Fixes: Adjusted the timer on the dialog_ui_is_busy function in player.gd
 Added Pressure Plates
 Added the moving doors placeholder assets
 Upgraded to Godot 4.7
+Progress on the door movement | STILL has a lot of issues
 
 # Current Commit:
+
 Progress on the door movement | STILL has a lot of issues
+Map updates
