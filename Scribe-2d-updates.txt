@@ -66,8 +66,9 @@ Added Pressure Plates
 Added the moving doors placeholder assets
 Upgraded to Godot 4.7
 Progress on the door movement | STILL has a lot of issues
+Progress on the door movement | STILL has a lot of issues
+Map updates
 
 # Current Commit:
 
-Progress on the door movement | STILL has a lot of issues
-Map updates
+Added an extra door to level_0 cuz WHY NOT
