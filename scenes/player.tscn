@@ -256,7 +256,7 @@ size = Vector2(6, 22)
 size = Vector2(3, 4)
 
 [node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player", "sword_animation_player", "weaponpiviot", "Wall_Climb_RayCast2D", "Wall_Climb_RayCast2D2", "Interaction_raycast", "Interaction_Zone", "Interaction_Zone_Piviot") groups=["player"]]
-collision_mask = 33
+collision_mask = 161
 script = ExtResource("1_g2els")
 my_animation_player = NodePath("AnimationPlayer")
 sprite_player = NodePath("player")

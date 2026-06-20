@@ -8,6 +8,7 @@ radius = 22.999998
 height = 92.0
 
 [node name="Moving Door 6x3 1" type="AnimatableBody2D" unique_id=1447549892]
+collision_layer = 128
 script = ExtResource("1_24tka")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1258750919]
