@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ehf1bq4ckop3"]
+
+[ext_resource type="Script" uid="uid://crw7v3ob1f5ry" path="res://scenes/movable_objects/doors/moving_door_6x3_1.gd" id="1_24tka"]
+[ext_resource type="Texture2D" uid="uid://ctj1ekg0rfofq" path="res://assets/sprites/moving doors/placeholders/NinePatchRect.png" id="1_uylen"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_luml8"]
+radius = 22.999998
+height = 92.0
+
+[node name="Moving Door 6x3 1" type="AnimatableBody2D" unique_id=1447549892]
+collision_layer = 128
+script = ExtResource("1_24tka")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1258750919]
+offset_right = 96.0
+offset_bottom = 48.0
+texture = ExtResource("1_uylen")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1774361978]
+position = Vector2(48, 24)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_luml8")

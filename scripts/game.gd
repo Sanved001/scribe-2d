@@ -7,6 +7,7 @@ extends Node2D
 # LAYER 5: PLAYER HITBOX
 # LAYER 6: MOVABLE OBJECTS
 # LAYER 7: LEVERS AND BUTTONS
+# LAYER 8: Stuff that move.. like doors or platforms
 
 @export var Level_Container:Node2D
 

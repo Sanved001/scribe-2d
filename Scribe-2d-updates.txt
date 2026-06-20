@@ -59,8 +59,17 @@ Fixed an bug where if you interacted with an character while moving you keep mov
 Fixed an bug with the new bugfix that you coulden't dash after talking to yuri
 
 # Current Version:
+	
 Bug Fix: Fixed abug with the crate push and pull mechanic where the camera will fall down when you move into an wall while pulling an box
 Bug Fixes: Adjusted the timer on the dialog_ui_is_busy function in player.gd
+Added Pressure Plates
+Added the moving doors placeholder assets
+Upgraded to Godot 4.7
+Progress on the door movement | STILL has a lot of issues
+Progress on the door movement | STILL has a lot of issues
+Map updates
+Added an extra door to level_0 cuz WHY NOT
+forgot to change the level previously
 
 # Current Commit:
-Added Pressure Plates
+The door movement is now complete (Ignore the bugs.... 1/20 chance you'll actually encounter them, yes i pulled that number out of thin air)
