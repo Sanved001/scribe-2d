@@ -13,7 +13,7 @@ var PATCH_PATH:String = OS.get_executable_path().get_base_dir().path_join("patch
 func _ready() -> void:
 	#Load_Update_pck()
 	
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	get_tree().change_scene_to_file("res://scenes/GUI/main_menu.tscn")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

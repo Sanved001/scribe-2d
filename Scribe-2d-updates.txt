@@ -74,7 +74,12 @@ The door movement is now complete (Ignore the bugs.... 1/20 chance you'll actual
 Reset player position
 Added one more label 
 map changes
+Working on the Main Menu
 
 # Current Commit:
-
-Working on the Main Menu
+Added A main menu with 4 buttons for Start, Settings, Credits, Quit
+Added Credits and a dedicated Quit button
+The Settings button does Nothing for now
+Updated TODO.md
+You now boot into the Main Menu instead of the game
+Added a new ESC keybind

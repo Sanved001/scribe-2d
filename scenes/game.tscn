@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bitqf5m6b6pg4"]
 
 [ext_resource type="Script" uid="uid://dp4qb8dj4rcuo" path="res://scripts/game.gd" id="1_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://dmjg6l388qkvn" path="res://scenes/GUI/main_menu.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://c3gf6s06y5o6k" path="res://scenes/DialogueManager/dialog_manager.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://dpi0ycbu741x0" path="res://scenes/game_ui.tscn" id="5_iywne"]
 
@@ -14,5 +13,3 @@ Level_Container = NodePath("Level Container")
 [node name="DialogManager" parent="." unique_id=318412711 instance=ExtResource("4_lbhrr")]
 
 [node name="Game_UI" parent="." unique_id=1250416770 instance=ExtResource("5_iywne")]
-
-[node name="Main Menu" parent="." unique_id=1477620384 instance=ExtResource("4_iywne")]
