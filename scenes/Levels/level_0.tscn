@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dgtac5jeqd7f2" path="res://scenes/coin.tscn" id="13_bg0a1"]
 [ext_resource type="PackedScene" uid="uid://xs5250xaegvp" path="res://scenes/movable_objects/crates/Crate2x2Movable.tscn" id="14_q0hdq"]
 [ext_resource type="PackedScene" uid="uid://bso7fnv0u0s2i" path="res://scenes/puzzles/pressure_plate.tscn" id="15_nb6sc"]
+[ext_resource type="PackedScene" uid="uid://xfhgdxa6833x" path="res://scenes/traps/saw_blade.tscn" id="17_mnk4y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ipi18"]
 texture = ExtResource("1_qpt33")
@@ -159,6 +160,43 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_mnk4y"),
 &"open": SubResource("Animation_230md")
+}
+
+[sub_resource type="Animation" id="Animation_084sf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(241, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_8hc65"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(241, -1), Vector2(482, -1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_084sf"]
+_data = {
+&"RESET": SubResource("Animation_084sf"),
+&"move": SubResource("Animation_8hc65")
 }
 
 [node name="level_0" type="Node2D" unique_id=1075268453 node_paths=PackedStringArray("Plane_1", "Plane_2", "Plane_1_Tilemap_1", "Plane_2_Tilemap_1")]
@@ -503,3 +541,11 @@ trigger_node = NodePath("../Pressure Plates/Pressure Plate")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Moving Door 6x3 1" unique_id=1166638293]
 libraries/ = SubResource("AnimationLibrary_8hc65")
+
+[node name="SawBlade" parent="." unique_id=950119552 node_paths=PackedStringArray("animation_player") instance=ExtResource("17_mnk4y")]
+position = Vector2(241, -1)
+animation_player = NodePath("AnimationPlayer")
+animation_speed = 0.4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SawBlade" unique_id=1142642804]
+libraries/ = SubResource("AnimationLibrary_084sf")

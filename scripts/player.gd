@@ -288,8 +288,11 @@ func _physics_process(delta: float) -> void:
 	
 
 	if Input.is_action_just_pressed("debug"):
-		#SignalBus.ChangeCurrentScene.emit("res://scenes/Levels/level_0_boss.tscn", "change level", true)
 		pass
+		#SignalBus.ChangeCurrentScene.emit("res://scenes/Levels/level_0_boss.tscn", "change level", true)
+		#SignalBus.Stop_Saw_Blade.emit($"../SawBlade", true, false)
+	
+	
 	playanimation("", last_animation_direction)
 	move_and_slide()
 
