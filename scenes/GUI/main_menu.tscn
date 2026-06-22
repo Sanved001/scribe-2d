@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://dmjg6l388qkvn"]
+
+[ext_resource type="Script" uid="uid://bnh0361gjilst" path="res://scenes/GUI/main_menu.gd" id="1_kebck"]
+[ext_resource type="FontFile" uid="uid://k3py6toifjo3" path="res://assets/fonts/pixeloperator/PixelOperator8.ttf" id="1_tbt31"]
+[ext_resource type="FontFile" uid="uid://c51meqwxnuvsx" path="res://assets/fonts/pixeloperator/PixelOperator8-Bold.ttf" id="2_b4h60"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbt31"]
+bg_color = Color(0.51997817, 0.65703225, 0.7337283, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(0, 1.13)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4h60"]
+bg_color = Color(0.20443887, 0.55735093, 0.8303699, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(0, 1.13)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kebck"]
+bg_color = Color(0.413993, 0.6238486, 0.80835354, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(0, 1.13)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b4h60"]
+
+[node name="Main Menu" type="CanvasLayer" unique_id=1345328181]
+script = ExtResource("1_kebck")
+
+[node name="Credits Node" type="Control" parent="." unique_id=1939554556]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 650.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Credits Node" unique_id=2014032189]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_right = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Credits" type="Label" parent="Credits Node/VBoxContainer2" unique_id=609988425]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_b4h60")
+theme_override_font_sizes/font_size = 72
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creator" type="Label" parent="Credits Node/VBoxContainer2" unique_id=503153248]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_b4h60")
+theme_override_font_sizes/font_size = 48
+text = "Creator"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sanved" type="Label" parent="Credits Node/VBoxContainer2" unique_id=881268461]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tbt31")
+theme_override_font_sizes/font_size = 24
+text = "Sanved"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main Panel" type="Panel" parent="." unique_id=1733393625]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main Panel" unique_id=305275218]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -214.0
+offset_right = 204.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_b4h60")
+theme_override_font_sizes/font_size = 48
+text = "Scribe-2d"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Panel" unique_id=82557951]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -42.0
+offset_right = 120.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="Main Panel/VBoxContainer" unique_id=1555886294]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_tbt31")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbt31")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b4h60")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kebck")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b4h60")
+text = "Start"
+
+[node name="Settings" type="Button" parent="Main Panel/VBoxContainer" unique_id=820684972]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_tbt31")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbt31")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b4h60")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kebck")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b4h60")
+text = "Settings"
+
+[node name="Credits" type="Button" parent="Main Panel/VBoxContainer" unique_id=1918670996]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_tbt31")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbt31")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b4h60")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kebck")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b4h60")
+text = "Credits"
+
+[node name="Quit" type="Button" parent="Main Panel/VBoxContainer" unique_id=968647510]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_tbt31")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbt31")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b4h60")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kebck")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b4h60")
+text = "Quit"
+
+[connection signal="pressed" from="Main Panel/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Main Panel/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main Panel/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Main Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
