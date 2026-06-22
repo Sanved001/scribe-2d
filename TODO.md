@@ -7,7 +7,6 @@
 - Add A Loading Screen
 - A story
 - Game UI
-- Main Menu
 - Background Music
 - SFX
 - Add actual art
@@ -19,6 +18,7 @@
 - Add a way to get back the the Main Menu while in the game
 
 # DONE:
+- Main Menu
 - Add a Button / Pressure Plate that activates when you or the box is placed above it
 - Add Movable Crates
 - Fix Bug: when you talk with yuri with a crate near you..... when you press Interact again after talking... the crate flies off

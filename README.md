@@ -88,4 +88,3 @@ By submitting a Pull Request, patch, or code contribution to this repository, yo
 2. **Commercial Use:** You acknowledge and agree that this project is intended for commercial sale, and that you will receive no financial compensation, royalties, or equity for your contributions.
 3. **Ownership:** You warrant that your contribution is your own original creation and that you have the full legal right to submit it under these terms.
 4. **Attribution:** The project owner agrees to credit you (via your GitHub profile, alias, or name) in the game's credits, though this does not grant you any ownership stake in the final product.
-
