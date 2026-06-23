@@ -8,6 +8,7 @@ extends Node2D
 # LAYER 6: MOVABLE OBJECTS
 # LAYER 7: LEVERS AND BUTTONS
 # LAYER 8: Stuff that move.. like doors or platforms
+# LAYER 9: Things That Damage Both Player and Enemies
 
 @export var Level_Container:Node2D
 

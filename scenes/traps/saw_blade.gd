@@ -1,34 +1,37 @@
 extends Node2D
-@export var max_left:float = 0.0
-@export var max_right:float = 0.0
-@export var max_top:float = 0.0
-@export var max_bottom:float = 0.0
-enum  starting_position_enum {max_left, max_right, max_top, max_bottom}
-@export var starting_position: starting_position_enum = starting_position_enum.max_left 
-@export var travel_time:float = 0.0
+@export var animation_player:AnimationPlayer
+@export var animation_speed:float = 1.0
+
+var animation_playing_speed:float = 0.0
+var stop_animation_at_start:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	SignalBus.Stop_Saw_Blade.connect(m_Stop_Saw_Blade)
+	animation_player.play("move")
+	animation_player.speed_scale = animation_speed
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x = starting_position
-	animate_sawblade()
+	if stop_animation_at_start:
+		if animation_player.current_animation_position <= 0.01:
+			animation_playing_speed = animation_player.get_playing_speed()
+			animation_player.stop()
 
-func animate_sawblade() -> void:
-	var tween = create_tween()
-	
-	# Set the tween to loop infinitely
-	tween.set_loops()
-	
-	# Step 1: Move to max_right (Smooth start, smooth stop)
-	tween.tween_property(self, "position:x", max_right, travel_time)\
-		.set_trans(Tween.TRANS_QUAD)\
-		.set_ease(Tween.EASE_IN_OUT)
-		
-	# Step 2: Move back to max_left (Smooth start, smooth stop)
-	tween.tween_property(self, "position:x", max_left, travel_time)\
-		.set_trans(Tween.TRANS_QUAD)\
-		.set_ease(Tween.EASE_IN_OUT)
+
+func m_Stop_Saw_Blade(m_saw_blade:Node2D, value:bool, stop_at_start:bool):
+	if m_saw_blade == self:
+		if value:
+			if stop_at_start:
+				stop_animation_at_start = true
+			else:
+				animation_playing_speed = animation_player.get_playing_speed()
+				animation_player.pause()
+		else:
+			if animation_playing_speed > 0:
+				stop_animation_at_start = false
+				animation_player.play("move")
+			if animation_playing_speed < 0:
+				stop_animation_at_start = false
+				animation_player.play_backwards("move")
