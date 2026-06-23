@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://xs5250xaegvp" path="res://scenes/movable_objects/crates/Crate2x2Movable.tscn" id="14_q0hdq"]
 [ext_resource type="PackedScene" uid="uid://bso7fnv0u0s2i" path="res://scenes/puzzles/pressure_plate.tscn" id="15_nb6sc"]
 [ext_resource type="PackedScene" uid="uid://xfhgdxa6833x" path="res://scenes/traps/saw_blade.tscn" id="17_mnk4y"]
+[ext_resource type="PackedScene" uid="uid://cegvffhkd6a2d" path="res://scenes/functions/checkpoint.tscn" id="18_aa1kp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ipi18"]
 texture = ExtResource("1_qpt33")
@@ -825,3 +826,6 @@ animation_player = NodePath("AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SawBlades/SawBlade7" unique_id=1290797884]
 libraries/ = SubResource("AnimationLibrary_26bix")
 autoplay = &"move"
+
+[node name="Checkpoint" parent="." unique_id=1570119784 instance=ExtResource("18_aa1kp")]
+position = Vector2(3769, -576)
