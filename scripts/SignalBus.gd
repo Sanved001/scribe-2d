@@ -12,3 +12,4 @@ signal ChangeCurrentScene(path_to_scene:String, type:String, clear_previous_scen
 signal Player_Interact_Movable_Object(myobject:Node2D,CharacterNode:CharacterBody2D, is_holding:bool)
 signal Dialog_UI_Is_Busy_To_Player(value:bool)
 signal Pressure_Plate_Click(pressure_plate:Node2D, value:bool)
+signal Stop_Saw_Blade(saw_blade:Node2D, value:bool, stop_at_start:bool)

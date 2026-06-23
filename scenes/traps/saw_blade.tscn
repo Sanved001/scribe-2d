@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://xfhgdxa6833x"]
+
+[ext_resource type="Texture2D" uid="uid://dqao7hdf6pd7d" path="res://assets/traps/saw blades/saw-placeholder.png" id="1_g7ngx"]
+[ext_resource type="Script" uid="uid://cdcg4bf626ebx" path="res://scenes/traps/saw_blade.gd" id="1_kdyhh"]
+[ext_resource type="Script" uid="uid://bf53j1wxxj7cd" path="res://scenes/traps/sawblade_hitbox.gd" id="2_le5xa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7b57l"]
+radius = 11.0
+
+[node name="SawBlade" type="Node2D" unique_id=950119552]
+script = ExtResource("1_kdyhh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=368009969]
+texture = ExtResource("1_g7ngx")
+
+[node name="sawblade hitbox" type="Area2D" parent="." unique_id=1202541033]
+collision_layer = 256
+collision_mask = 5
+script = ExtResource("2_le5xa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sawblade hitbox" unique_id=313101555]
+shape = SubResource("CircleShape2D_7b57l")
