@@ -82,7 +82,8 @@ Updated TODO.md
 You now boot into the Main Menu instead of the game
 Added a new ESC keybind
 Added New Sawblade texture and it's related files cuz I FORGOT to switch to a different branch
-
-# Current Commit:
 Added moving sawblades | Yet to be implemented in the level correctly | At the wrong place right now
 Changed the collision layers and masks so that Enemies too recieve damage from certain things
+
+# Current Commit:
+Added a hard asf Sawblade parkour part, hope you like it
