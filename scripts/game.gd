@@ -69,3 +69,5 @@ func slow_motion_stop() -> void:
 func change_current_scene(path_to_scene:String ,type:String = '' , clear_previous_scene:bool = false, clear_all_scenes:bool = false):
 	if path_to_scene != 'null':
 		Load_Level(path_to_scene, clear_previous_scene, clear_all_scenes)
+		
+		

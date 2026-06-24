@@ -87,8 +87,11 @@ Changed the collision layers and masks so that Enemies too recieve damage from c
 Added a hard asf Sawblade parkour part, hope you like it
 Added Assets & a Scene for the checkpoints
 Added a new Player_Interact Signal in SignalBus
-
-# Current Commit:
 Progress on Checkpoints
 Adding a new interact all function
 changed collision layer for crate 2x2
+
+# Current Commit:
+Made the checkpoints work for the player
+added a new autoload: GameManager.gd
+Now the scene isn't reloaded when the player dies, instead the player's position is reloaded

@@ -42,6 +42,19 @@ const JUMP_VELOCITY = -350.0
 const DASH_SPEED = 400.0
 
 
+func Respawn_Player(hard_respawn:bool):
+	if GameManager.last_checkpoint_position != null:
+		self.global_position = GameManager.last_checkpoint_position
+		health = 100
+		SignalBus.Update_Health_Label.emit("Health: %s" % health)
+	else: 
+		self.global_position = Vector2(0,0)
+		health = 100
+		SignalBus.Update_Health_Label.emit("Health: %s" % health)
+		
+
+
+
 func player_take_damage(damage:float, source_area:Area2D = null):
 	if damage == 0:
 		return
@@ -88,7 +101,9 @@ func player_take_damage(damage:float, source_area:Area2D = null):
 		SignalBus.Slow_motion_start.emit(0.1)
 		await get_tree().create_timer(0.2).timeout
 		SignalBus.Slow_motion_stop.emit()
-		get_tree().call_deferred("reload_current_scene")
+		#get_tree().call_deferred("reload_current_scene")
+		SignalBus.Respawn.emit(false)
+		
 		return
 	SignalBus.Update_Health_Label.emit("Health: %s" % health)
 	
@@ -137,9 +152,9 @@ func _ready() -> void:
 	sword_animation_player.speed_scale = 3
 	SignalBus.Input_Is_Busy.connect(_is_my_input_busy)
 	SignalBus.Dialog_UI_Is_Busy_To_Player.connect(is_dialog_ui_busy)
+	SignalBus.Respawn.connect(Respawn_Player)
 	red_sword.visible = false
 	red_sword_hitbox_collider.disabled = true
-	
 	
 
 

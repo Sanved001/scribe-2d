@@ -23,3 +23,4 @@ func Player_Interact(interact_object:Node, value:bool):
 
 func Activate_Checkpoint():
 	checkpoint_sprite.frame = 0
+	GameManager.last_checkpoint_position = self.position
