@@ -234,7 +234,6 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("interact"):
 			if not interaction_cooldown_is_active:
 			
-			
 				#if not player_is_holding_object:
 					# CODE TO BE RE WRITTEN 
 					#if Interaction_raycast.is_colliding():

@@ -9,14 +9,15 @@ radius = 18.0
 [node name="Checkpoint" type="Node2D" unique_id=1570119784]
 script = ExtResource("1_n7dsd")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1041369663]
+[node name="CheckpointSprite" type="Sprite2D" parent="." unique_id=1041369663]
 position = Vector2(0, -16)
 texture = ExtResource("1_0d4vj")
 hframes = 2
 frame = 1
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1902394298]
+[node name="Checkpoint Interaction Area" type="Area2D" parent="." unique_id=1902394298]
+collision_layer = 512
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=383147917]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint Interaction Area" unique_id=383147917]
 position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_7b57l")

@@ -85,7 +85,10 @@ Added New Sawblade texture and it's related files cuz I FORGOT to switch to a di
 Added moving sawblades | Yet to be implemented in the level correctly | At the wrong place right now
 Changed the collision layers and masks so that Enemies too recieve damage from certain things
 Added a hard asf Sawblade parkour part, hope you like it
-
-# Current Commit:
 Added Assets & a Scene for the checkpoints
 Added a new Player_Interact Signal in SignalBus
+
+# Current Commit:
+Progress on Checkpoints
+Adding a new interact all function
+changed collision layer for crate 2x2

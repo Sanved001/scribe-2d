@@ -11,7 +11,7 @@ size = Vector2(32, 32)
 size = Vector2(32, 32)
 
 [node name="Crate2x2Movable" type="RigidBody2D" unique_id=84730968]
-collision_layer = 32
+collision_layer = 544
 collision_mask = 161
 script = ExtResource("1_8hiyg")
 
@@ -35,7 +35,7 @@ position = Vector2(16, 16)
 target_position = Vector2(-18, 0)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1665667127]
-collision_layer = 32
+collision_layer = 544
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=178132893]
 shape = SubResource("RectangleShape2D_lmg1r")
