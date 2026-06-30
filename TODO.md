@@ -16,6 +16,8 @@
 - Make Objects Glow when in Interaction Zone
 - BUG: When two crates are within each other they gain infinite velocity ig
 - Add a way to get back the the Main Menu while in the game
+- BUG: The Player Stays connected to the crate after respawning 
+- MAKE A SEPERATE HEALTH MANAGER FOR RIGIDBODY2D
 
 # DONE:
 - Main Menu

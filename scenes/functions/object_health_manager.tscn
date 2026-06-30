@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b0piwjmh5h5rv"]
+
+[ext_resource type="Script" uid="uid://e83n822cugke" path="res://scenes/functions/object_health_manager.gd" id="1_wnlkl"]
+
+[node name="ObjectHealthManager" type="Node2D" unique_id=1890859451]
+script = ExtResource("1_wnlkl")

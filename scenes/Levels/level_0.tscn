@@ -638,7 +638,7 @@ script = ExtResource("12_bg0a1")
 lerp_speed = 0.4
 
 [node name="Void" type="Area2D" parent="." unique_id=1623737934]
-collision_layer = 2
+collision_layer = 256
 script = ExtResource("3_p4813")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Void" unique_id=1754378556]
