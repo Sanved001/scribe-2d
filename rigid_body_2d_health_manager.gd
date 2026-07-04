@@ -12,8 +12,9 @@ var calculated_damage:float = 0.0
 var health:float = 100
 
 func _ready() -> void:
+	SignalBus.Respawn.connect(parent_respawn)
 	parent_hurtbox.area_entered.connect(_parent_hurtbox_area_entered)
-
+	
 	orignal_pos = root_node.position
 	health = orignal_health
 	if root_node is RigidBody2D:
@@ -23,7 +24,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+func parent_respawn(hard_respawn:bool):
+	health = orignal_health
+	if root_node is CharacterBody2D:
+		root_node.velocity = Vector2.ZERO
+	else: 
+		pass
+	
+	root_node.position = orignal_pos
 
 
 func this_object_take_damage(damage: float,source_area: Area2D):
@@ -37,11 +45,7 @@ func this_object_take_damage(damage: float,source_area: Area2D):
 
 
 	if health <= 0:
-		
-		SignalBus.Respawn_Object.emit(root_node, false)
-		health = orignal_health
-		
-
+		parent_respawn(false)
 
 func _parent_hurtbox_area_entered(area:Area2D):
 	if area is Hitbox:

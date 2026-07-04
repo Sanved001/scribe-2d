@@ -93,9 +93,11 @@ changed collision layer for crate 2x2
 Made the checkpoints work for the player
 added a new autoload: GameManager.gd
 Now the scene isn't reloaded when the player dies, instead the player's position is reloaded
-
-# Current Commit:
 Updated TODO.md
 Changed Void's collission layer to 9 
 Added a new Layer 11 for objects or something idk
 Added a new Object Health Manager Scene and Script soon to be reworked
+
+# Current Commit:
+Added A Log Script Autoload
+Added A Object_Respawn Scene
