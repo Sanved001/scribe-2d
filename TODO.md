@@ -17,7 +17,7 @@
 - BUG: When two crates are within each other they gain infinite velocity ig
 - Add a way to get back the the Main Menu while in the game
 - BUG: The Player Stays connected to the crate after respawning 
-- MAKE A SEPERATE HEALTH MANAGER FOR RIGIDBODY2D
+- BUG: if the crate drops from the players hand and respawns, it gains A LOT of momentum for that direction
 
 # DONE:
 - Main Menu
