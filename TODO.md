@@ -16,6 +16,8 @@
 - Make Objects Glow when in Interaction Zone
 - BUG: When two crates are within each other they gain infinite velocity ig
 - Add a way to get back the the Main Menu while in the game
+- Use local signals instead of the global pressure plate clicked signal to improve performance 
+- if an object drop was not done because "object lacked behind", check the object distance from the user after a certain time and if it's not in the interaction zone drop the object immediately 
 
 # DONE:
 - Main Menu
