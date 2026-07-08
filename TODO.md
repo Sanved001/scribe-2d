@@ -18,6 +18,8 @@
 - Add a way to get back the the Main Menu while in the game
 - BUG: The Player Stays connected to the crate after respawning 
 - BUG: if the crate drops from the players hand and respawns, it gains A LOT of momentum for that direction
+- Use local signals instead of the global pressure plate clicked signal to improve performance 
+- if an object drop was not done because "object lacked behind", check the object distance from the user after a certain time and if it's not in the interaction zone drop the object immediately
 
 # DONE:
 - Main Menu
