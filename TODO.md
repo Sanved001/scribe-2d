@@ -19,6 +19,8 @@
 - BUG: The Player Stays connected to the crate after respawning 
 - BUG: if the crate drops from the players hand and respawns, it gains A LOT of momentum for that direction
 - Use local signals instead of the global pressure plate clicked signal to improve performance 
+- Let the player jump even when not standing on solid ground if it was on solid ground a few 100 miliseconds ago ("Coyote Time")
+- Add a keybind config
 
 # DONE:
 - Main Menu
