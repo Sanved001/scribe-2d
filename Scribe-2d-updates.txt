@@ -100,6 +100,8 @@ Added a new Object Health Manager Scene and Script soon to be reworked
 Added A Log Script Autoload
 Added A Object_Respawn Scene
 Object Respawn is half complete!
+Fixed some stuff with object respawn and it's mostly complete!
 
 # Current Commit:
-Fixed some stuff with object respawn and it's mostly complete!
+Added Force Object Drop Signal
+The object is forcefully dropped when object respawns

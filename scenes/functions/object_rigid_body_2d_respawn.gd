@@ -31,7 +31,8 @@ func _process(delta: float) -> void:
 func respawn_object(my_object:Node,hard_respawn:bool):
 	if not is_instance_valid(root_node):
 		return
-		
+	SignalBus.Force_Object_Drop.emit(my_object)
+	
 	root_node.linear_damp = original_linear_damp
 	root_node.angular_damp = original_angular_damp
 	root_node.sleeping = original_is_sleeping

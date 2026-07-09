@@ -153,6 +153,7 @@ func _ready() -> void:
 	SignalBus.Input_Is_Busy.connect(_is_my_input_busy)
 	SignalBus.Dialog_UI_Is_Busy_To_Player.connect(is_dialog_ui_busy)
 	SignalBus.Respawn.connect(Respawn_Player)
+	SignalBus.Force_Object_Drop.connect(Force_Drop_Object)
 	red_sword.visible = false
 	red_sword_hitbox_collider.disabled = true
 	
@@ -452,7 +453,18 @@ func _on_interaction_zone_body_exited(body: Node2D) -> void:
 		print("DEBUG: Player Is Holding Objecs: %s " % player_is_holding_objects)
 		print("DEUBG: Objects in Interaction Zone: %s " % Objects_In_Interaction_Zone.size())
 		
+
+
+func Force_Drop_Object(my_object:Node2D):
+	if not is_instance_valid(my_object):
+		return
+	SignalBus.Player_Interact_Movable_Object.emit(my_object, self, false)
+	player_is_holding_objects.erase(my_object)
 	
+
+
+
+
 func Change_Interaction_Zone_Piviot(direction:float):
 
 		if player_is_holding_objects.size() == 0:
@@ -472,7 +484,8 @@ func is_dialog_ui_busy(value:bool):
 	dialog_ui_is_busy = value
 	if dialog_ui_is_busy:
 		is_dialog_ui_busy_reset_timer()
-		
+
+
 func is_dialog_ui_busy_reset_timer():
 		await get_tree().create_timer(0.01).timeout
 		dialog_ui_is_busy = false

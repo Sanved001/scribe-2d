@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 
 #signal Respawn_Object(object:Node, hard_respawn:bool, respawn_node:Node)
 func respawn_object(my_object:Node2D,hard_respawn:bool):
+	SignalBus.Force_Object_Drop.emit(my_object)
 	if my_object is CharacterBody2D:
 		my_object.velocity = original_velocity
 	else: 
