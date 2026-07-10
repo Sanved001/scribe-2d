@@ -35,7 +35,8 @@ var Objects_In_Interaction_Zone:Array[Node2D]
 var interaction_cooldown_is_active:bool = false
 var jump_disabled:bool = false
 var dialog_ui_is_busy:bool = false
-
+var player_is_on_ground:bool = false
+var coyote_jump:bool = false
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -350.0
@@ -86,14 +87,6 @@ func player_take_damage(damage:float, source_area:Area2D = null):
 			else: 
 				velocity.x = -200 # move left
 		
-		#if velocity.x > 0 and velocity.x <= 200: velocity.x = 200
-		#elif velocity.x < 0 and velocity.x >= -200: velocity.x = -200
-		#if knockback_direction.y > 0:
-			#if velocity.y > 0 and velocity.y <= 200:
-				#velocity.y = 200
-		#elif knockback_direction.y <= 0:
-			#if velocity.y <= 0 and velocity.y >= -200:
-				#velocity.y = -200
 		Player_Flash()
 		input_cooldown(0.2)
 	
@@ -166,6 +159,14 @@ func _physics_process(delta: float) -> void:
 		last_animation_direction = 0.0
 		if not player_is_dashing:
 			dash_count = 1
+	if is_on_floor():
+		player_is_on_ground = true
+	elif player_is_on_ground:
+			player_is_on_ground = false
+			if not coyote_jump:
+				coyote_jump_timer()
+			
+		
 	
 	
 
@@ -183,6 +184,7 @@ func _physics_process(delta: float) -> void:
 	
 		elif velocity.y > 0:
 			velocity.y += get_gravity().y * 1.25 * delta
+			
 	# Handle jump.
 	if not input_is_busy:
 		if not jump_disabled:
@@ -193,10 +195,12 @@ func _physics_process(delta: float) -> void:
 					player_is_holding_objects.erase(released_object)
 					SignalBus.Player_Interact_Movable_Object.emit(released_object, self, false)
 				
-			if Input.is_action_just_pressed("jump") and is_on_floor():
+			if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_jump):
 				velocity.y = JUMP_VELOCITY
+				coyote_jump = false
+				player_is_on_ground = false
 				
-			elif Input.is_action_just_pressed("jump") and is_on_wall():
+			elif Input.is_action_just_pressed("jump") and (is_on_wall() or coyote_jump):
 				if is_wall_climbable():
 					if Input.is_action_pressed("left"):
 						velocity.x += 50
@@ -249,17 +253,6 @@ func _physics_process(delta: float) -> void:
 				
 		if Input.is_action_just_pressed("interact"):
 			if not interaction_cooldown_is_active:
-			
-				#if not player_is_holding_object:
-					# CODE TO BE RE WRITTEN 
-					#if Interaction_raycast.is_colliding():
-						#var interaction_collider = Interaction_raycast.get_collider()
-						#if Debug_Mode:
-							#print(Interaction_raycast, " Is Colliding With ", interaction_collider)
-						#if interaction_collider is RigidBody2D:
-							#SignalBus.Player_Interact_Movable_Object.emit(interaction_collider, self)
-					# CODE TO BE RE WRITTEN/REPLACED TILL HERE ^^^^^^^^^^^^^^^^^^
-				
 				if player_is_holding_objects.size() > 0:
 					var released_object = player_is_holding_objects[0]
 					SignalBus.Player_Interact_Movable_Object.emit(released_object, self, false)
@@ -489,3 +482,9 @@ func is_dialog_ui_busy(value:bool):
 func is_dialog_ui_busy_reset_timer():
 		await get_tree().create_timer(0.01).timeout
 		dialog_ui_is_busy = false
+		
+
+func coyote_jump_timer():
+	coyote_jump = true
+	await get_tree().create_timer(0.1).timeout
+	coyote_jump = false

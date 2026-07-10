@@ -19,7 +19,6 @@
 - BUG: The Player Stays connected to the crate after respawning 
 - BUG: if the crate drops from the players hand and respawns, it gains A LOT of momentum for that direction
 - Use local signals instead of the global pressure plate clicked signal to improve performance 
-- Let the player jump even when not standing on solid ground if it was on solid ground a few 100 miliseconds ago ("Coyote Time")
 - Add a keybind config
 
 # DONE:
@@ -33,3 +32,4 @@
 - Use the Area2D Node instead of the RayCast2D Node to handel the push-pull mechanic
 - Makes it so that the crate and the player move together
 - (modified but done something similar) if an object drop was not done because "object lacked behind", check the object distance from the user after a certain time and if it's not in the interaction zone drop the object immediately
+- Let the player jump even when not standing on solid ground if it was on solid ground a few 100 miliseconds ago ("Coyote Time")
