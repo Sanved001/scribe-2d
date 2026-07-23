@@ -20,6 +20,7 @@
 - BUG: if the crate drops from the players hand and respawns, it gains A LOT of momentum for that direction
 - Use local signals instead of the global pressure plate clicked signal to improve performance 
 - Add a keybind config
+- BUG: if a crate falls on player... the player get's squished
 
 # DONE:
 - Main Menu

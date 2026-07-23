@@ -624,7 +624,7 @@ ClearPrevious = true
 
 [node name="player" parent="." unique_id=1261008140 instance=ExtResource("11_aa8mw")]
 z_index = 5
-collision_layer = 2
+collision_layer = 3
 
 [node name="PlayerCamera" type="Camera2D" parent="player" unique_id=1208006582]
 zoom = Vector2(3, 3)
@@ -753,7 +753,7 @@ position = Vector2(1342, -396)
 position = Vector2(3255, -688)
 
 [node name="Crate2x2Movable2" parent="." unique_id=1449941571 instance=ExtResource("14_q0hdq")]
-position = Vector2(-56, -57)
+position = Vector2(-43, -48)
 
 [node name="Crate2x2Movable3" parent="." unique_id=84730968 instance=ExtResource("14_q0hdq")]
 position = Vector2(3551, -512)
