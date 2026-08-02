@@ -21,6 +21,8 @@
 - Use local signals instead of the global pressure plate clicked signal to improve performance 
 - Add a keybind config
 - BUG: if a crate falls on player... the player get's squished
+- Make the checkpoints glow and give a indicator to press E
+- the door part is confusing give the players an hint to press F
 
 # DONE:
 - Main Menu

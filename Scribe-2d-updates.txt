@@ -103,8 +103,9 @@ Object Respawn is half complete!
 Fixed some stuff with object respawn and it's mostly complete!
 Added Force Object Drop Signal
 The object is forcefully dropped when object respawns
-
-# Current Commit:
 added coyote jump
 update TODO.md
 a bit of code cleanup
+
+# Current Commit:
+Update TODO.md
