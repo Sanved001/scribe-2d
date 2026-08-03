@@ -23,6 +23,7 @@
 - BUG: if a crate falls on player... the player get's squished
 - Make the checkpoints glow and give a indicator to press E
 - the door part is confusing give the players an hint to press F
+- Make it so that instead of checking can jump for walljump let it check cant jump instead
 
 # DONE:
 - Main Menu
