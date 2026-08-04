@@ -486,5 +486,5 @@ func is_dialog_ui_busy_reset_timer():
 
 func coyote_jump_timer():
 	coyote_jump = true
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.2).timeout
 	coyote_jump = false

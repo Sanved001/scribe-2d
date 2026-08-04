@@ -106,6 +106,8 @@ The object is forcefully dropped when object respawns
 added coyote jump
 update TODO.md
 a bit of code cleanup
+Update TODO.md
 
 # Current Commit:
+Changed koyote jump timer from 0.1 sec to 0.2 sec
 Update TODO.md
