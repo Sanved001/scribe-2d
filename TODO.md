@@ -16,7 +16,24 @@
 - Make Objects Glow when in Interaction Zone
 - BUG: When two crates are within each other they gain infinite velocity ig
 - Add a way to get back the the Main Menu while in the game
- 
+- BUG: The Player Stays connected to the crate after respawning 
+- BUG: if the crate drops from the players hand and respawns, it gains A LOT of momentum for that direction
+- Use local signals instead of the global pressure plate clicked signal to improve performance 
+- Add a keybind config
+- BUG: if a crate falls on player... the player get's squished
+- Make the checkpoints glow and give a indicator to press E
+- the door part is confusing give the players an hint to press F
+- Make it so that instead of checking can jump for walljump let it check cant jump instead
+
+
+
+- Dash animation
+- Wall Jump so that you can jump from everywhere EXCEPT some, but that wall needs an visual indication that it's not jumpable I.E: a ton of spikes on the wall
+- Cap falling speed so the character dosent fall down wayy too fast
+- checkout Spine for the animations
+- make the wall jump so that the character moves back further and it like a curve so it feels smoother
+- make it so that if the player holds RIGHT while on wall use the koyote jump mechanic and still let the player jump instead of just not consider it cuz its not holding left
+
 
 # DONE:
 - Main Menu
@@ -28,3 +45,5 @@
 - Make it so that Players can only wallclimb certain tiles/walls
 - Use the Area2D Node instead of the RayCast2D Node to handel the push-pull mechanic
 - Makes it so that the crate and the player move together
+- (modified but done something similar) if an object drop was not done because "object lacked behind", check the object distance from the user after a certain time and if it's not in the interaction zone drop the object immediately
+- Let the player jump even when not standing on solid ground if it was on solid ground a few 100 miliseconds ago ("Coyote Time")

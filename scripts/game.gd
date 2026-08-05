@@ -9,6 +9,8 @@ extends Node2D
 # LAYER 7: LEVERS AND BUTTONS
 # LAYER 8: Stuff that move.. like doors or platforms
 # LAYER 9: Things That Damage Both Player and Enemies
+# LAYER 10: Interactable Objects
+# LAYER 11: For Respawning Objects or smt 
 
 @export var Level_Container:Node2D
 
@@ -68,3 +70,5 @@ func slow_motion_stop() -> void:
 func change_current_scene(path_to_scene:String ,type:String = '' , clear_previous_scene:bool = false, clear_all_scenes:bool = false):
 	if path_to_scene != 'null':
 		Load_Level(path_to_scene, clear_previous_scene, clear_all_scenes)
+		
+		

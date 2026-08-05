@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cfys0j2f5os0c" path="res://assets/sprites/player/player.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://bxu5brtbg84he" path="res://assets/sprites/weapons/red_sword/red_sword.png" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://bmtooapkk1nft" path="res://scripts/player_hitbox.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://rnsq6ujn550g" path="res://scripts/functions/interaction_zone_all.gd" id="6_tuyoq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qlg0r"]
 shader = ExtResource("2_dqkch")
@@ -255,6 +256,9 @@ size = Vector2(6, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
 size = Vector2(3, 4)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7b57l"]
+size = Vector2(4, 4)
+
 [node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player", "sword_animation_player", "weaponpiviot", "Wall_Climb_RayCast2D", "Wall_Climb_RayCast2D2", "Interaction_raycast", "Interaction_Zone", "Interaction_Zone_Piviot") groups=["player"]]
 collision_mask = 161
 script = ExtResource("1_g2els")
@@ -324,12 +328,22 @@ collision_mask = 32
 [node name="Interaction Zone Piviot" type="Node2D" parent="." unique_id=1599857745]
 
 [node name="Interaction Zone" type="Area2D" parent="Interaction Zone Piviot" unique_id=1666575261]
-collision_mask = 32
+collision_mask = 544
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Zone Piviot/Interaction Zone" unique_id=183276001]
 position = Vector2(6, -11)
 shape = SubResource("RectangleShape2D_qlg0r")
 
+[node name="Interaction Zone All" type="Area2D" parent="Interaction Zone Piviot" unique_id=815569341]
+collision_mask = 544
+script = ExtResource("6_tuyoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Zone Piviot/Interaction Zone All" unique_id=901601086]
+position = Vector2(6, -11)
+shape = SubResource("RectangleShape2D_7b57l")
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Interaction Zone Piviot/Interaction Zone" to="." method="_on_interaction_zone_body_entered"]
 [connection signal="body_exited" from="Interaction Zone Piviot/Interaction Zone" to="." method="_on_interaction_zone_body_exited"]
+[connection signal="area_entered" from="Interaction Zone Piviot/Interaction Zone All" to="Interaction Zone Piviot/Interaction Zone All" method="_on_area_entered"]
+[connection signal="area_exited" from="Interaction Zone Piviot/Interaction Zone All" to="Interaction Zone Piviot/Interaction Zone All" method="_on_area_exited"]

@@ -84,6 +84,31 @@ Added a new ESC keybind
 Added New Sawblade texture and it's related files cuz I FORGOT to switch to a different branch
 Added moving sawblades | Yet to be implemented in the level correctly | At the wrong place right now
 Changed the collision layers and masks so that Enemies too recieve damage from certain things
+Added a hard asf Sawblade parkour part, hope you like it
+Added Assets & a Scene for the checkpoints
+Added a new Player_Interact Signal in SignalBus
+Progress on Checkpoints
+Adding a new interact all function
+changed collision layer for crate 2x2
+Made the checkpoints work for the player
+added a new autoload: GameManager.gd
+Now the scene isn't reloaded when the player dies, instead the player's position is reloaded
+Updated TODO.md
+Changed Void's collission layer to 9 
+Added a new Layer 11 for objects or something idk
+Added a new Object Health Manager Scene and Script soon to be reworked
+Added A Log Script Autoload
+Added A Object_Respawn Scene
+Object Respawn is half complete!
+Fixed some stuff with object respawn and it's mostly complete!
+Added Force Object Drop Signal
+The object is forcefully dropped when object respawns
+added coyote jump
+update TODO.md
+a bit of code cleanup
+Update TODO.md
+Changed koyote jump timer from 0.1 sec to 0.2 sec
+Update TODO.md
 
 # Current Commit:
-Added a hard asf Sawblade parkour part, hope you like it
+Added a new checkpoint label

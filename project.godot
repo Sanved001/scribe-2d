@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalBus="*uid://dhbw6pp6a0wic"
+GameManager="*uid://cyvkm0xxo1o4r"
+Log="*uid://g6efwidjshrj"
 
 [display]
 

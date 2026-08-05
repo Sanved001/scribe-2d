@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dqs1l8cvwj1gd"]
+
+[ext_resource type="Script" uid="uid://dtk8tmny1yt1a" path="res://scenes/functions/object_respawn.gd" id="1_4s4fg"]
+[ext_resource type="Script" uid="uid://bnyw2pitbmoyj" path="res://scenes/functions/object_respawn_root.gd" id="1_pfncm"]
+[ext_resource type="Script" uid="uid://dcyl3eymf048s" path="res://scenes/functions/object_rigid_body_2d_respawn.gd" id="3_eokg8"]
+
+[node name="Object_Respawn" type="Node2D" unique_id=1954052876]
+script = ExtResource("1_pfncm")
+
+[node name="Object_Respawn" type="Node2D" parent="." unique_id=78312772]
+script = ExtResource("1_4s4fg")
+
+[node name="Object_RigidBody2D_Respawn" type="Node2D" parent="." unique_id=873604816]
+script = ExtResource("3_eokg8")

@@ -13,3 +13,8 @@ signal Player_Interact_Movable_Object(myobject:Node2D,CharacterNode:CharacterBod
 signal Dialog_UI_Is_Busy_To_Player(value:bool)
 signal Pressure_Plate_Click(pressure_plate:Node2D, value:bool)
 signal Stop_Saw_Blade(saw_blade:Node2D, value:bool, stop_at_start:bool)
+signal Player_Interact(interact_object:Node, value:bool)
+signal Respawn(hard_respawn:bool)
+signal Respawn_Object(my_object:Node2D, hard_respawn:bool)
+signal Set_Last_Checkpoint(checkpoint:Node2D)
+signal Force_Object_Drop(node:Node2D)

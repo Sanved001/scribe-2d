@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://xs5250xaegvp" path="res://scenes/movable_objects/crates/Crate2x2Movable.tscn" id="14_q0hdq"]
 [ext_resource type="PackedScene" uid="uid://bso7fnv0u0s2i" path="res://scenes/puzzles/pressure_plate.tscn" id="15_nb6sc"]
 [ext_resource type="PackedScene" uid="uid://xfhgdxa6833x" path="res://scenes/traps/saw_blade.tscn" id="17_mnk4y"]
+[ext_resource type="PackedScene" uid="uid://cegvffhkd6a2d" path="res://scenes/functions/checkpoint.tscn" id="18_aa1kp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ipi18"]
 texture = ExtResource("1_qpt33")
@@ -587,6 +588,17 @@ theme_override_font_sizes/font_size = 16
 text = "E to Interact"
 horizontal_alignment = 1
 
+[node name="Interact2" type="Label" parent="Plane_1/labels" unique_id=809976029]
+offset_left = 3693.0
+offset_top = -621.0
+offset_right = 3995.0
+offset_bottom = -603.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("5_0et0p")
+theme_override_font_sizes/font_size = 16
+text = "E to activate checkpoint"
+horizontal_alignment = 1
+
 [node name="NPC_Yuri" parent="Plane_1" unique_id=572243532 instance=ExtResource("6_4vjxo")]
 position = Vector2(1468, -399)
 
@@ -623,7 +635,7 @@ ClearPrevious = true
 
 [node name="player" parent="." unique_id=1261008140 instance=ExtResource("11_aa8mw")]
 z_index = 5
-collision_layer = 2
+collision_layer = 3
 
 [node name="PlayerCamera" type="Camera2D" parent="player" unique_id=1208006582]
 zoom = Vector2(3, 3)
@@ -637,7 +649,7 @@ script = ExtResource("12_bg0a1")
 lerp_speed = 0.4
 
 [node name="Void" type="Area2D" parent="." unique_id=1623737934]
-collision_layer = 2
+collision_layer = 256
 script = ExtResource("3_p4813")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Void" unique_id=1754378556]
@@ -752,7 +764,7 @@ position = Vector2(1342, -396)
 position = Vector2(3255, -688)
 
 [node name="Crate2x2Movable2" parent="." unique_id=1449941571 instance=ExtResource("14_q0hdq")]
-position = Vector2(-56, -57)
+position = Vector2(-43, -48)
 
 [node name="Crate2x2Movable3" parent="." unique_id=84730968 instance=ExtResource("14_q0hdq")]
 position = Vector2(3551, -512)
@@ -825,3 +837,6 @@ animation_player = NodePath("AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SawBlades/SawBlade7" unique_id=1290797884]
 libraries/ = SubResource("AnimationLibrary_26bix")
 autoplay = &"move"
+
+[node name="Checkpoint" parent="." unique_id=1570119784 instance=ExtResource("18_aa1kp")]
+position = Vector2(3769, -576)
