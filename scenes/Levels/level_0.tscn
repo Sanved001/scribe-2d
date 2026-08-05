@@ -588,6 +588,17 @@ theme_override_font_sizes/font_size = 16
 text = "E to Interact"
 horizontal_alignment = 1
 
+[node name="Interact2" type="Label" parent="Plane_1/labels" unique_id=809976029]
+offset_left = 3693.0
+offset_top = -621.0
+offset_right = 3995.0
+offset_bottom = -603.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("5_0et0p")
+theme_override_font_sizes/font_size = 16
+text = "E to activate checkpoint"
+horizontal_alignment = 1
+
 [node name="NPC_Yuri" parent="Plane_1" unique_id=572243532 instance=ExtResource("6_4vjxo")]
 position = Vector2(1468, -399)
 
