@@ -37,6 +37,7 @@ var jump_disabled:bool = false
 var dialog_ui_is_busy:bool = false
 var player_is_on_ground:bool = false
 var coyote_jump:bool = false
+var original_spawn_position:Vector2 = Vector2(0, 0)
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -350.0
@@ -49,7 +50,7 @@ func Respawn_Player(hard_respawn:bool):
 		health = 100
 		SignalBus.Update_Health_Label.emit("Health: %s" % health)
 	else: 
-		self.global_position = Vector2(0,0)
+		self.global_position = original_spawn_position
 		health = 100
 		SignalBus.Update_Health_Label.emit("Health: %s" % health)
 		
@@ -149,7 +150,7 @@ func _ready() -> void:
 	SignalBus.Force_Object_Drop.connect(Force_Drop_Object)
 	red_sword.visible = false
 	red_sword_hitbox_collider.disabled = true
-	
+	original_spawn_position = self.global_position
 
 
 
@@ -205,12 +206,12 @@ func _physics_process(delta: float) -> void:
 					if Input.is_action_pressed("left"):
 						velocity.x += 50
 						velocity.y = JUMP_VELOCITY-10
-						await input_cooldown(0.2)
+						input_cooldown(0.2)
 						
 					elif Input.is_action_pressed("right"):
 						velocity.x -= 50
 						velocity.y = JUMP_VELOCITY-10
-						await input_cooldown(0.2)
+						input_cooldown(0.2)
 				
 				
 		# PLANE SHIFTING
@@ -381,8 +382,12 @@ func is_wall_climbable():
 				
 			var climbable_tile_data = tilemap.get_cell_tile_data(tile_cordinate)
 			if climbable_tile_data != null:
-				var is_climbable:bool = climbable_tile_data.get_custom_data("climbable")
-			
+				var is_climbable = true
+				var is_not_climbable:bool = climbable_tile_data.get_custom_data("not climbable")
+				if is_not_climbable == true:
+					is_climbable = false
+				else:
+					is_climbable = true
 				if Debug_Mode:
 					print("Tile ", climbable_tile_data, "is Climbable: ", is_climbable )
 					
@@ -407,8 +412,13 @@ func is_wall_climbable():
 				
 			var climbable_tile_data = tilemap.get_cell_tile_data(tile_cordinate)
 			if climbable_tile_data != null:
-				var is_climbable:bool = climbable_tile_data.get_custom_data("climbable")
-			
+				var is_climbable = true
+				var is_not_climbable:bool = climbable_tile_data.get_custom_data("not climbable")
+				
+				if is_not_climbable == true:
+					is_climbable = false
+				else:
+					is_climbable = true
 				if Debug_Mode:
 					print("Tile ", climbable_tile_data, "is Climbable: ", is_climbable )
 					

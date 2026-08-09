@@ -109,6 +109,10 @@ a bit of code cleanup
 Update TODO.md
 Changed koyote jump timer from 0.1 sec to 0.2 sec
 Update TODO.md
+Added a new checkpoint label
 
 # Current Commit:
-Added a new checkpoint label
+removed the change scene trigger in last commit
+changed the Test_Level
+removed the await in the jump logic in player.gd that was causing bugs
+added a inter-way-gateway
