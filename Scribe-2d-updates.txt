@@ -110,9 +110,13 @@ Update TODO.md
 Changed koyote jump timer from 0.1 sec to 0.2 sec
 Update TODO.md
 Added a new checkpoint label
-
-# Current Commit:
 removed the change scene trigger in last commit
 changed the Test_Level
 removed the await in the jump logic in player.gd that was causing bugs
 added a inter-way-gateway
+
+# Current Commit:
+added the level setter in level_0.gd
+map expansion of test_level
+removed unused variables from the moving_door_6x3_1.gd
+added a respawn function to camera
