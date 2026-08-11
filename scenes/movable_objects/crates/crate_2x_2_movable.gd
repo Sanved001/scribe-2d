@@ -1,5 +1,5 @@
 extends RigidBody2D
-@onready var player_below: RayCast2D = $PlayerBelow
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -21,6 +21,7 @@ var Slow_motion_is_active:bool = false
 #const CAMERA_MOVE_SPEED = 100
 
 func Load_Level(path_to_node, ClearPrevious:bool=false, ClearAll=false):
+	GameManager.last_checkpoint_position = Vector2.ZERO
 	if ClearPrevious == true:
 		if Current_Level != null:
 			#Level_Container.remove_child(Current_Level)

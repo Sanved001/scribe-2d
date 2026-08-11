@@ -45,7 +45,7 @@ const DASH_SPEED = 400.0
 
 
 func Respawn_Player(hard_respawn:bool):
-	if GameManager.last_checkpoint_position != null:
+	if GameManager.last_checkpoint_position != Vector2.ZERO:
 		self.global_position = GameManager.last_checkpoint_position
 		health = 100
 		SignalBus.Update_Health_Label.emit("Health: %s" % health)
@@ -53,6 +53,11 @@ func Respawn_Player(hard_respawn:bool):
 		self.global_position = original_spawn_position
 		health = 100
 		SignalBus.Update_Health_Label.emit("Health: %s" % health)
+	velocity = Vector2.ZERO
+	
+	reset_physics_interpolation()
+	$PlayerCamera.global_position = self.global_position
+	$PlayerCamera.reset_smoothing()
 		
 
 

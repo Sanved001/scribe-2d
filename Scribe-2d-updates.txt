@@ -114,9 +114,14 @@ removed the change scene trigger in last commit
 changed the Test_Level
 removed the await in the jump logic in player.gd that was causing bugs
 added a inter-way-gateway
-
-# Current Commit:
 added the level setter in level_0.gd
 map expansion of test_level
 removed unused variables from the moving_door_6x3_1.gd
 added a respawn function to camera
+
+# Current Commit:
+Fixed bugs with camera
+moved camera respawn to player.gd into player respawn
+clear last checkpoint after switching level
+changed checkpoint.gd to use global position instead of local position
+removed unused variable from crate 2x2 movable 
