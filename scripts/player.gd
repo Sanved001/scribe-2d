@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var Interaction_raycast:RayCast2D
 @export var Interaction_Zone:Area2D
 @export var Interaction_Zone_Piviot:Node2D
-
+@export var player_camera:Camera2D
 
 
 @onready var red_sword: Sprite2D = $WeaponPiviot/red_sword
@@ -56,8 +56,8 @@ func Respawn_Player(hard_respawn:bool):
 	velocity = Vector2.ZERO
 	
 	reset_physics_interpolation()
-	$PlayerCamera.global_position = self.global_position
-	$PlayerCamera.reset_smoothing()
+	player_camera.global_position = self.global_position
+	player_camera.reset_smoothing()
 		
 
 
@@ -306,6 +306,9 @@ func _physics_process(delta: float) -> void:
 		#SignalBus.ChangeCurrentScene.emit("res://scenes/Levels/level_0_boss.tscn", "change level", true)
 		#SignalBus.Stop_Saw_Blade.emit($"../SawBlade", true, false)
 	
+	
+	# limit max Y Downward velocity
+	velocity.y = min(velocity.y, 600)
 	
 	playanimation("", last_animation_direction)
 	move_and_slide()
