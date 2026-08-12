@@ -3,6 +3,10 @@ extends Node2D
 @export var player_press:bool = true
 @export var entity_press:bool = true
 
+
+
+signal pressed(value:bool)
+
 var objets_in_area:Array[Node2D] = []
 var is_pressed:bool = false
 
@@ -11,14 +15,14 @@ func Change_Animation():
 		if not is_pressed:
 			is_pressed = true
 			animation_player.play("pressed")
-			SignalBus.Pressure_Plate_Click.emit(self, true)
+			pressed.emit(true)
 			if OS.is_debug_build():
 				print("DEBUG: Pressure plate: ", self, " is Pressed")
 	elif not objets_in_area.size() > 0:
 		if is_pressed:
 			is_pressed = false
 			animation_player.play("not_pressed")
-			SignalBus.Pressure_Plate_Click.emit(self, false)
+			pressed.emit(false)
 			if OS.is_debug_build():
 				print("DEBUG: Pressure plate: ", self, " is Lifted")
 # Called when the node enters the scene tree for the first time.

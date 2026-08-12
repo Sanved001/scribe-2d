@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 func Player_Interact(interact_object:Node, value:bool):
 	if interact_object == interact_area:
 		Log.write("Player Interact recieved", self)
-		SignalBus.ChangeCurrentScene.emit("res://scenes/Levels/test_level.tscn", "idk", true, false)
+		SignalBus.ChangeCurrentScene.emit(change_scene_to, "idk", true, false)
 	
 
 func _on_interact_area_body_entered(body: Node2D) -> void:

@@ -123,8 +123,15 @@ moved camera respawn to player.gd into player respawn
 clear last checkpoint after switching level
 changed checkpoint.gd to use global position instead of local position
 removed unused variable from crate 2x2 movable 
-
-# Current Commit:
 fixed the unreachable coins in level 0 
 added a random piller in test level
 moved PlayerCamera from level scenes to the Player scene
+
+# Current Commit:
+Changes to player camera script
+changed the wall sliding speed to max 25 in player.gd
+Test Level map expansion
+Pressure Plates now use local signals
+Removed Pressure_Plate_Clicked signal from SignalBus
+Added an inter level gateway in test level
+Changed inter level gateway to use the exported value

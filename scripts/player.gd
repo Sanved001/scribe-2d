@@ -186,7 +186,7 @@ func _physics_process(delta: float) -> void:
 			velocity += get_gravity() * delta
 		
 		if is_on_wall() and velocity.y > 0 and (Input.is_action_pressed("left") or Input.is_action_pressed("right")):
-			velocity.y = min(velocity.y , 150)
+			velocity.y = min(velocity.y , 25)
 	
 		elif velocity.y > 0:
 			velocity.y += get_gravity().y * 1.25 * delta
@@ -310,6 +310,7 @@ func _physics_process(delta: float) -> void:
 	# limit max Y Downward velocity
 	velocity.y = min(velocity.y, 600)
 	
+	#Log.write("Velocity: %s" % velocity, self)
 	playanimation("", last_animation_direction)
 	move_and_slide()
 

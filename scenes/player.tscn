@@ -354,7 +354,6 @@ drag_right_margin = 0.0
 drag_bottom_margin = 0.0
 script = ExtResource("7_fjrip")
 player = NodePath("..")
-lerp_speed = 0.4
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Interaction Zone Piviot/Interaction Zone" to="." method="_on_interaction_zone_body_entered"]

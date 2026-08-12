@@ -438,6 +438,7 @@ Plane_2_Tilemap_1 = NodePath("Plane_2/Foreground")
 
 [node name="InterLevelGateway" parent="." unique_id=1571844694 instance=ExtResource("18_230md")]
 position = Vector2(-95, -32)
+change_scene_to = "res://scenes/Levels/test_level.tscn"
 
 [node name="Pressure Plates" type="Node2D" parent="." unique_id=1251657597]
 
