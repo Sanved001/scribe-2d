@@ -105,6 +105,7 @@ func player_take_damage(damage:float, source_area:Area2D = null):
 		
 		return
 	SignalBus.Update_Health_Label.emit("Health: %s" % health)
+	GameManager.player_health = health
 	
 	
 	damage_grace_period_cooldown_start(0.1)
@@ -156,6 +157,7 @@ func _ready() -> void:
 	red_sword.visible = false
 	red_sword_hitbox_collider.disabled = true
 	original_spawn_position = self.global_position
+	health = GameManager.player_health
 
 
 
