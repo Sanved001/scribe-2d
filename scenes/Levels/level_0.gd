@@ -11,6 +11,7 @@ func _ready() -> void:
 	Plane_2.visible = false
 	Plane_2.process_mode = Node.PROCESS_MODE_DISABLED
 	Plane_2_Tilemap_1.enabled = false
+	GameManager.current_level = 'level_0'
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

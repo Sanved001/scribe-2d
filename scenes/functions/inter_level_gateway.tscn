@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://cwjp62ksaymqg"]
+
+[ext_resource type="Script" uid="uid://dpxbnph7eechm" path="res://scenes/functions/inter_level_gateway.gd" id="1_couro"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7b57l"]
+size = Vector2(32, 32)
+
+[node name="InterLevelGateway" type="Node2D" unique_id=1571844694]
+script = ExtResource("1_couro")
+
+[node name="Door" type="Node2D" parent="." unique_id=1452892955]
+
+[node name="ColorRect22" type="ColorRect" parent="Door" unique_id=434234374]
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.54720163, 0.48642635, 0.28900313, 1)
+
+[node name="DoorFrame" type="Node2D" parent="Door" unique_id=1695321940]
+
+[node name="ColorRect" type="ColorRect" parent="Door/DoorFrame" unique_id=31985719]
+offset_right = 32.0
+offset_bottom = 3.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Door/DoorFrame" unique_id=517884829]
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 4.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="Door/DoorFrame" unique_id=19391150]
+offset_top = 4.0
+offset_right = 11.0
+offset_bottom = 5.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="Door/DoorFrame" unique_id=1707346682]
+offset_top = 5.0
+offset_right = 9.0
+offset_bottom = 6.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="Door/DoorFrame" unique_id=989918686]
+offset_left = 23.0
+offset_top = 5.0
+offset_right = 32.0
+offset_bottom = 6.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="Door/DoorFrame" unique_id=1878037724]
+offset_left = 24.0
+offset_top = 6.0
+offset_right = 32.0
+offset_bottom = 7.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect11" type="ColorRect" parent="Door/DoorFrame" unique_id=377759411]
+offset_top = 6.0
+offset_right = 8.0
+offset_bottom = 7.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect12" type="ColorRect" parent="Door/DoorFrame" unique_id=1565634713]
+offset_top = 7.0
+offset_right = 7.0
+offset_bottom = 8.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect15" type="ColorRect" parent="Door/DoorFrame" unique_id=368836428]
+offset_top = 8.0
+offset_right = 7.0
+offset_bottom = 9.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect16" type="ColorRect" parent="Door/DoorFrame" unique_id=283923312]
+offset_top = 9.0
+offset_right = 6.0
+offset_bottom = 11.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect18" type="ColorRect" parent="Door/DoorFrame" unique_id=1394667285]
+offset_top = 11.0
+offset_right = 5.0
+offset_bottom = 13.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect20" type="ColorRect" parent="Door/DoorFrame" unique_id=1924736232]
+offset_top = 13.0
+offset_right = 4.0
+offset_bottom = 15.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect21" type="ColorRect" parent="Door/DoorFrame" unique_id=2009584022]
+offset_left = 28.0
+offset_top = 13.0
+offset_right = 32.0
+offset_bottom = 15.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect19" type="ColorRect" parent="Door/DoorFrame" unique_id=1903865559]
+offset_left = 27.0
+offset_top = 11.0
+offset_right = 32.0
+offset_bottom = 13.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect17" type="ColorRect" parent="Door/DoorFrame" unique_id=600849894]
+offset_left = 26.0
+offset_top = 9.0
+offset_right = 32.0
+offset_bottom = 11.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect13" type="ColorRect" parent="Door/DoorFrame" unique_id=595270690]
+offset_left = 25.0
+offset_top = 7.0
+offset_right = 32.0
+offset_bottom = 8.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect14" type="ColorRect" parent="Door/DoorFrame" unique_id=581981048]
+offset_left = 25.0
+offset_top = 8.0
+offset_right = 32.0
+offset_bottom = 9.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="Door/DoorFrame" unique_id=1645857603]
+offset_left = 21.0
+offset_top = 4.0
+offset_right = 32.0
+offset_bottom = 5.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Door/DoorFrame" unique_id=1923214643]
+offset_left = 18.0
+offset_top = 3.0
+offset_right = 32.0
+offset_bottom = 4.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Door/DoorFrame" unique_id=407420325]
+offset_right = 3.0
+offset_bottom = 32.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Door/DoorFrame" unique_id=1286869261]
+offset_left = 29.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.5198572, 0.3033997, 0.07930163, 1)
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=29721605]
+collision_layer = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=234056620]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_7b57l")
+
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]

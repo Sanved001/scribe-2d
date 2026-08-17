@@ -22,4 +22,4 @@ layout_mode = 2
 
 [node name="Health_Label" type="Label" parent="VBoxContainer/Top_Bar/MarginContainer/HBoxContainer" unique_id=281378910]
 layout_mode = 2
-text = "Health: 100"
+text = "Health: 100.0"

@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var Interaction_raycast:RayCast2D
 @export var Interaction_Zone:Area2D
 @export var Interaction_Zone_Piviot:Node2D
-
+@export var player_camera:Camera2D
 
 
 @onready var red_sword: Sprite2D = $WeaponPiviot/red_sword
@@ -37,6 +37,7 @@ var jump_disabled:bool = false
 var dialog_ui_is_busy:bool = false
 var player_is_on_ground:bool = false
 var coyote_jump:bool = false
+var original_spawn_position:Vector2 = Vector2(0, 0)
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -350.0
@@ -44,14 +45,19 @@ const DASH_SPEED = 400.0
 
 
 func Respawn_Player(hard_respawn:bool):
-	if GameManager.last_checkpoint_position != null:
+	if GameManager.last_checkpoint_position != Vector2.ZERO:
 		self.global_position = GameManager.last_checkpoint_position
 		health = 100
 		SignalBus.Update_Health_Label.emit("Health: %s" % health)
 	else: 
-		self.global_position = Vector2(0,0)
+		self.global_position = original_spawn_position
 		health = 100
 		SignalBus.Update_Health_Label.emit("Health: %s" % health)
+	velocity = Vector2.ZERO
+	
+	reset_physics_interpolation()
+	player_camera.global_position = self.global_position
+	player_camera.reset_smoothing()
 		
 
 
@@ -99,6 +105,7 @@ func player_take_damage(damage:float, source_area:Area2D = null):
 		
 		return
 	SignalBus.Update_Health_Label.emit("Health: %s" % health)
+	GameManager.player_health = health
 	
 	
 	damage_grace_period_cooldown_start(0.1)
@@ -149,7 +156,8 @@ func _ready() -> void:
 	SignalBus.Force_Object_Drop.connect(Force_Drop_Object)
 	red_sword.visible = false
 	red_sword_hitbox_collider.disabled = true
-	
+	original_spawn_position = self.global_position
+	health = GameManager.player_health
 
 
 
@@ -180,7 +188,7 @@ func _physics_process(delta: float) -> void:
 			velocity += get_gravity() * delta
 		
 		if is_on_wall() and velocity.y > 0 and (Input.is_action_pressed("left") or Input.is_action_pressed("right")):
-			velocity.y = min(velocity.y , 150)
+			velocity.y = min(velocity.y , 25)
 	
 		elif velocity.y > 0:
 			velocity.y += get_gravity().y * 1.25 * delta
@@ -205,12 +213,12 @@ func _physics_process(delta: float) -> void:
 					if Input.is_action_pressed("left"):
 						velocity.x += 50
 						velocity.y = JUMP_VELOCITY-10
-						await input_cooldown(0.2)
+						input_cooldown(0.2)
 						
 					elif Input.is_action_pressed("right"):
 						velocity.x -= 50
 						velocity.y = JUMP_VELOCITY-10
-						await input_cooldown(0.2)
+						input_cooldown(0.2)
 				
 				
 		# PLANE SHIFTING
@@ -301,6 +309,10 @@ func _physics_process(delta: float) -> void:
 		#SignalBus.Stop_Saw_Blade.emit($"../SawBlade", true, false)
 	
 	
+	# limit max Y Downward velocity
+	velocity.y = min(velocity.y, 600)
+	
+	#Log.write("Velocity: %s" % velocity, self)
 	playanimation("", last_animation_direction)
 	move_and_slide()
 
@@ -381,8 +393,12 @@ func is_wall_climbable():
 				
 			var climbable_tile_data = tilemap.get_cell_tile_data(tile_cordinate)
 			if climbable_tile_data != null:
-				var is_climbable:bool = climbable_tile_data.get_custom_data("climbable")
-			
+				var is_climbable = true
+				var is_not_climbable:bool = climbable_tile_data.get_custom_data("not climbable")
+				if is_not_climbable == true:
+					is_climbable = false
+				else:
+					is_climbable = true
 				if Debug_Mode:
 					print("Tile ", climbable_tile_data, "is Climbable: ", is_climbable )
 					
@@ -407,8 +423,13 @@ func is_wall_climbable():
 				
 			var climbable_tile_data = tilemap.get_cell_tile_data(tile_cordinate)
 			if climbable_tile_data != null:
-				var is_climbable:bool = climbable_tile_data.get_custom_data("climbable")
-			
+				var is_climbable = true
+				var is_not_climbable:bool = climbable_tile_data.get_custom_data("not climbable")
+				
+				if is_not_climbable == true:
+					is_climbable = false
+				else:
+					is_climbable = true
 				if Debug_Mode:
 					print("Tile ", climbable_tile_data, "is Climbable: ", is_climbable )
 					

@@ -21,16 +21,19 @@ var Slow_motion_is_active:bool = false
 #const CAMERA_MOVE_SPEED = 100
 
 func Load_Level(path_to_node, ClearPrevious:bool=false, ClearAll=false):
+	GameManager.last_checkpoint_position = Vector2.ZERO
 	if ClearPrevious == true:
 		if Current_Level != null:
 			#Level_Container.remove_child(Current_Level)
 			Level_Container.call_deferred("remove_child", Current_Level)
 			Current_Level.queue_free()
+			Current_Level = null
+			
 	if ClearAll == false:
 		var Level_To_Load = load(path_to_node)
 		Current_Level = Level_To_Load.instantiate()
 		Level_Container.add_child(Current_Level)
-		#print("Successfully loaded: %s" % Current_Level)
+		Log.write("Successfully loaded: %s" % Current_Level, self)
 		
 
 # Called when the node enters the scene tree for the first time.
@@ -68,7 +71,7 @@ func slow_motion_stop() -> void:
 
 # CHANGE MY SCENE
 func change_current_scene(path_to_scene:String ,type:String = '' , clear_previous_scene:bool = false, clear_all_scenes:bool = false):
-	if path_to_scene != 'null':
+	if path_to_scene != null or path_to_scene != "":
 		Load_Level(path_to_scene, clear_previous_scene, clear_all_scenes)
 		
 		

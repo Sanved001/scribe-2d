@@ -14,7 +14,7 @@ shader_parameter/Flash_White = false
 size = Vector2(20, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp8nd"]
-size = Vector2(25, 30)
+size = Vector2(13, 21)
 
 [node name="enemy_blob" type="CharacterBody2D" unique_id=2073000293]
 collision_layer = 8
@@ -42,5 +42,5 @@ root_node = NodePath("..")
 entity_sprite = NodePath("../blob")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=244941735]
-position = Vector2(0.5, -15)
+position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_fp8nd")

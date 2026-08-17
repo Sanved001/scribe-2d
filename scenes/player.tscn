@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bxu5brtbg84he" path="res://assets/sprites/weapons/red_sword/red_sword.png" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://bmtooapkk1nft" path="res://scripts/player_hitbox.gd" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://rnsq6ujn550g" path="res://scripts/functions/interaction_zone_all.gd" id="6_tuyoq"]
+[ext_resource type="Script" uid="uid://csxoa0xcr1t24" path="res://scripts/player_camera.gd" id="7_fjrip"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qlg0r"]
 shader = ExtResource("2_dqkch")
@@ -259,7 +260,7 @@ size = Vector2(3, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7b57l"]
 size = Vector2(4, 4)
 
-[node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player", "sword_animation_player", "weaponpiviot", "Wall_Climb_RayCast2D", "Wall_Climb_RayCast2D2", "Interaction_raycast", "Interaction_Zone", "Interaction_Zone_Piviot") groups=["player"]]
+[node name="player" type="CharacterBody2D" unique_id=1261008140 node_paths=PackedStringArray("my_animation_player", "sprite_player", "sword_animation_player", "weaponpiviot", "Wall_Climb_RayCast2D", "Wall_Climb_RayCast2D2", "Interaction_raycast", "Interaction_Zone", "Interaction_Zone_Piviot", "player_camera") groups=["player"]]
 collision_mask = 161
 script = ExtResource("1_g2els")
 my_animation_player = NodePath("AnimationPlayer")
@@ -271,6 +272,7 @@ Wall_Climb_RayCast2D2 = NodePath("Wall_Climb_RayCast2D2")
 Interaction_raycast = NodePath("Interaction RayCast")
 Interaction_Zone = NodePath("Interaction Zone Piviot/Interaction Zone")
 Interaction_Zone_Piviot = NodePath("Interaction Zone Piviot")
+player_camera = NodePath("PlayerCamera")
 
 [node name="player" type="Sprite2D" parent="." unique_id=563086844]
 material = SubResource("ShaderMaterial_qlg0r")
@@ -341,6 +343,17 @@ script = ExtResource("6_tuyoq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Zone Piviot/Interaction Zone All" unique_id=901601086]
 position = Vector2(6, -11)
 shape = SubResource("RectangleShape2D_7b57l")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=2039827016 node_paths=PackedStringArray("player")]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+script = ExtResource("7_fjrip")
+player = NodePath("..")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Interaction Zone Piviot/Interaction Zone" to="." method="_on_interaction_zone_body_entered"]
