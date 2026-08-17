@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 
 
 func play_bgm(bgm_path: String):
-	if not FileAccess.file_exists(bgm_path):
+	if not ResourceLoader.exists(bgm_path):
 		Log.log_error("Audio File missing: %s" % bgm_path, self)
 		return
 	

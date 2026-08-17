@@ -3,7 +3,7 @@ extends Camera2D
 
 @export var smooth_speed:float = 2
 @export var lookahead_camera_enabled:bool = true
-@export var lookahead_distance_x:float = 100
+@export var lookahead_distance_x:float = 50
 @export var lookahead_distance_y:float = 150
 
 var max_velocity = Vector2(200, 300)
@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 	var fps_independent_weight = 1.0 - exp(-smooth_speed * delta)
 	
 	offset = offset.lerp(target_offset, fps_independent_weight)
-	offset.y = min(offset.y, 140)
+	offset.y = min(offset.y, lookahead_distance_y)
 	#if lookahead_camera_enabled:
 		#offset = offset.lerp(player.velocity, delta * lerp_speed)
 		#offset = offset.clamp(Vector2(-50,-50), Vector2(50,50))

@@ -355,6 +355,65 @@ drag_bottom_margin = 0.0
 script = ExtResource("7_fjrip")
 player = NodePath("..")
 
+[node name="CoyoteJumpTimer" type="Timer" parent="." unique_id=2071971645]
+wait_time = 0.2
+
+[node name="JumpBufferTimer" type="Timer" parent="." unique_id=1143686143]
+wait_time = 0.12
+one_shot = true
+
+[node name="HeadNudgeRaycasts" type="Node2D" parent="." unique_id=1986823858]
+
+[node name="LeftCorner_HeadNudge" type="RayCast2D" parent="HeadNudgeRaycasts" unique_id=248515358]
+position = Vector2(-3, -20)
+target_position = Vector2(0, -3)
+hit_from_inside = true
+
+[node name="Left_HeadNudge" type="RayCast2D" parent="HeadNudgeRaycasts" unique_id=661184353]
+position = Vector2(-2, -20)
+target_position = Vector2(0, -3)
+hit_from_inside = true
+
+[node name="Right_HeadNudge" type="RayCast2D" parent="HeadNudgeRaycasts" unique_id=998570901]
+position = Vector2(2, -20)
+target_position = Vector2(0, -3)
+hit_from_inside = true
+
+[node name="RightCorner_HeadNudge" type="RayCast2D" parent="HeadNudgeRaycasts" unique_id=1793372364]
+position = Vector2(3, -20)
+target_position = Vector2(0, -3)
+hit_from_inside = true
+
+[node name="LedgeHopRaycasts" type="Node2D" parent="." unique_id=748494164]
+
+[node name="RightBottom_LedgeHop" type="RayCast2D" parent="LedgeHopRaycasts" unique_id=1931785621]
+position = Vector2(3, -2)
+target_position = Vector2(2, 0)
+hit_from_inside = true
+
+[node name="RightTop_LedgeHop" type="RayCast2D" parent="LedgeHopRaycasts" unique_id=926501693]
+position = Vector2(3, -8)
+target_position = Vector2(2, 0)
+hit_from_inside = true
+
+[node name="LeftTop_LedgeHop" type="RayCast2D" parent="LedgeHopRaycasts" unique_id=1098965747]
+position = Vector2(-3, -8)
+target_position = Vector2(-2, 0)
+hit_from_inside = true
+
+[node name="LeftBottom_LedgeHop" type="RayCast2D" parent="LedgeHopRaycasts" unique_id=1723217404]
+position = Vector2(-3, -2)
+target_position = Vector2(-2, 0)
+hit_from_inside = true
+
+[node name="wall_contact_coyote_timer" type="Timer" parent="." unique_id=1638944060]
+wait_time = 0.05
+one_shot = true
+
+[node name="wall_jump_lock_timer" type="Timer" parent="." unique_id=1479304250]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Interaction Zone Piviot/Interaction Zone" to="." method="_on_interaction_zone_body_entered"]
 [connection signal="body_exited" from="Interaction Zone Piviot/Interaction Zone" to="." method="_on_interaction_zone_body_exited"]
