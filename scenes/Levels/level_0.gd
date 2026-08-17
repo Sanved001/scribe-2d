@@ -13,6 +13,7 @@ func _ready() -> void:
 	Plane_2_Tilemap_1.enabled = false
 	GameManager.current_level = 'level_0'
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://chl1st8qrmqvw"]
+
+[ext_resource type="Script" uid="uid://ci21dc5upcj6i" path="res://scenes/autoloads/audio_manager.gd" id="1_jcrpc"]
+
+[node name="BGMManager" type="Node2D" unique_id=1425964143 node_paths=PackedStringArray("bgm_player")]
+script = ExtResource("1_jcrpc")
+bgm_player = NodePath("BGMPlayer")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=1181280360]
+bus = &"BGM"

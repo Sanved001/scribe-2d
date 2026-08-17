@@ -83,6 +83,24 @@ text = "Sanved"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Music Used" type="Label" parent="Credits Node/VBoxContainer2" unique_id=582549909]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_b4h60")
+theme_override_font_sizes/font_size = 48
+text = "Music Used"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntoTheWonderland" type="Label" parent="Credits Node/VBoxContainer2" unique_id=1532655235]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tbt31")
+theme_override_font_sizes/font_size = 24
+text = "Track: Into The Wonderland
+Composer: M-ART
+Website: https://mart.kitunebi.com"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Main Panel" type="Panel" parent="." unique_id=1733393625]
 anchors_preset = 15
 anchor_right = 1.0
