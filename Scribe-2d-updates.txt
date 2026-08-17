@@ -133,10 +133,11 @@ Pressure Plates now use local signals
 Removed Pressure_Plate_Clicked signal from SignalBus
 Added an inter level gateway in test level
 Changed inter level gateway to use the exported value
-
-# Current Commit:
 Changed the value in health lable
 Added a player_health variable in game manager to keep the data between levels
 made enemy_blob's collision shape smaller
 added more things to test level
 The player now reads health from and writes to GameManager.gd
+
+# Current Commit:
+added a assets folder not to be pushed to github
