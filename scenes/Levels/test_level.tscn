@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d28t1cw1wq12u" path="res://assets/tilemaps/worldtilemap.png" id="1_2venv"]
 [ext_resource type="PackedScene" uid="uid://cwjp62ksaymqg" path="res://scenes/functions/inter_level_gateway.tscn" id="1_ka0q3"]
+[ext_resource type="Script" uid="uid://baen40er6ixq8" path="res://scenes/Levels/test_level.gd" id="1_q4it1"]
 [ext_resource type="PackedScene" uid="uid://hodm7nflxj1h" path="res://scenes/NPCs/npc_yuri.tscn" id="2_sj2c2"]
 [ext_resource type="Script" uid="uid://bvlfkjj8ti704" path="res://scenes/Levels/Test_Level_void_zone.gd" id="4_2t416"]
 [ext_resource type="PackedScene" uid="uid://bynj1kjy6alra" path="res://scenes/forest_parallax_static_1.tscn" id="5_wa5q0"]
@@ -239,6 +240,7 @@ _data = {
 }
 
 [node name="Test Level" type="Node2D" unique_id=968239025]
+script = ExtResource("1_q4it1")
 
 [node name="InterLevelGateway" parent="." unique_id=1571844694 instance=ExtResource("1_ka0q3")]
 position = Vector2(-15, -32)

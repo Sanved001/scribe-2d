@@ -138,6 +138,9 @@ Added a player_health variable in game manager to keep the data between levels
 made enemy_blob's collision shape smaller
 added more things to test level
 The player now reads health from and writes to GameManager.gd
+added a assets folder not to be pushed to github
 
 # Current Commit:
-added a assets folder not to be pushed to github
+Added A new bgm soundtrack to test level 
+Added a bgm manager autoload
+Added credits to README.md
