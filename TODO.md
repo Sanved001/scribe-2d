@@ -24,18 +24,18 @@
 - Make the checkpoints glow and give a indicator to press E
 - the door part is confusing give the players an hint to press F
 - Make it so that instead of checking can jump for walljump let it check cant jump instead
-
+- Add Camera Director Zone
 
 
 - Dash animation
 - Wall Jump so that you can jump from everywhere EXCEPT some, but that wall needs an visual indication that it's not jumpable I.E: a ton of spikes on the wall
-- Cap falling speed so the character dosent fall down wayy too fast
 - checkout Spine for the animations
-- make the wall jump so that the character moves back further and it like a curve so it feels smoother
-- make it so that if the player holds RIGHT while on wall use the koyote jump mechanic and still let the player jump instead of just not consider it cuz its not holding left
 
 
 # DONE:
+- make the wall jump so that the character moves back further and it like a curve so it feels smoother
+- make it so that if the player holds RIGHT while on wall use the koyote jump mechanic and still let the player jump instead of just not consider it cuz its not holding left
+- Cap falling speed so the character dosent fall down wayy too fast
 - Main Menu
 - Add a Button / Pressure Plate that activates when you or the box is placed above it
 - Add Movable Crates

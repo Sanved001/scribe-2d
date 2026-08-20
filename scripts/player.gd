@@ -53,7 +53,7 @@ var coyote_time_activated:bool = false
 var look_direction:int = 1
 
 const SPEED = 200.0
-const JUMP_VELOCITY = -350.0
+const JUMP_VELOCITY = -450.0
 const DASH_SPEED = 400.0
 const FRICTION = 25
 const ACCELERATION = 20
@@ -117,6 +117,13 @@ func _physics_process(delta: float) -> void:
 	if not input_is_busy and not jump_disabled:
 		
 		if Input.is_action_just_pressed("jump"):
+			# If player jumped while holding an object LET IT GO!
+			if Input.is_action_just_pressed("jump"):
+				if player_is_holding_objects.size() > 0:
+					var released_object = player_is_holding_objects[0]
+					player_is_holding_objects.erase(released_object)
+					SignalBus.Player_Interact_Movable_Object.emit(released_object, self, false)
+				
 			if jump_buffer_timer.is_stopped():
 				jump_buffer_timer.start()
 		
@@ -169,7 +176,8 @@ func _physics_process(delta: float) -> void:
 			velocity.y += JUMP_VELOCITY/3.25
 	
 	if not is_on_floor() and velocity.y > 0 and is_on_wall() and\
-	Input.get_axis("left", "right") != 0:
+	Input.get_axis("left", "right") != 0 and not jump_buffer_timer.is_stopped()\
+	and is_wall_climbable():
 		look_direction = Input.get_axis("left", "right")
 		wall_contact_coyote_timer.start()
 		velocity.y = 10
@@ -203,15 +211,15 @@ func _physics_process(delta: float) -> void:
 						#input_cooldown(0.2)
 				
 				
-		# PLANE SHIFTING
-		if not input_is_busy:
-			if Input.is_action_just_pressed("shift_plane"):
-				if Plane_Shift:
-					SignalBus.Plane_shift.emit(false)
-					Plane_Shift = false
-				else: 
-					SignalBus.Plane_shift.emit(true)
-					Plane_Shift = true
+	# PLANE SHIFTING
+	if not input_is_busy:
+		if Input.is_action_just_pressed("shift_plane"):
+			if Plane_Shift:
+				SignalBus.Plane_shift.emit(false)
+				Plane_Shift = false
+			else: 
+				SignalBus.Plane_shift.emit(true)
+				Plane_Shift = true
 
 	if not input_is_busy:
 		# Get the input direction and handle the movement/deceleration.
