@@ -5,5 +5,5 @@ bus/1/name = &"BGM"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = -1.519247
+bus/1/volume_db = -5.045384
 bus/1/send = &"Master"

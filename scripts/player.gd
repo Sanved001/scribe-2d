@@ -9,10 +9,14 @@ extends CharacterBody2D
 @export var Interaction_Zone:Area2D
 @export var Interaction_Zone_Piviot:Node2D
 @export var player_camera:Camera2D
+@onready var wall_contact_coyote_timer: Timer = $wall_contact_coyote_timer
+@onready var wall_jump_lock_timer: Timer = $wall_jump_lock_timer
 
 
 @onready var red_sword: Sprite2D = $WeaponPiviot/red_sword
 @onready var red_sword_hitbox_collider: CollisionShape2D = $WeaponPiviot/red_sword/Hitbox/red_sword_hitbox_collider
+@onready var jump_buffer_timer: Timer = $JumpBufferTimer
+@onready var coyote_jump_timer: Timer = $CoyoteJumpTimer
 
 
 var Debug_Mode:bool = OS.is_debug_build()
@@ -38,115 +42,23 @@ var dialog_ui_is_busy:bool = false
 var player_is_on_ground:bool = false
 var coyote_jump:bool = false
 var original_spawn_position:Vector2 = Vector2(0, 0)
+var coyote_time_activated:bool = false
+
+#var wall_contact_coyote:float = 0.0
+#const WALL_CONTACT_COYOTE_TIME:float = 0.2
+#
+#var wall_jump_lock: float = 0.0
+#const WALL_JUMP_LOCK_TIME:float = 0.05
+
+var look_direction:int = 1
 
 const SPEED = 200.0
-const JUMP_VELOCITY = -350.0
+const JUMP_VELOCITY = -450.0
 const DASH_SPEED = 400.0
+const FRICTION = 25
+const ACCELERATION = 20
+const WALL_JUMP_PUSH_FORCE = 500 
 
-
-func Respawn_Player(hard_respawn:bool):
-	if GameManager.last_checkpoint_position != Vector2.ZERO:
-		self.global_position = GameManager.last_checkpoint_position
-		health = 100
-		SignalBus.Update_Health_Label.emit("Health: %s" % health)
-	else: 
-		self.global_position = original_spawn_position
-		health = 100
-		SignalBus.Update_Health_Label.emit("Health: %s" % health)
-	velocity = Vector2.ZERO
-	
-	reset_physics_interpolation()
-	player_camera.global_position = self.global_position
-	player_camera.reset_smoothing()
-		
-
-
-
-func player_take_damage(damage:float, source_area:Area2D = null):
-	if damage == 0:
-		return
-	else: 
-		health -= damage
-	
-	
-	
-	if source_area != null:
-		var knockback_direction = global_position - source_area.global_position
-		knockback_direction = knockback_direction.normalized()
-		velocity = knockback_direction * source_area.entity_knockback_strength
-		velocity.y -= 1 # MAKE THE PLAYER JUMP EVEN IF AT 0 Y VELOCITY
-		if velocity.x != 0:
-			var sign_x = sign(velocity.x)
-			if abs(velocity.x) < 200:
-				velocity.x = sign_x * 200
-		
-		if velocity.y != 0:
-			var sign_y = sign(velocity.y)
-			if abs(velocity.y) < 200:
-				velocity.y = sign_y * 200
-		
-		if velocity.y == 0:
-			velocity.y = -200
-		if velocity.x == 0:
-			if global_position.x >= source_area.global_position.x:
-				velocity.x = 200 # move right
-			else: 
-				velocity.x = -200 # move left
-		
-		Player_Flash()
-		input_cooldown(0.2)
-	
-	if health <= 0:
-		SignalBus.Slow_motion_start.emit(0.1)
-		await get_tree().create_timer(0.2).timeout
-		SignalBus.Slow_motion_stop.emit()
-		#get_tree().call_deferred("reload_current_scene")
-		SignalBus.Respawn.emit(false)
-		
-		return
-	SignalBus.Update_Health_Label.emit("Health: %s" % health)
-	GameManager.player_health = health
-	
-	
-	damage_grace_period_cooldown_start(0.1)
-	
-	
-	
-
-
-func playanimation(animation_name:String = "", m_direction:float = 0.0):
-	if not animation_name == "":
-		my_animation_player.play(animation_name)
-	else:
-		playanimation_direction(m_direction)
-
-
-func playanimation_direction(direction:float):
-	if not is_on_floor():
-		# jump
-		if not is_on_wall():
-			my_animation_player.play('player_jump')
-		elif is_on_wall():
-			my_animation_player.play('player_wall_slide')
-		
-	elif direction != 0:
-		my_animation_player.play('player_run')
-			
-	else: 
-		my_animation_player.play("player_idle")
-		
-	if direction != 0:
-		sprite_player.flip_h = (direction < 0)
-		Wall_Climb_RayCast2D.rotation = PI if direction < 0 else 0.0
-		Wall_Climb_RayCast2D2.rotation = PI if direction < 0 else 0.0
-		Interaction_raycast.rotation = PI if direction < 0 else 0.0
-	
-
-
-func _is_my_input_busy(value:bool):
-	input_is_busy = value
-	
-	
 
 func _ready() -> void:
 	sword_animation_player.speed_scale = 3
@@ -162,17 +74,24 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
 	if (is_on_floor() or is_on_wall()):
 		last_animation_direction = 0.0
 		if not player_is_dashing:
 			dash_count = 1
+	
 	if is_on_floor():
-		player_is_on_ground = true
-	elif player_is_on_ground:
-			player_is_on_ground = false
-			if not coyote_jump:
-				coyote_jump_timer()
+		coyote_time_activated = false
+	else: 
+		if coyote_jump_timer.is_stopped() and not coyote_time_activated:
+			coyote_jump_timer.start()
+			coyote_time_activated = true
+	
+	#if is_on_floor():
+		#player_is_on_ground = true
+	#elif player_is_on_ground:
+			#player_is_on_ground = false
+			#if not coyote_jump:
+				#coyote_jump_timer()
 			
 		
 	
@@ -194,8 +113,10 @@ func _physics_process(delta: float) -> void:
 			velocity.y += get_gravity().y * 1.25 * delta
 			
 	# Handle jump.
-	if not input_is_busy:
-		if not jump_disabled:
+	
+	if not input_is_busy and not jump_disabled:
+		
+		if Input.is_action_just_pressed("jump"):
 			# If player jumped while holding an object LET IT GO!
 			if Input.is_action_just_pressed("jump"):
 				if player_is_holding_objects.size() > 0:
@@ -203,51 +124,126 @@ func _physics_process(delta: float) -> void:
 					player_is_holding_objects.erase(released_object)
 					SignalBus.Player_Interact_Movable_Object.emit(released_object, self, false)
 				
-			if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_jump):
-				velocity.y = JUMP_VELOCITY
-				coyote_jump = false
-				player_is_on_ground = false
+			if jump_buffer_timer.is_stopped():
+				jump_buffer_timer.start()
+		
+		if not jump_buffer_timer.is_stopped()\
+		and (not coyote_jump_timer.is_stopped()\
+		or is_on_floor()\
+		or not wall_contact_coyote_timer.is_stopped()):
+			velocity.y = JUMP_VELOCITY
+			jump_buffer_timer.stop()
+			coyote_jump_timer.stop()
+			coyote_time_activated = true
+			
+			# WALL JUMP
+			if not wall_contact_coyote_timer.is_stopped():
+				velocity.x = -look_direction * WALL_JUMP_PUSH_FORCE
+				wall_jump_lock_timer.start()
+		
+		#if Input.is_action_just_pressed("jump"):
+			#if is_on_floor() or coyote_jump:
+				#velocity.y = JUMP_VELOCITY
+				#coyote_jump = false
+		if Input.is_action_just_released("jump") and velocity.y < 0 or is_on_ceiling():
+			velocity.y = velocity.y/4
+		
+		
+	
+			
+	
+	# NUDGE THE PLAYER TOWARDS LEFT OR RIGHT IF IT BARELY HITS SOMETHING ON THE TOP
+	if velocity.y < JUMP_VELOCITY/2:
+		var head_collision: Array = [$HeadNudgeRaycasts/LeftCorner_HeadNudge.is_colliding(),\
+		$HeadNudgeRaycasts/Left_HeadNudge.is_colliding(),\
+		$HeadNudgeRaycasts/RightCorner_HeadNudge.is_colliding(),\
+		$HeadNudgeRaycasts/Right_HeadNudge.is_colliding()]
+		if head_collision.count(true) == 1:
+			if head_collision[0]:
+				global_position.x += 2
+			if head_collision[2]:
+				global_position.x -= 2
+	
+	# IF THE PLAYER JUST BARELY MISSED THE PLATFORM WHILE JUMPING HELP HIM GET UP
+	if velocity.y > -30 and velocity.y < -5 and abs(velocity.x) > 5:
+		if $LedgeHopRaycasts/LeftBottom_LedgeHop.is_colliding()\
+		and not $LedgeHopRaycasts/LeftTop_LedgeHop.is_colliding()\
+		and velocity.x < 0:
+			velocity.y += JUMP_VELOCITY/3.25
+		if $LedgeHopRaycasts/RightBottom_LedgeHop.is_colliding()\
+		and not $LedgeHopRaycasts/RightTop_LedgeHop.is_colliding()\
+		and velocity.x > 0:
+			velocity.y += JUMP_VELOCITY/3.25
+	
+	if not is_on_floor() and velocity.y > 0 and is_on_wall() and\
+	Input.get_axis("left", "right") != 0 and not jump_buffer_timer.is_stopped()\
+	and is_wall_climbable():
+		look_direction = Input.get_axis("left", "right")
+		wall_contact_coyote_timer.start()
+		velocity.y = 10
+
+	
+	
+	#if not input_is_busy:
+		#if not jump_disabled:
+			## If player jumped while holding an object LET IT GO!
+			#if Input.is_action_just_pressed("jump"):
+				#if player_is_holding_objects.size() > 0:
+					#var released_object = player_is_holding_objects[0]
+					#player_is_holding_objects.erase(released_object)
+					#SignalBus.Player_Interact_Movable_Object.emit(released_object, self, false)
+				#
+			#if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_jump):
+				#velocity.y = JUMP_VELOCITY
+				#coyote_jump = false
+				#player_is_on_ground = false
+				#
+			#elif Input.is_action_just_pressed("jump") and (is_on_wall() or coyote_jump):
+				#if is_wall_climbable():
+					#if Input.is_action_pressed("left"):
+						#velocity.x += 50
+						#velocity.y = JUMP_VELOCITY-10
+						#input_cooldown(0.2)
+						#
+					#elif Input.is_action_pressed("right"):
+						#velocity.x -= 50
+						#velocity.y = JUMP_VELOCITY-10
+						#input_cooldown(0.2)
 				
-			elif Input.is_action_just_pressed("jump") and (is_on_wall() or coyote_jump):
-				if is_wall_climbable():
-					if Input.is_action_pressed("left"):
-						velocity.x += 50
-						velocity.y = JUMP_VELOCITY-10
-						input_cooldown(0.2)
-						
-					elif Input.is_action_pressed("right"):
-						velocity.x -= 50
-						velocity.y = JUMP_VELOCITY-10
-						input_cooldown(0.2)
 				
-				
-		# PLANE SHIFTING
-		if not input_is_busy:
-			if Input.is_action_just_pressed("shift_plane"):
-				if Plane_Shift:
-					SignalBus.Plane_shift.emit(false)
-					Plane_Shift = false
-				else: 
-					SignalBus.Plane_shift.emit(true)
-					Plane_Shift = true
+	# PLANE SHIFTING
+	if not input_is_busy:
+		if Input.is_action_just_pressed("shift_plane"):
+			if Plane_Shift:
+				SignalBus.Plane_shift.emit(false)
+				Plane_Shift = false
+			else: 
+				SignalBus.Plane_shift.emit(true)
+				Plane_Shift = true
 
 	if not input_is_busy:
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var direction := Input.get_axis("left", "right")
 		Change_Interaction_Zone_Piviot(direction)
-			
+		var velocity_weight: float = delta * (ACCELERATION if direction else FRICTION)
+		# WALL JUMP
+		
+		if not wall_jump_lock_timer.is_stopped():
+			velocity.x = lerp(velocity.x, direction * SPEED, velocity_weight*0.5)
+		else:
+			velocity.x = lerp(velocity.x, direction * SPEED, velocity_weight)
+		
+		intended_velocity.x = velocity.x
 		if (direction != 0):
 			last_animation_direction = direction
 			last_direction = direction
 			#RaycastPiviot.scale.x = 1
-			if direction:
-				velocity.x = direction * SPEED
-				intended_velocity.x = velocity.x
+			#velocity.x = direction * SPEED
 		else:
 			#RaycastPiviot.scale.x = -1
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			intended_velocity.x = velocity.x
+			#velocity.x = move_toward(velocity.x, 0, SPEED)
+			
 			playanimation("" , 0.0)
 
 		
@@ -318,7 +314,110 @@ func _physics_process(delta: float) -> void:
 
 	
 	
+func Respawn_Player(hard_respawn:bool):
+	if GameManager.last_checkpoint_position != Vector2.ZERO:
+		self.global_position = GameManager.last_checkpoint_position
+		health = 100
+		SignalBus.Update_Health_Label.emit("Health: %s" % health)
+	else: 
+		self.global_position = original_spawn_position
+		health = 100
+		SignalBus.Update_Health_Label.emit("Health: %s" % health)
+	velocity = Vector2.ZERO
+	
+	reset_physics_interpolation()
+	player_camera.global_position = self.global_position
+	player_camera.reset_smoothing()
+		
 
+
+
+func player_take_damage(damage:float, source_area:Area2D = null):
+	if damage == 0:
+		return
+	else: 
+		health -= damage
+	
+	
+	
+	if source_area != null:
+		var knockback_direction = global_position - source_area.global_position
+		knockback_direction = knockback_direction.normalized()
+		velocity = knockback_direction * source_area.entity_knockback_strength
+		velocity.y -= 1 # MAKE THE PLAYER JUMP EVEN IF AT 0 Y VELOCITY
+		if velocity.x != 0:
+			var sign_x = sign(velocity.x)
+			if abs(velocity.x) < 200:
+				velocity.x = sign_x * 200
+		
+		if velocity.y != 0:
+			var sign_y = sign(velocity.y)
+			if abs(velocity.y) < 200:
+				velocity.y = sign_y * 200
+		
+		if velocity.y == 0:
+			velocity.y = -200
+		if velocity.x == 0:
+			if global_position.x >= source_area.global_position.x:
+				velocity.x = 200 # move right
+			else: 
+				velocity.x = -200 # move left
+		
+		Player_Flash()
+		input_cooldown(0.2)
+	
+	if health <= 0:
+		SignalBus.Slow_motion_start.emit(0.1)
+		await get_tree().create_timer(0.2).timeout
+		SignalBus.Slow_motion_stop.emit()
+		#get_tree().call_deferred("reload_current_scene")
+		SignalBus.Respawn.emit(false)
+		
+
+
+	SignalBus.Update_Health_Label.emit("Health: %s" % health)
+	GameManager.player_health = health
+	
+	
+	damage_grace_period_cooldown_start(0.1)
+	
+	
+	
+
+
+func playanimation(animation_name:String = "", m_direction:float = 0.0):
+	if not animation_name == "":
+		my_animation_player.play(animation_name)
+	else:
+		playanimation_direction(m_direction)
+
+
+func playanimation_direction(direction:float):
+	if not is_on_floor():
+		# jump
+		if not is_on_wall():
+			my_animation_player.play('player_jump')
+		elif is_on_wall():
+			my_animation_player.play('player_wall_slide')
+		
+	elif direction != 0:
+		my_animation_player.play('player_run')
+			
+	else: 
+		my_animation_player.play("player_idle")
+		
+	if direction != 0:
+		sprite_player.flip_h = (direction < 0)
+		Wall_Climb_RayCast2D.rotation = PI if direction < 0 else 0.0
+		Wall_Climb_RayCast2D2.rotation = PI if direction < 0 else 0.0
+		Interaction_raycast.rotation = PI if direction < 0 else 0.0
+	
+
+
+func _is_my_input_busy(value:bool):
+	input_is_busy = value
+	
+	
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if not area is Hitbox:
@@ -505,7 +604,7 @@ func is_dialog_ui_busy_reset_timer():
 		dialog_ui_is_busy = false
 		
 
-func coyote_jump_timer():
+func coyote_jump_timertwo():
 	coyote_jump = true
 	await get_tree().create_timer(0.2).timeout
 	coyote_jump = false

@@ -139,8 +139,17 @@ made enemy_blob's collision shape smaller
 added more things to test level
 The player now reads health from and writes to GameManager.gd
 added a assets folder not to be pushed to github
-
-# Current Commit:
 Added A new bgm soundtrack to test level 
 Added a bgm manager autoload
 Added credits to README.md
+Changed the FileAccess.file_exists to Resource.exists in audio manager
+made the camera move less
+added head nudge so player dosent barely hit ceilling
+added lodgeclimb so if player barely fails making it up a platform we help him
+Entire movement system overhaul, unclimbable walls in progress
+
+# Current Commit:
+Made Certian walls non-climbable
+Increased Jump Velocity
+Update TODO.md
+Added Jump Buffering to Wall Climbs
