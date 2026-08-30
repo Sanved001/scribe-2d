@@ -613,7 +613,7 @@ position = Vector2(1468, -399)
 
 [node name="NPC_Yuri2" parent="Plane_1" unique_id=1424644634 instance=ExtResource("6_4vjxo")]
 position = Vector2(2263, -400)
-dialog_key = "try_pressing_F"
+dialog_key = "try_pressing_V"
 
 [node name="enemy mrs crock" parent="Plane_1" unique_id=1734327400 instance=ExtResource("7_phstr")]
 position = Vector2(1507, -399)
