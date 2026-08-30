@@ -74,6 +74,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
 	if (is_on_floor() or is_on_wall()):
 		last_animation_direction = 0.0
 		if not player_is_dashing:
@@ -93,6 +94,7 @@ func _physics_process(delta: float) -> void:
 			#if not coyote_jump:
 				#coyote_jump_timer()
 			
+	dialog_ui_is_busy
 		
 	
 	
@@ -269,7 +271,8 @@ func _physics_process(delta: float) -> void:
 						print("DEBG: Objects in Interaction Zone: %s " % Objects_In_Interaction_Zone.size())
 					
 				Interaction_Cooldown_Start(0.1)
-		
+	
+	
 	if not block_weapon_input:
 		if Input.is_action_just_pressed("attack"):
 			if (last_direction > 0):
@@ -298,15 +301,14 @@ func _physics_process(delta: float) -> void:
 		
 	
 	
-
+	
+	# limit max Y Downward velocity
+	velocity.y = min(velocity.y, 600)
+	
 	if Input.is_action_just_pressed("debug"):
 		pass
 		#SignalBus.ChangeCurrentScene.emit("res://scenes/Levels/level_0_boss.tscn", "change level", true)
 		#SignalBus.Stop_Saw_Blade.emit($"../SawBlade", true, false)
-	
-	
-	# limit max Y Downward velocity
-	velocity.y = min(velocity.y, 600)
 	
 	#Log.write("Velocity: %s" % velocity, self)
 	playanimation("", last_animation_direction)
@@ -600,7 +602,7 @@ func is_dialog_ui_busy(value:bool):
 
 
 func is_dialog_ui_busy_reset_timer():
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.1).timeout
 		dialog_ui_is_busy = false
 		
 

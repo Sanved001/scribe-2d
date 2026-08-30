@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8ch11cfvk2cf" path="res://scripts/npc_event_handler.gd" id="1_847o1"]
 [ext_resource type="Texture2D" uid="uid://df87mxly62dfg" path="res://assets/sprites/dialogbox/interaction_prompt.png" id="2_vuf5f"]
+[ext_resource type="FontFile" uid="uid://k3py6toifjo3" path="res://assets/fonts/pixeloperator/PixelOperator8.ttf" id="3_c3euk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbrmx"]
 
@@ -29,6 +30,25 @@ position = Vector2(20, -6)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_vuf5f")
 offset = Vector2(-32, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Interaction_Prompt" unique_id=679114417]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -11.0
+offset_right = 9.0
+offset_bottom = -1.0
+color = Color(0.14901961, 0.8, 0.2627451, 1)
+
+[node name="Label" type="Label" parent="Interaction_Prompt" unique_id=808966916]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -9.0
+offset_right = 8.0
+offset_bottom = -1.0
+theme_override_colors/font_color = Color(0.047058824, 0.24313726, 0.08235294, 1)
+theme_override_fonts/font = ExtResource("3_c3euk")
+theme_override_font_sizes/font_size = 8
+text = "F"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

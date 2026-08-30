@@ -25,6 +25,7 @@
 - the door part is confusing give the players an hint to press F
 - Make it so that instead of checking can jump for walljump let it check cant jump instead
 - Add Camera Director Zone
+- Add Parry
 
 
 - Dash animation

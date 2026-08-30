@@ -16,5 +16,5 @@ var npc_dialog:Dictionary[String, Array] = {
 		"so you did? meh"],
 	'dash': ["Did you know that you're invincible while dashing?",
 		"Well, Now you do!"],
-	'try_pressing_F': ["Maybe try pressing 'F'"],
+	'try_pressing_F': ["Maybe try pressing 'V'"],
 }

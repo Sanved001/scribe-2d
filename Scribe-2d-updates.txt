@@ -147,9 +147,15 @@ made the camera move less
 added head nudge so player dosent barely hit ceilling
 added lodgeclimb so if player barely fails making it up a platform we help him
 Entire movement system overhaul, unclimbable walls in progress
-
-# Current Commit:
 Made Certian walls non-climbable
 Increased Jump Velocity
 Update TODO.md
 Added Jump Buffering to Wall Climbs
+Changed the is is_dialog_ui_busy_reset_timer to 0.1 Sec; it was 0.01 Sec causing an bug
+
+# Current Commit:
+Changed Renderer to gl_compatability
+Changed the keybinds, now change plane is V and interact is F
+Changed Texts in the game
+Update TODO.md
+Upgraded project files

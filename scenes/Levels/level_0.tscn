@@ -540,10 +540,10 @@ text = "SHIFT to dash"
 horizontal_alignment = 1
 
 [node name="wall slide" type="Label" parent="Plane_1/labels" unique_id=1310504341]
-offset_left = 900.0
-offset_top = -224.0
-offset_right = 982.0
-offset_bottom = -209.0
+offset_left = 852.0
+offset_top = -226.0
+offset_right = 1114.0
+offset_bottom = -191.0
 scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("5_0et0p")
 theme_override_font_sizes/font_size = 16
@@ -572,7 +572,7 @@ scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("5_0et0p")
 theme_override_font_sizes/font_size = 16
 text = "You can also jump 
-while holding specific walls"
+while holding walls"
 horizontal_alignment = 1
 
 [node name="attack" type="Label" parent="Plane_1/labels" unique_id=300532105]
@@ -594,7 +594,7 @@ offset_bottom = -516.0
 scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("5_0et0p")
 theme_override_font_sizes/font_size = 16
-text = "E to Interact"
+text = "F to Interact"
 horizontal_alignment = 1
 
 [node name="Interact2" type="Label" parent="Plane_1/labels" unique_id=809976029]
@@ -605,7 +605,7 @@ offset_bottom = -603.0
 scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("5_0et0p")
 theme_override_font_sizes/font_size = 16
-text = "E to activate checkpoint"
+text = "interact to activate checkpoint"
 horizontal_alignment = 1
 
 [node name="NPC_Yuri" parent="Plane_1" unique_id=572243532 instance=ExtResource("6_4vjxo")]
