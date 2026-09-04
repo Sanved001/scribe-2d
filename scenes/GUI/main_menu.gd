@@ -14,6 +14,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
+	# Handel Input
+	if Input.is_action_just_pressed("debug"):
+		# add a way to select levels here
+		pass
+	
 	
 	
 	if can_play_credits:
@@ -28,6 +33,8 @@ func _process(delta: float) -> void:
 		
 	if can_play_credits:
 		play_credits(delta)
+		
+
 
 
 func play_credits(delta:float):

@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cwjp62ksaymqg" path="res://scenes/functions/inter_level_gateway.tscn" id="18_230md"]
 [ext_resource type="PackedScene" uid="uid://cegvffhkd6a2d" path="res://scenes/functions/checkpoint.tscn" id="18_aa1kp"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aa1kp"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mnk4y"]
 texture = ExtResource("1_qpt33")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -5.0078125, -5.0078125, -4.9921875, -4.980069, 8, -8, 8, -8, -5.006706, -8, -8, 8, -8)
@@ -90,7 +90,7 @@ texture = ExtResource("1_qpt33")
 physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "not climbable"
 custom_data_layer_0/type = 1
-sources/0 = SubResource("TileSetAtlasSource_aa1kp")
+sources/0 = SubResource("TileSetAtlasSource_mnk4y")
 
 [sub_resource type="Animation" id="Animation_is1dn"]
 length = 0.001

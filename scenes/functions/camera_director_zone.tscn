@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cs35snd4y3w4f"]
+
+[ext_resource type="Script" uid="uid://57honk1232w6" path="res://scenes/functions/camera_director_zone.gd" id="1_b2lss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7b57l"]
+
+[node name="CameraDirectorZone" type="Node2D" unique_id=476220608]
+script = ExtResource("1_b2lss")
+
+[node name="DirectorZoneArea" type="Area2D" parent="." unique_id=949603664]
+
+[node name="DirectorZoneCollider" type="CollisionShape2D" parent="DirectorZoneArea" unique_id=1408607701]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_7b57l")
