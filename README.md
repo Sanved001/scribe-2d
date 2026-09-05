@@ -93,3 +93,8 @@ By submitting a Pull Request, patch, or code contribution to this repository, yo
 Track: Into The Wonderland
 Composer: M-ART
 Website: https://mart.kitunebi.com
+
+Track: Crystal Cave
+Composer: cynicmusic
+Website: https://opengameart.org/content/crystal-cave-song18
+Website: htps://pixelsphere.org

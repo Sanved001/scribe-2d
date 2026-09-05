@@ -2,7 +2,7 @@ extends Node2D
 @export var animation_player:AnimationPlayer
 @export var player_press:bool = true
 @export var entity_press:bool = true
-
+@export var stay_pressed:bool = true
 
 
 signal pressed(value:bool)
@@ -19,7 +19,7 @@ func Change_Animation():
 			if OS.is_debug_build():
 				print("DEBUG: Pressure plate: ", self, " is Pressed")
 	elif not objets_in_area.size() > 0:
-		if is_pressed:
+		if is_pressed and not stay_pressed:
 			is_pressed = false
 			animation_player.play("not_pressed")
 			pressed.emit(false)

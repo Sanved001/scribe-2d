@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://ehf1bq4ckop3"]
+
+[ext_resource type="Texture2D" uid="uid://ctj1ekg0rfofq" path="res://assets/sprites/moving doors/placeholders/NinePatchRect.png" id="1_uylen"]
+[ext_resource type="Script" uid="uid://crw7v3ob1f5ry" path="res://scenes/movable_objects/doors/moving_door.gd" id="1_y27tr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tr2dr"]
+size = Vector2(96, 48)
+
+[sub_resource type="Animation" id="Animation_1b2e8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-507, -384)]
+}
+
+[sub_resource type="Animation" id="Animation_y27tr"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-507, -384), Vector2(-507, -560)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ewro"]
+_data = {
+&"RESET": SubResource("Animation_1b2e8"),
+&"open": SubResource("Animation_y27tr")
+}
+
+[node name="Moving Door" type="AnimatableBody2D" unique_id=1447549892]
+position = Vector2(-507, -384)
+collision_layer = 128
+script = ExtResource("1_y27tr")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1258750919]
+offset_right = 96.0
+offset_bottom = 48.0
+texture = ExtResource("1_uylen")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1774361978]
+position = Vector2(48, 24)
+shape = SubResource("RectangleShape2D_tr2dr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=485647186]
+libraries/ = SubResource("AnimationLibrary_3ewro")

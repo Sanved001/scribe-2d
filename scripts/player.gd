@@ -53,7 +53,7 @@ var coyote_time_activated:bool = false
 var look_direction:int = 1
 
 const SPEED = 200.0
-const JUMP_VELOCITY = -450.0
+const JUMP_VELOCITY = -350.0
 const DASH_SPEED = 400.0
 const FRICTION = 25
 const ACCELERATION = 20

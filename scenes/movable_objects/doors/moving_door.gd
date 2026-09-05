@@ -1,12 +1,14 @@
 extends Node2D
-@export var animation_player:AnimationPlayer
 @export var trigger_node:Node2D
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	trigger_node.pressed.connect(my_pressure_plate_click)
+
 	#animation_player.play_backwards("open")
 	#animation_player.speed_scale = 2
 	

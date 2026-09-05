@@ -39,7 +39,7 @@ func Load_Level(path_to_node, ClearPrevious:bool=false, ClearAll=false):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Load_Level('res://scenes/Levels/test_level.tscn')
-	Load_Level('res://scenes/Levels/level_0.tscn')
+	Load_Level('res://scenes/Levels/real_test_level.tscn')
 	SignalBus.Slow_motion_start.connect(slow_motion_start)
 	SignalBus.Slow_motion_stop.connect(slow_motion_stop)
 	SignalBus.ChangeCurrentScene.connect(change_current_scene)

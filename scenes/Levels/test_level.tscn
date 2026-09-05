@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://hodm7nflxj1h" path="res://scenes/NPCs/npc_yuri.tscn" id="2_sj2c2"]
 [ext_resource type="Script" uid="uid://bvlfkjj8ti704" path="res://scenes/Levels/Test_Level_void_zone.gd" id="4_2t416"]
 [ext_resource type="PackedScene" uid="uid://bynj1kjy6alra" path="res://scenes/forest_parallax_static_1.tscn" id="5_wa5q0"]
-[ext_resource type="PackedScene" uid="uid://bpemxwa2sj5wc" path="res://scenes/player.tscn" id="6_gd42f"]
 [ext_resource type="PackedScene" uid="uid://2qvn7t0cq5vq" path="res://scenes/traps/spikes_1.tscn" id="7_gd42f"]
 [ext_resource type="PackedScene" uid="uid://xfhgdxa6833x" path="res://scenes/traps/saw_blade.tscn" id="8_eg032"]
 [ext_resource type="PackedScene" uid="uid://dlu3skrg3wen4" path="res://scenes/enemies/enemy_blob.tscn" id="9_pj5lm"]
@@ -265,11 +264,6 @@ script = ExtResource("4_2t416")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Void_zone" unique_id=144787959]
 position = Vector2(0, 270)
 shape = SubResource("WorldBoundaryShape2D_wa5q0")
-
-[node name="player" parent="." unique_id=1261008140 instance=ExtResource("6_gd42f")]
-z_index = 5
-position = Vector2(0, -6)
-collision_layer = 3
 
 [node name="Spikes" type="Node2D" parent="." unique_id=966151115]
 

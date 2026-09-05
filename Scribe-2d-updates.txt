@@ -158,10 +158,19 @@ Changed Texts in the game
 Update TODO.md
 Upgraded project files
 Changed Dialog key for Yuri from "try_pressing_F" to "try_pressing_V"
-
-# Current Commit:
 Added A camera director script and scene
 Added a RealTestLevel 
 Adding a Debug method to Main Menu
 turned off collide from inside for the headnudge and ledgehop raucasts
 changed collision layers for player in testlevel to include layer 1 and 2 both
+
+# Current Commit:
+Changed the level loded on start game to real_test_level
+Moved player to the main game scene
+set BGM volume to +1.0db
+Progress on real_test_level
+Changed Moving Door's collision shape to rectangle
+Added an Stay Pressed value in Pressure plates
+Added a new BGM
+Updated TODO.md to add credits
+Changed Player's jump velocity

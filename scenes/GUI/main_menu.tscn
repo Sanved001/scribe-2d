@@ -101,6 +101,16 @@ Website: https://mart.kitunebi.com"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Crystal Cave" type="Label" parent="Credits Node/VBoxContainer2" unique_id=1359725843]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tbt31")
+theme_override_font_sizes/font_size = 24
+text = "Track: Crystal Cave
+Composer: cynicmusic
+Website: pixelsphere.org"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Main Panel" type="Panel" parent="." unique_id=1733393625]
 anchors_preset = 15
 anchor_right = 1.0
