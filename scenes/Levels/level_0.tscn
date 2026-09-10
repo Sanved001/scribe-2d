@@ -621,13 +621,11 @@ position = Vector2(1507, -399)
 [node name="enemy_blob" parent="Plane_1" unique_id=2122885595 instance=ExtResource("8_8f6fy")]
 position = Vector2(1817, -368)
 
-[node name="Moving Door 6x3 1" parent="Plane_1" unique_id=143520778 node_paths=PackedStringArray("animation_player", "trigger_node") instance=ExtResource("10_is1dn")]
-position = Vector2(3264, -496)
+[node name="Moving Door 6x3 1" parent="Plane_1" unique_id=143520778 node_paths=PackedStringArray("trigger_node") instance=ExtResource("10_is1dn")]
 rotation = -1.5707964
-animation_player = NodePath("AnimationPlayer")
 trigger_node = NodePath("../../Pressure Plates/Pressure Plate")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Plane_1/Moving Door 6x3 1" unique_id=1607286547]
+[node name="AnimationPlayerr" type="AnimationPlayer" parent="Plane_1/Moving Door 6x3 1" unique_id=1607286547]
 libraries/ = SubResource("AnimationLibrary_230md")
 
 [node name="Plane_2" type="Node2D" parent="." unique_id=639845710]
@@ -754,13 +752,12 @@ position = Vector2(3255, -688)
 [node name="Crate2x2Movable3" parent="." unique_id=84730968 instance=ExtResource("14_q0hdq")]
 position = Vector2(3551, -512)
 
-[node name="Moving Door 6x3 1" parent="." unique_id=1447549892 node_paths=PackedStringArray("animation_player", "trigger_node") instance=ExtResource("10_is1dn")]
+[node name="Moving Door 6x3 1" parent="." unique_id=1447549892 node_paths=PackedStringArray("trigger_node") instance=ExtResource("10_is1dn")]
 position = Vector2(3584, -576)
 rotation = -1.5707964
-animation_player = NodePath("AnimationPlayer")
 trigger_node = NodePath("../Pressure Plates/Pressure Plate")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Moving Door 6x3 1" unique_id=1166638293]
+[node name="AnimationPlayerr" type="AnimationPlayer" parent="Moving Door 6x3 1" unique_id=1166638293]
 libraries/ = SubResource("AnimationLibrary_8hc65")
 
 [node name="SawBlades" type="Node2D" parent="." unique_id=42014971]

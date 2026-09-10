@@ -97,4 +97,4 @@ Website: https://mart.kitunebi.com
 Track: Crystal Cave
 Composer: cynicmusic
 Website: https://opengameart.org/content/crystal-cave-song18
-Website: htps://pixelsphere.org
+Website: https://pixelsphere.org

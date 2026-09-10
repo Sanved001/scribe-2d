@@ -163,8 +163,6 @@ Added a RealTestLevel
 Adding a Debug method to Main Menu
 turned off collide from inside for the headnudge and ledgehop raucasts
 changed collision layers for player in testlevel to include layer 1 and 2 both
-
-# Current Commit:
 Changed the level loded on start game to real_test_level
 Moved player to the main game scene
 set BGM volume to +1.0db
@@ -174,3 +172,7 @@ Added an Stay Pressed value in Pressure plates
 Added a new BGM
 Updated TODO.md to add credits
 Changed Player's jump velocity
+
+# Current Commit:
+Fixed Node Name Clashes For the moving door in level_0
+Fixed the Spelling error in "https" in README
