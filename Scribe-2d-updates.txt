@@ -172,7 +172,8 @@ Added an Stay Pressed value in Pressure plates
 Added a new BGM
 Updated TODO.md to add credits
 Changed Player's jump velocity
-
-# Current Commit:
 Fixed Node Name Clashes For the moving door in level_0
 Fixed the Spelling error in "https" in README
+
+# Current Commit:
+Removed doors from level_0 in hopes of fixing something else

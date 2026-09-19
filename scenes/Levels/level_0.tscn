@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://hodm7nflxj1h" path="res://scenes/NPCs/npc_yuri.tscn" id="6_4vjxo"]
 [ext_resource type="PackedScene" uid="uid://bggcep8a63wb5" path="res://scenes/enemies/enemy_mrs_crock.tscn" id="7_phstr"]
 [ext_resource type="PackedScene" uid="uid://dlu3skrg3wen4" path="res://scenes/enemies/enemy_blob.tscn" id="8_8f6fy"]
-[ext_resource type="PackedScene" uid="uid://ehf1bq4ckop3" path="res://scenes/movable_objects/doors/moving_door.tscn" id="10_is1dn"]
 [ext_resource type="PackedScene" uid="uid://dgtac5jeqd7f2" path="res://scenes/coin.tscn" id="13_bg0a1"]
 [ext_resource type="PackedScene" uid="uid://xs5250xaegvp" path="res://scenes/movable_objects/crates/Crate2x2Movable.tscn" id="14_q0hdq"]
 [ext_resource type="PackedScene" uid="uid://bso7fnv0u0s2i" path="res://scenes/puzzles/pressure_plate.tscn" id="15_nb6sc"]
@@ -91,81 +90,7 @@ custom_data_layer_0/name = "not climbable"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_mnk4y")
 
-[sub_resource type="Animation" id="Animation_is1dn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_aa1kp"]
-resource_name = "open"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(3264, -496), Vector2(3264, -592)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_230md"]
-_data = {
-&"RESET": SubResource("Animation_is1dn"),
-&"open": SubResource("Animation_aa1kp")
-}
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wgppn"]
-
-[sub_resource type="Animation" id="Animation_mnk4y"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3584, -576)]
-}
-
-[sub_resource type="Animation" id="Animation_230md"]
-resource_name = "open"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(3584, -576), Vector2(3584, -656)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hc65"]
-_data = {
-&"RESET": SubResource("Animation_mnk4y"),
-&"open": SubResource("Animation_230md")
-}
 
 [sub_resource type="Animation" id="Animation_084sf"]
 length = 0.001
@@ -621,13 +546,6 @@ position = Vector2(1507, -399)
 [node name="enemy_blob" parent="Plane_1" unique_id=2122885595 instance=ExtResource("8_8f6fy")]
 position = Vector2(1817, -368)
 
-[node name="Moving Door 6x3 1" parent="Plane_1" unique_id=143520778 node_paths=PackedStringArray("trigger_node") instance=ExtResource("10_is1dn")]
-rotation = -1.5707964
-trigger_node = NodePath("../../Pressure Plates/Pressure Plate")
-
-[node name="AnimationPlayerr" type="AnimationPlayer" parent="Plane_1/Moving Door 6x3 1" unique_id=1607286547]
-libraries/ = SubResource("AnimationLibrary_230md")
-
 [node name="Plane_2" type="Node2D" parent="." unique_id=639845710]
 
 [node name="Foreground" type="TileMapLayer" parent="Plane_2" unique_id=2012213484]
@@ -751,14 +669,6 @@ position = Vector2(3255, -688)
 
 [node name="Crate2x2Movable3" parent="." unique_id=84730968 instance=ExtResource("14_q0hdq")]
 position = Vector2(3551, -512)
-
-[node name="Moving Door 6x3 1" parent="." unique_id=1447549892 node_paths=PackedStringArray("trigger_node") instance=ExtResource("10_is1dn")]
-position = Vector2(3584, -576)
-rotation = -1.5707964
-trigger_node = NodePath("../Pressure Plates/Pressure Plate")
-
-[node name="AnimationPlayerr" type="AnimationPlayer" parent="Moving Door 6x3 1" unique_id=1166638293]
-libraries/ = SubResource("AnimationLibrary_8hc65")
 
 [node name="SawBlades" type="Node2D" parent="." unique_id=42014971]
 
