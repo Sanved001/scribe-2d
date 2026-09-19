@@ -120,11 +120,10 @@ func _physics_process(delta: float) -> void:
 		
 		if Input.is_action_just_pressed("jump"):
 			# If player jumped while holding an object LET IT GO!
-			if Input.is_action_just_pressed("jump"):
-				if player_is_holding_objects.size() > 0:
-					var released_object = player_is_holding_objects[0]
-					player_is_holding_objects.erase(released_object)
-					SignalBus.Player_Interact_Movable_Object.emit(released_object, self, false)
+			if player_is_holding_objects.size() > 0:
+				var released_object = player_is_holding_objects[0]
+				player_is_holding_objects.erase(released_object)
+				SignalBus.Player_Interact_Movable_Object.emit(released_object, self, false)
 				
 			if jump_buffer_timer.is_stopped():
 				jump_buffer_timer.start()

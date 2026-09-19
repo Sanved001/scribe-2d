@@ -176,6 +176,7 @@ Fixed Node Name Clashes For the moving door in level_0
 Fixed the Spelling error in "https" in README
 Removed doors from level_0 in hopes of fixing something else
 Fixed the door moving up when loading into godot
+Reset Door Position
 
 # Current Commit:
-Reset Door Position
+Removed a duplicate line in player.gd
