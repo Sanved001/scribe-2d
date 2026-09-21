@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bpemxwa2sj5wc" path="res://scenes/player.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://c3gf6s06y5o6k" path="res://scenes/DialogueManager/dialog_manager.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://dpi0ycbu741x0" path="res://scenes/game_ui.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://bngkw1gh1dr4f" path="res://scenes/GUI/debug_menu.tscn" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://cu41khne7yoy6" path="res://scenes/debugcrosshair.gd" id="6_p57ef"]
 
 [node name="Game" type="Node2D" unique_id=995285545 node_paths=PackedStringArray("Level_Container")]
 script = ExtResource("1_lnu2h")
@@ -16,3 +18,78 @@ Level_Container = NodePath("Level Container")
 [node name="Game_UI" parent="." unique_id=1250416770 instance=ExtResource("5_iywne")]
 
 [node name="player" parent="." unique_id=1261008140 instance=ExtResource("4_iywne")]
+
+[node name="DebugStuff" type="Node2D" parent="." unique_id=1412875033]
+
+[node name="Debug_menu" parent="DebugStuff" unique_id=255869765 instance=ExtResource("5_p57ef")]
+layer = 6
+visible = false
+
+[node name="debugcrosshair" type="CanvasLayer" parent="DebugStuff" unique_id=1133551882]
+visible = false
+script = ExtResource("6_p57ef")
+
+[node name="ScreenCenter" type="ColorRect" parent="DebugStuff/debugcrosshair" unique_id=1675684972]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.5
+offset_top = -1.5
+offset_right = 1.5
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScreenCenter5" type="ColorRect" parent="DebugStuff/debugcrosshair" unique_id=114035338]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = 4.0
+offset_right = 2.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScreenCenter4" type="ColorRect" parent="DebugStuff/debugcrosshair" unique_id=1929783957]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScreenCenter3" type="ColorRect" parent="DebugStuff/debugcrosshair" unique_id=931326872]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -1.0
+offset_right = -3.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScreenCenter2" type="ColorRect" parent="DebugStuff/debugcrosshair" unique_id=912388320]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -7.0
+offset_right = 2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -17,3 +17,9 @@ signal Respawn(hard_respawn:bool)
 signal Respawn_Object(my_object:Node2D, hard_respawn:bool)
 signal Set_Last_Checkpoint(checkpoint:Node2D)
 signal Force_Object_Drop(node:Node2D)
+
+# Camera 
+signal Camera_Focus_Target_Add(object:Node2D)
+
+# DEBUG
+signal EnableDebugCrosshair(bool)

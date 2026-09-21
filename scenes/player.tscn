@@ -345,6 +345,7 @@ position = Vector2(6, -11)
 shape = SubResource("RectangleShape2D_7b57l")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=2039827016 node_paths=PackedStringArray("player")]
+position = Vector2(0, -23)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true

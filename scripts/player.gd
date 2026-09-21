@@ -304,8 +304,7 @@ func _physics_process(delta: float) -> void:
 	# limit max Y Downward velocity
 	velocity.y = min(velocity.y, 600)
 	
-	if Input.is_action_just_pressed("debug"):
-		pass
+
 		#SignalBus.ChangeCurrentScene.emit("res://scenes/Levels/level_0_boss.tscn", "change level", true)
 		#SignalBus.Stop_Saw_Blade.emit($"../SawBlade", true, false)
 	
