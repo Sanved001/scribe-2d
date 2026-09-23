@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://crw7v3ob1f5ry" path="res://scenes/movable_objects/doors/moving_door.gd" id="4_1b2e8"]
 [ext_resource type="Texture2D" uid="uid://ctj1ekg0rfofq" path="res://assets/sprites/moving doors/placeholders/NinePatchRect.png" id="5_5gr7r"]
 [ext_resource type="PackedScene" uid="uid://bso7fnv0u0s2i" path="res://scenes/puzzles/pressure_plate.tscn" id="5_jmfik"]
+[ext_resource type="Script" uid="uid://dkrmtmb34eu3f" path="res://scenes/functions/camera_limit_zone.gd" id="7_5gr7r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tw8nm"]
 texture = ExtResource("1_fdfc6")
@@ -120,6 +121,21 @@ _data = {
 &"open": SubResource("Animation_y27tr")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gr7r"]
+size = Vector2(576, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufmjp"]
+size = Vector2(217, 467)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxm2v"]
+size = Vector2(416, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmiui"]
+size = Vector2(224, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uya5r"]
+size = Vector2(1007, 176)
+
 [node name="RealTestLevel" type="Node2D" unique_id=395883603]
 script = ExtResource("1_oldkd")
 
@@ -159,3 +175,56 @@ shape = SubResource("RectangleShape2D_1b2e8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Moving Door" unique_id=485647186]
 libraries/ = SubResource("AnimationLibrary_3ewro")
+
+[node name="CameraLimitZones" type="Node2D" parent="." unique_id=887947217]
+
+[node name="CameraLimitZone" type="Area2D" parent="CameraLimitZones" unique_id=678906121]
+position = Vector2(976, -325)
+script = ExtResource("7_5gr7r")
+
+[node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone" unique_id=569729685]
+position = Vector2(32, -27)
+shape = SubResource("RectangleShape2D_5gr7r")
+
+[node name="CameraLimitZone2" type="Area2D" parent="CameraLimitZones" unique_id=739440293]
+position = Vector2(360, -139)
+script = ExtResource("7_5gr7r")
+
+[node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone2" unique_id=1023490614]
+position = Vector2(10.5, -31.5)
+shape = SubResource("RectangleShape2D_ufmjp")
+
+[node name="CameraLimitZone3" type="Area2D" parent="CameraLimitZones" unique_id=1039607566]
+position = Vector2(47, -18)
+script = ExtResource("7_5gr7r")
+
+[node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone3" unique_id=1323445476]
+position = Vector2(-15, 1)
+shape = SubResource("RectangleShape2D_nxm2v")
+
+[node name="CameraLimitZone4" type="Area2D" parent="CameraLimitZones" unique_id=1541223548]
+position = Vector2(590, -314)
+script = ExtResource("7_5gr7r")
+
+[node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone4" unique_id=963119758]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_pmiui")
+
+[node name="CameraLimitZone5" type="Area2D" parent="CameraLimitZones" unique_id=1477641328]
+position = Vector2(-210, -297)
+script = ExtResource("7_5gr7r")
+
+[node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone5" unique_id=2024932311]
+position = Vector2(-39, 1)
+shape = SubResource("RectangleShape2D_uya5r")
+
+[connection signal="body_entered" from="CameraLimitZones/CameraLimitZone" to="CameraLimitZones/CameraLimitZone" method="_on_body_entered"]
+[connection signal="body_exited" from="CameraLimitZones/CameraLimitZone" to="CameraLimitZones/CameraLimitZone" method="_on_body_exited"]
+[connection signal="body_entered" from="CameraLimitZones/CameraLimitZone2" to="CameraLimitZones/CameraLimitZone2" method="_on_body_entered"]
+[connection signal="body_exited" from="CameraLimitZones/CameraLimitZone2" to="CameraLimitZones/CameraLimitZone2" method="_on_body_exited"]
+[connection signal="body_entered" from="CameraLimitZones/CameraLimitZone3" to="CameraLimitZones/CameraLimitZone3" method="_on_body_entered"]
+[connection signal="body_exited" from="CameraLimitZones/CameraLimitZone3" to="CameraLimitZones/CameraLimitZone3" method="_on_body_exited"]
+[connection signal="body_entered" from="CameraLimitZones/CameraLimitZone4" to="CameraLimitZones/CameraLimitZone4" method="_on_body_entered"]
+[connection signal="body_exited" from="CameraLimitZones/CameraLimitZone4" to="CameraLimitZones/CameraLimitZone4" method="_on_body_exited"]
+[connection signal="body_entered" from="CameraLimitZones/CameraLimitZone5" to="CameraLimitZones/CameraLimitZone5" method="_on_body_entered"]
+[connection signal="body_exited" from="CameraLimitZones/CameraLimitZone5" to="CameraLimitZones/CameraLimitZone5" method="_on_body_exited"]

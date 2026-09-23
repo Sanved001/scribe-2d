@@ -20,6 +20,8 @@ signal Force_Object_Drop(node:Node2D)
 
 # Camera 
 signal Camera_Focus_Target_Add(object:Node2D)
+signal Set_Camera_Limit(zone_rect: Rect2i)
+signal Reset_Camera_Limit(value:bool)
 
 # DEBUG
 signal EnableDebugCrosshair(bool)

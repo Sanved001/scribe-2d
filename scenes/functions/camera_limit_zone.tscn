@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://du1ky7lgpu46"]
+
+[ext_resource type="Script" uid="uid://dkrmtmb34eu3f" path="res://scenes/functions/camera_limit_zone.gd" id="1_4vbie"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7b57l"]
+
+[node name="CameraLimitZone" type="Area2D" unique_id=678906121]
+script = ExtResource("1_4vbie")
+
+[node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="." unique_id=569729685]
+shape = SubResource("RectangleShape2D_7b57l")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

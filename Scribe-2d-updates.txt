@@ -178,11 +178,15 @@ Removed doors from level_0 in hopes of fixing something else
 Fixed the door moving up when loading into godot
 Reset Door Position
 Removed a duplicate line in player.gd
-
-# Current Commit:
 Removed the debug input check in player.gd
 Changes to real test level
 camera director zone rework in progress
 added a debug menu to the  game
 added 2 new signals
 added a crosshair in the game enabled by the debug menu
+
+# Current Commit:
+Added Camera Limit Zones
+Added New Signals to SignalBus
+Added two functions to modify camera limits in player_camera.gd
+Changed pressure plates signals from area entered/exited to body exited/entered

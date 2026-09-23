@@ -9,42 +9,52 @@ extends Camera2D
 var max_velocity = Vector2(200, 300)
 var target_offset: Vector2 = Vector2.ZERO
 
+
+
+var starting_limit_left:int 
+var starting_limit_right:int
+var starting_limit_top:int
+var starting_limit_bottom:int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#SignalBus.Respawn.connect(Respawn)
+	SignalBus.Set_Camera_Limit.connect(Set_camera_limit)
+	SignalBus.Reset_Camera_Limit.connect(Reset_Camera_Limit)
 
 	if not lookahead_camera_enabled: 
 		self.position_smoothing_enabled = false
+	
+	starting_limit_left = limit_left
+	starting_limit_right = limit_right
+	starting_limit_top = limit_top
+	starting_limit_bottom = limit_bottom
+	
+	
 
 func _process(delta: float) -> void:
-	#target_offset = Vector2.ZERO
-	
-
-	#if player.velocity.x > 0:
-		#target_offset.x = lookahead_distance_x
-	#elif player.velocity.x < 0: 
-		#target_offset.x = -lookahead_distance_x
-#
-	#if player.velocity.y > 0:
-		#target_offset.y = lookahead_distance_y
-	#elif player.velocity.y < 0:
-		#target_offset.y = -lookahead_distance_y
-		
-	
 	
 	var x_ratio = clampf(player.velocity.x / max_velocity.x, -1.0, 1.0)
 	var y_ratio = clampf(player.velocity.y / max_velocity.y, -1.0, 1.0)
-	
+
 	target_offset = Vector2(x_ratio*lookahead_distance_x, y_ratio*lookahead_distance_y)
 	# frame rate independent weight for lerp
 	var fps_independent_weight = 1.0 - exp(-smooth_speed * delta)
-	
+
 	offset = offset.lerp(target_offset, fps_independent_weight)
 	offset.y = min(offset.y, lookahead_distance_y)
-	#if lookahead_camera_enabled:
-		#offset = offset.lerp(player.velocity, delta * lerp_speed)
-		#offset = offset.clamp(Vector2(-50,-50), Vector2(50,50))
+	
+	
+func Set_camera_limit(zone_rect:Rect2i):
+	limit_left = zone_rect.position.x
+	limit_right = zone_rect.end.x
+	limit_top = zone_rect.position.y
+	limit_bottom = zone_rect.end.y
+	
 
-#func Respawn(hard_respawn:bool):
-	#self.global_position = player.global_position
-	#reset_smoothing()
+func Reset_Camera_Limit(value:bool):
+	if value == true:
+		limit_left = starting_limit_left
+		limit_right = starting_limit_right
+		limit_top = starting_limit_top
+		limit_bottom = starting_limit_bottom
+	
