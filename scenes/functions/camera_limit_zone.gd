@@ -11,8 +11,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		var zone_shape: RectangleShape2D = camera_limit_zone_collider.shape as RectangleShape2D
@@ -33,3 +31,13 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	pass
 	#SignalBus.Reset_Camera_Limit.emit(true)
+
+
+
+	
+	
+	
+	
+	
+	
+	

@@ -188,6 +188,8 @@ Added Camera Limit Zones
 Added New Signals to SignalBus
 Added two functions to modify camera limits in player_camera.gd
 Changed pressure plates signals from area entered/exited to body exited/entered
+Added Theory For Keeping the Camera in Bounds
 
 # Current Commit:
-Added Theory For Keeping the Camera in Bounds
+Extended Camera Limit zones and the upper right room in real test level
+Progress towards Camera Limit zones
