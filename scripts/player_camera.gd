@@ -44,6 +44,44 @@ func _process(delta: float) -> void:
 	offset.y = min(offset.y, lookahead_distance_y)
 	
 	
+	
+	# THEORY
+	'''The Camera currently clips through limits because of Camera offset
+	and we can't just clamp the camera to the values as it stutturs since the
+	offset is trying to push into the wall but the clamp is dragging it back.
+	So, the plan is: Having a buffer zone a few hundred pixels away from the 
+	Limit and perform some calculations if the player is inside the buffer zone
+	and moving towards the edge,
+	
+	First We take the full Distance Between the Buffer zone Edge and the camera Limit Edge ("Whole Distance"):
+		
+		
+	Second We take the distance between the player and the camera limit Edge ("Part Distance")
+		
+		<example>
+		Part Distance = mod(right_limit - Player.Global_Position.x)
+		
+	Third We perform the percentage calculation:
+		
+		slowing_percentage =  ( Part Distance / Whole Distance ) * 100
+		(Done Independently for both the axes)
+		
+	Fourth We multiply the slowing percentage for both the lookahead Distances
+	And DONE!
+	
+	BUT what about when the player is moving back towards the open room?
+	'''
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 func Set_camera_limit(zone_rect:Rect2i):
 	limit_left = zone_rect.position.x
 	limit_right = zone_rect.end.x
