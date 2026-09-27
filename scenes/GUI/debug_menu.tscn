@@ -73,4 +73,24 @@ theme_override_colors/icon_disabled_color = Color(1, 0, 0, 0.4)
 theme_override_colors/checkbox_checked_color = Color(0.1444886, 0.9585684, 0.9999997, 1)
 theme_override_colors/checkbox_unchecked_color = Color(18.892157, 18.892157, 18.892157, 1)
 
+[node name="HSeparator2" type="HSeparator" parent="Panel/VBoxContainer/General Settings/VBoxContainer" unique_id=1469434562]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/General Settings/VBoxContainer" unique_id=187015131]
+layout_mode = 2
+
+[node name="Respawn" type="Label" parent="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer2" unique_id=1175676205]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hu4fe")
+text = "Respawn"
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer2" unique_id=1668016819]
+custom_minimum_size = Vector2(803, 0)
+layout_mode = 2
+
+[node name="Button_respawn" type="Button" parent="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer2" unique_id=1076701390]
+layout_mode = 2
+text = "Respawn"
+
 [connection signal="toggled" from="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer/EnableCrosshairCheckBox" to="." method="_on_enable_crosshair_check_box_toggled"]
+[connection signal="pressed" from="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer2/Button_respawn" to="." method="_on_button_respawn_pressed"]

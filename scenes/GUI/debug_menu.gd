@@ -17,3 +17,7 @@ func _process(delta: float) -> void:
 
 func _on_enable_crosshair_check_box_toggled(toggled_on: bool) -> void:
 	SignalBus.EnableDebugCrosshair.emit(toggled_on)
+
+
+func _on_button_respawn_pressed() -> void:
+	SignalBus.Respawn.emit(false)

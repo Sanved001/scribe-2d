@@ -57,9 +57,6 @@ The crate push and pull mechanic is now complete
 Fixed an bug where if you were interacting with an character while moving and holding a crate the crate will keep moving
 Fixed an bug where if you interacted with an character while moving you keep moving
 Fixed an bug with the new bugfix that you coulden't dash after talking to yuri
-
-# Current Version:
-	
 Bug Fix: Fixed abug with the crate push and pull mechanic where the camera will fall down when you move into an wall while pulling an box
 Bug Fixes: Adjusted the timer on the dialog_ui_is_busy function in player.gd
 Added Pressure Plates
@@ -109,6 +106,9 @@ a bit of code cleanup
 Update TODO.md
 Changed koyote jump timer from 0.1 sec to 0.2 sec
 Update TODO.md
+
+# Current Version:
+
 Added a new checkpoint label
 removed the change scene trigger in last commit
 changed the Test_Level
@@ -190,6 +190,10 @@ Added two functions to modify camera limits in player_camera.gd
 Changed pressure plates signals from area entered/exited to body exited/entered
 Added Theory For Keeping the Camera in Bounds
 Git Restore to before the camera logic
+Now Tweening the camera limits instead of setting them abruptly (needs rework)
 
 # Current Commit:
-Now Tweening the camera limits instead of setting them abruptly (needs rework)
+Added A respawn button in Debug Settings
+Removed A rogue line in player.gd
+BugFix: Solved a bug where the player could coyote jump even after the window has passed
+The current version was at the wrong place in this file
