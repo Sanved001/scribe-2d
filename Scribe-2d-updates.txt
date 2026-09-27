@@ -189,6 +189,7 @@ Added New Signals to SignalBus
 Added two functions to modify camera limits in player_camera.gd
 Changed pressure plates signals from area entered/exited to body exited/entered
 Added Theory For Keeping the Camera in Bounds
+Git Restore to before the camera logic
 
 # Current Commit:
-Git Restore to before the camera logic
+Now Tweening the camera limits instead of setting them abruptly (needs rework)

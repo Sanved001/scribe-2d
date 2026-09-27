@@ -125,7 +125,7 @@ _data = {
 size = Vector2(576, 224)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufmjp"]
-size = Vector2(217, 467)
+size = Vector2(226, 467)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxm2v"]
 size = Vector2(416, 162)
@@ -191,7 +191,7 @@ position = Vector2(360, -139)
 script = ExtResource("7_5gr7r")
 
 [node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone2" unique_id=1023490614]
-position = Vector2(10.5, -31.5)
+position = Vector2(10, -31.5)
 shape = SubResource("RectangleShape2D_ufmjp")
 
 [node name="CameraLimitZone3" type="Area2D" parent="CameraLimitZones" unique_id=1039607566]

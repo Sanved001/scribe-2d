@@ -83,10 +83,20 @@ func _process(delta: float) -> void:
 	
 	
 func Set_camera_limit(zone_rect:Rect2i):
-	limit_left = zone_rect.position.x
-	limit_right = zone_rect.end.x
-	limit_top = zone_rect.position.y
-	limit_bottom = zone_rect.end.y
+	#Reset_Camera_Limit(true)
+	var camera_limit_tween = self.create_tween()
+	#camera_position_tween.tween_property(self, "position", Vector2(zone_rect.get_center()) , 1)
+	#camera_position_tween.tween_property(self, "position:x", zone_rect.get_center().x , 1)
+	#camera_position_tween.parallel().tween_property(self, "position:y", zone_rect.get_center().y, 1)
+	camera_limit_tween.tween_property(self, "limit_left", zone_rect.position.x, 2)
+	camera_limit_tween.parallel().tween_property(self, "limit_right", zone_rect.end.x, 2)
+	camera_limit_tween.parallel().tween_property(self, "limit_top", zone_rect.position.y, 2)
+	camera_limit_tween.parallel().tween_property(self, "limit_bottom", zone_rect.end.y, 2)
+	
+	#limit_left = zone_rect.position.x
+	#limit_right = zone_rect.end.x
+	#limit_top = zone_rect.position.y
+	#limit_bottom = zone_rect.end.y
 	
 
 func Reset_Camera_Limit(value:bool):
