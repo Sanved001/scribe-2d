@@ -304,7 +304,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y = min(velocity.y, 600)
 	
 	# DEBUG ZONE
-	Log.write("Coyote jump time: %s" % coyote_jump_timer.time_left, self)
+	#Log.write("Coyote jump time: %s" % coyote_jump_timer.time_left, self)
 	
 		#SignalBus.ChangeCurrentScene.emit("res://scenes/Levels/level_0_boss.tscn", "change level", true)
 		#SignalBus.Stop_Saw_Blade.emit($"../SawBlade", true, false)

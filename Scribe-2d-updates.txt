@@ -191,9 +191,10 @@ Changed pressure plates signals from area entered/exited to body exited/entered
 Added Theory For Keeping the Camera in Bounds
 Git Restore to before the camera logic
 Now Tweening the camera limits instead of setting them abruptly (needs rework)
-
-# Current Commit:
 Added A respawn button in Debug Settings
 Removed A rogue line in player.gd
 BugFix: Solved a bug where the player could coyote jump even after the window has passed
 The current version was at the wrong place in this file
+
+# Current Commit:
+Remved a debug statement from player.gd
