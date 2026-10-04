@@ -15,19 +15,23 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		var zone_shape: RectangleShape2D = camera_limit_zone_collider.shape as RectangleShape2D
-		if zone_shape:
-			var zone_center = camera_limit_zone_collider.global_position
-			var half_size = zone_shape.size * 0.5
-			
-			var zone_rect = Rect2i(
-				int(zone_center.x - half_size.x),\
-				int(zone_center.y - half_size.y),\
-				int(zone_shape.size.x),
-				int(zone_shape.size.y)
-			)
-			
-			SignalBus.Set_Camera_Limit.emit(zone_rect)
+		
+		SignalBus.Add_Active_CameraZone.emit(self)
+		
+		
+		#var zone_shape: RectangleShape2D = camera_limit_zone_collider.shape as RectangleShape2D
+		#if zone_shape:
+			#var zone_center = camera_limit_zone_collider.global_position
+			#var half_size = zone_shape.size * 0.5
+			#
+			#var zone_rect = Rect2i(
+				#int(zone_center.x - half_size.x),\
+				#int(zone_center.y - half_size.y),\
+				#int(zone_shape.size.x),
+				#int(zone_shape.size.y)
+			#)
+			#
+			#SignalBus.Set_Camera_Limit.emit(zone_rect)
 
 
 func _on_body_exited(body: Node2D) -> void:

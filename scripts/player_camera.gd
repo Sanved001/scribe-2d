@@ -15,11 +15,11 @@ var starting_limit_left:int
 var starting_limit_right:int
 var starting_limit_top:int
 var starting_limit_bottom:int
+var ActiveCameraZone:Array[Area2D] = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#SignalBus.Respawn.connect(Respawn)
-	SignalBus.Set_Camera_Limit.connect(Set_camera_limit)
-	SignalBus.Reset_Camera_Limit.connect(Reset_Camera_Limit)
+	SignalBus.Add_Active_CameraZone.connect(add_Active_CameraZone)
 
 	if not lookahead_camera_enabled: 
 		self.position_smoothing_enabled = false
@@ -81,28 +81,46 @@ func _process(delta: float) -> void:
 	
 	
 	
-	
-func Set_camera_limit(zone_rect:Rect2i):
-	#Reset_Camera_Limit(true)
-	var camera_limit_tween = self.create_tween()
-	#camera_position_tween.tween_property(self, "position", Vector2(zone_rect.get_center()) , 1)
-	#camera_position_tween.tween_property(self, "position:x", zone_rect.get_center().x , 1)
-	#camera_position_tween.parallel().tween_property(self, "position:y", zone_rect.get_center().y, 1)
-	camera_limit_tween.tween_property(self, "limit_left", zone_rect.position.x, 2)
-	camera_limit_tween.parallel().tween_property(self, "limit_right", zone_rect.end.x, 2)
-	camera_limit_tween.parallel().tween_property(self, "limit_top", zone_rect.position.y, 2)
-	camera_limit_tween.parallel().tween_property(self, "limit_bottom", zone_rect.end.y, 2)
-	
-	#limit_left = zone_rect.position.x
-	#limit_right = zone_rect.end.x
-	#limit_top = zone_rect.position.y
-	#limit_bottom = zone_rect.end.y
-	
 
-func Reset_Camera_Limit(value:bool):
-	if value == true:
-		limit_left = starting_limit_left
-		limit_right = starting_limit_right
-		limit_top = starting_limit_top
-		limit_bottom = starting_limit_bottom
+func add_Active_CameraZone(zone:Area2D):
+	ActiveCameraZone.append(zone)
+
+
+
+	
+#func Set_camera_limit(zone_rect:Rect2i):
+	#
+	## THEORY TIME!!!!!!!! YAY!! (cries)
+	#'''
+	#SO, The camera first goes horizontal then starts moving diagonally..
+	#It's cuz at first only the horizontal boundaries are pusing on it
+	#but after a while the vertical ones catch up and start pushing too
+	#SO, how do we fix that?
+	#
+	#'''
+	#
+	#
+	#
+	##Reset_Camera_Limit(true)
+	##var camera_limit_tween = self.create_tween()
+	###camera_position_tween.tween_property(self, "position", Vector2(zone_rect.get_center()) , 1)
+	###camera_position_tween.tween_property(self, "position:x", zone_rect.get_center().x , 1)
+	###camera_position_tween.parallel().tween_property(self, "position:y", zone_rect.get_center().y, 1)
+	##camera_limit_tween.tween_property(self, "limit_left", zone_rect.position.x, 2)
+	##camera_limit_tween.parallel().tween_property(self, "limit_right", zone_rect.end.x, 2)
+	##camera_limit_tween.parallel().tween_property(self, "limit_top", zone_rect.position.y, 2)
+	##camera_limit_tween.parallel().tween_property(self, "limit_bottom", zone_rect.end.y, 2)
+	#
+	##limit_left = zone_rect.position.x
+	##limit_right = zone_rect.end.x
+	##limit_top = zone_rect.position.y
+	##limit_bottom = zone_rect.end.y
+	#
+#
+#func Reset_Camera_Limit(value:bool):
+	#if value == true:
+		#limit_left = starting_limit_left
+		#limit_right = starting_limit_right
+		#limit_top = starting_limit_top
+		#limit_bottom = starting_limit_bottom
 	
