@@ -23,4 +23,5 @@ signal Camera_Focus_Target_Add(object:Node2D)
 signal Add_Active_CameraZone(object:Area2D)
 
 # DEBUG
-signal EnableDebugCrosshair(bool)
+signal EnableDebugCrosshair(value:bool)
+signal ShowFPS(value:bool)

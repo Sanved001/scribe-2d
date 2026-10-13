@@ -1,23 +1,29 @@
 extends CanvasLayer
 
+@export var FPS_counter:Label
+
+
+@onready var pre_fpsv_seperator: VSeparator = $VBoxContainer/HBoxContainer/PreFPSVSeperator
+@onready var fpsv_seperator: VSeparator = $VBoxContainer/HBoxContainer/FPSVSeperator
+
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	visible = false
+	SignalBus.ShowFPS.connect(ShowFPS)
+	
+	FPS_counter.visible = false
+	pre_fpsv_seperator.visible = false
+	fpsv_seperator.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug"):
-		if not visible:
-			visible = true
-		else:
-			visible = false
+	FPS_counter.text = "FPS: %s" % Engine.get_frames_per_second()
+	
 
-
-func _on_enable_crosshair_check_box_toggled(toggled_on: bool) -> void:
-	SignalBus.EnableDebugCrosshair.emit(toggled_on)
-
-
-func _on_button_respawn_pressed() -> void:
-	SignalBus.Respawn.emit(false)
+func ShowFPS(value:bool):
+	FPS_counter.visible = value
+	pre_fpsv_seperator.visible = true
+	fpsv_seperator.visible = true

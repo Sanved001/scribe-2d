@@ -1,96 +1,27 @@
-[gd_scene format=3 uid="uid://bngkw1gh1dr4f"]
+[gd_scene format=3 uid="uid://bl7td4iwpknst"]
 
-[ext_resource type="FontFile" uid="uid://c51meqwxnuvsx" path="res://assets/fonts/pixeloperator/PixelOperator8-Bold.ttf" id="1_5druy"]
-[ext_resource type="Script" uid="uid://6s7w5qulm55j" path="res://scenes/GUI/debug_menu.gd" id="1_hu4fe"]
-[ext_resource type="FontFile" uid="uid://k3py6toifjo3" path="res://assets/fonts/pixeloperator/PixelOperator8.ttf" id="2_hu4fe"]
+[ext_resource type="Script" uid="uid://c6f2uthfwmbkj" path="res://scenes/GUI/debug_menu.gd" id="1_hu4fe"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iywne"]
-bg_color = Color(0, 0, 0, 1)
-
-[node name="Debug_menu" type="CanvasLayer" unique_id=255869765]
+[node name="DebugMenu" type="CanvasLayer" unique_id=1572956477 node_paths=PackedStringArray("FPS_counter")]
 script = ExtResource("1_hu4fe")
+FPS_counter = NodePath("VBoxContainer/HBoxContainer/FPSCounter")
 
-[node name="Panel" type="Panel" parent="." unique_id=32332999]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_iywne")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=958766039]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 261.0
-offset_bottom = 65.0
-
-[node name="General Settings" type="Label" parent="Panel/VBoxContainer" unique_id=65182322]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_5druy")
-text = "General Settings"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/General Settings" unique_id=1607542417]
-layout_mode = 0
-offset_left = 20.0
-offset_right = 230.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=466564905]
 offset_bottom = 40.0
 
-[node name="Control" type="Control" parent="Panel/VBoxContainer/General Settings/VBoxContainer" unique_id=1071469993]
-custom_minimum_size = Vector2(0, 20)
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=334565502]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer/General Settings/VBoxContainer" unique_id=1955454278]
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1035045196]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/General Settings/VBoxContainer" unique_id=1258527723]
+[node name="PreFPSVSeperator" type="VSeparator" parent="VBoxContainer/HBoxContainer" unique_id=882230547]
 layout_mode = 2
 
-[node name="EnableCrosshair" type="Label" parent="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer" unique_id=2062220987]
+[node name="FPSCounter" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1806876856]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_hu4fe")
-text = "Enable Crosshair"
+text = "FPS:"
 
-[node name="Control" type="Control" parent="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer" unique_id=229194179]
-custom_minimum_size = Vector2(750, 0)
+[node name="FPSVSeperator" type="VSeparator" parent="VBoxContainer/HBoxContainer" unique_id=1761907200]
 layout_mode = 2
-
-[node name="EnableCrosshairCheckBox" type="CheckBox" parent="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer" unique_id=213686239]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8745098, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0.9490196, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_disabled_color = Color(0.8745098, 0, 0, 0.5019608)
-theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
-theme_override_colors/icon_normal_color = Color(1, 0, 0, 1)
-theme_override_colors/icon_focus_color = Color(1, 0, 0, 1)
-theme_override_colors/icon_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/icon_hover_color = Color(1, 0, 0, 1)
-theme_override_colors/icon_hover_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/icon_disabled_color = Color(1, 0, 0, 0.4)
-theme_override_colors/checkbox_checked_color = Color(0.1444886, 0.9585684, 0.9999997, 1)
-theme_override_colors/checkbox_unchecked_color = Color(18.892157, 18.892157, 18.892157, 1)
-
-[node name="HSeparator2" type="HSeparator" parent="Panel/VBoxContainer/General Settings/VBoxContainer" unique_id=1469434562]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/General Settings/VBoxContainer" unique_id=187015131]
-layout_mode = 2
-
-[node name="Respawn" type="Label" parent="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer2" unique_id=1175676205]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_hu4fe")
-text = "Respawn"
-
-[node name="Control" type="Control" parent="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer2" unique_id=1668016819]
-custom_minimum_size = Vector2(803, 0)
-layout_mode = 2
-
-[node name="Button_respawn" type="Button" parent="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer2" unique_id=1076701390]
-layout_mode = 2
-text = "Respawn"
-
-[connection signal="toggled" from="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer/EnableCrosshairCheckBox" to="." method="_on_enable_crosshair_check_box_toggled"]
-[connection signal="pressed" from="Panel/VBoxContainer/General Settings/VBoxContainer/HBoxContainer2/Button_respawn" to="." method="_on_button_respawn_pressed"]

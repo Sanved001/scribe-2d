@@ -196,9 +196,11 @@ Removed A rogue line in player.gd
 BugFix: Solved a bug where the player could coyote jump even after the window has passed
 The current version was at the wrong place in this file
 Remved a debug statement from player.gd
-
-# Current Commit:
 Removed 2 Signals
 Now moving to a ActiveCameraZone system
 Reworking the camera system
 Removed the extra part in Real Test Level
+
+# Current Commit:
+Added A way to toggle VSync
+Added A FPS Counter
