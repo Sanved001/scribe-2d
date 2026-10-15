@@ -200,7 +200,8 @@ Removed 2 Signals
 Now moving to a ActiveCameraZone system
 Reworking the camera system
 Removed the extra part in Real Test Level
-
-# Current Commit:
 Added A way to toggle VSync
 Added A FPS Counter
+
+# Current Commit:
+Added A zone_priority export to the camera limit zone 
