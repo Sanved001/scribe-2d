@@ -15,7 +15,7 @@ var starting_limit_left:int
 var starting_limit_right:int
 var starting_limit_top:int
 var starting_limit_bottom:int
-var ActiveCameraZone:Array[Area2D] = []
+var ActiveCameraZones:Array[Area2D] = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#SignalBus.Respawn.connect(Respawn)
@@ -72,16 +72,34 @@ func _process(delta: float) -> void:
 	BUT what about when the player is moving back towards the open room?
 	'''
 	
+	var Active_CameraZoneCollider:CollisionShape2D
+	for i in ActiveCameraZones[0].get_children():
+		if i is CollisionShape2D:
+			Active_CameraZoneCollider = i
+	
+	# ACZC = Active_CameraZoneCollider
+	# GET THE TOP, BOTTOM, LEFT, RIGHT of the Active_CameraZoneCollider
+	var ACZC_extents = Active_CameraZoneCollider.shape.size / 2
+	var ACZC_left = Active_CameraZoneCollider.position.x
+	var ACZC_right = null
+	var ACZC_top = Active_CameraZoneCollider.position.y
+	var ACZC_bottom = null
+	
+	
+	global_position.clamp(to_global(Vector2(ACZC_left, ACZC_top)),\
+	to_global(Vector2(ACZC_right, ACZC_bottom)))
+	
+	
+	
 
-	
-	
-	
-	
-	
-	
+func Sort_Active_CameraZone(zone_a:Area2D, zone_b:Area2D):
+	# If A's priority is higher, move it before B
+	return zone_a.zone_priority > zone_b.zone_priority
 
 func add_Active_CameraZone(zone:Area2D):
-	ActiveCameraZone.append(zone)
+	ActiveCameraZones.append(zone)
+	ActiveCameraZones.sort_custom(Sort_Active_CameraZone)
+	
 
 
 
