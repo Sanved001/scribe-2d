@@ -205,6 +205,9 @@ Added A FPS Counter
 Added A zone_priority export to the camera limit zone 
 changed Array name from ActiveCameraZone to ActiveCameraZones in playercamera.gd
 Progress towards camera boundaries and it is still UNFINISHED
+Update README.md
 
 # Current Commit:
-Update README.md
+Progress towards camera boundaries
+Added a new signal to signalbus to remove a zone from active camera zones
+added a remove active camerazone function to player_camera.gd

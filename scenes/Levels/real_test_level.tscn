@@ -125,13 +125,13 @@ _data = {
 size = Vector2(576, 224)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufmjp"]
-size = Vector2(226, 467)
+size = Vector2(306, 467)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxm2v"]
-size = Vector2(416, 162)
+size = Vector2(464, 162)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmiui"]
-size = Vector2(224, 74)
+size = Vector2(246, 74)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uya5r"]
 size = Vector2(1007, 176)
@@ -145,7 +145,7 @@ tile_set = SubResource("TileSet_oldkd")
 
 [node name="Forest Parallax Static" parent="." unique_id=1426544196 instance=ExtResource("2_tw8nm")]
 z_index = -1
-position = Vector2(0, 17)
+position = Vector2(21, 20)
 
 [node name="PressurePlates" type="Node2D" parent="." unique_id=1897387656]
 
@@ -191,7 +191,7 @@ position = Vector2(360, -139)
 script = ExtResource("7_5gr7r")
 
 [node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone2" unique_id=1023490614]
-position = Vector2(10, -31.5)
+position = Vector2(8, -31.5)
 shape = SubResource("RectangleShape2D_ufmjp")
 
 [node name="CameraLimitZone3" type="Area2D" parent="CameraLimitZones" unique_id=1039607566]
@@ -199,7 +199,7 @@ position = Vector2(47, -18)
 script = ExtResource("7_5gr7r")
 
 [node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone3" unique_id=1323445476]
-position = Vector2(-15, 1)
+position = Vector2(9, 1)
 shape = SubResource("RectangleShape2D_nxm2v")
 
 [node name="CameraLimitZone4" type="Area2D" parent="CameraLimitZones" unique_id=1541223548]
@@ -207,7 +207,7 @@ position = Vector2(590, -314)
 script = ExtResource("7_5gr7r")
 
 [node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone4" unique_id=963119758]
-position = Vector2(10, 0)
+position = Vector2(21, 0)
 shape = SubResource("RectangleShape2D_pmiui")
 
 [node name="CameraLimitZone5" type="Area2D" parent="CameraLimitZones" unique_id=1477641328]

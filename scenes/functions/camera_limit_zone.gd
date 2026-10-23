@@ -37,5 +37,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_body_exited(body: Node2D) -> void:
-	pass
 	#SignalBus.Reset_Camera_Limit.emit(true)
+	if body.is_in_group("player"):
+		
+		SignalBus.Remove_Active_CameraZone.emit(self)

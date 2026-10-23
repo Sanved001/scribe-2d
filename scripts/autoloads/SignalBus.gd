@@ -21,6 +21,7 @@ signal Force_Object_Drop(node:Node2D)
 # Camera 
 signal Camera_Focus_Target_Add(object:Node2D)
 signal Add_Active_CameraZone(object:Area2D)
+signal Remove_Active_CameraZone(object:Area2D)
 
 # DEBUG
 signal EnableDebugCrosshair(value:bool)

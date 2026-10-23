@@ -19,7 +19,8 @@ var ActiveCameraZones:Array[Area2D] = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#SignalBus.Respawn.connect(Respawn)
-	SignalBus.Add_Active_CameraZone.connect(add_Active_CameraZone)
+	SignalBus.Add_Active_CameraZone.connect(Add_Active_CameraZone)
+	SignalBus.Remove_Active_CameraZone.connect(Remove_Active_CameraZone)
 
 	if not lookahead_camera_enabled: 
 		self.position_smoothing_enabled = false
@@ -80,14 +81,18 @@ func _process(delta: float) -> void:
 	# ACZC = Active_CameraZoneCollider
 	# GET THE TOP, BOTTOM, LEFT, RIGHT of the Active_CameraZoneCollider
 	var ACZC_extents = Active_CameraZoneCollider.shape.size / 2
-	var ACZC_left = Active_CameraZoneCollider.position.x
-	var ACZC_right = null
-	var ACZC_top = Active_CameraZoneCollider.position.y
-	var ACZC_bottom = null
+	var ACZC_left = Active_CameraZoneCollider.position.x - ACZC_extents.x
+	var ACZC_right = Active_CameraZoneCollider.position.x + ACZC_extents.x
+	var ACZC_top = Active_CameraZoneCollider.position.y  - ACZC_extents.y
+	var ACZC_bottom = Active_CameraZoneCollider.position.y + ACZC_extents.y
 	
-	
-	global_position.clamp(to_global(Vector2(ACZC_left, ACZC_top)),\
-	to_global(Vector2(ACZC_right, ACZC_bottom)))
+	# get half screen length... UNFINISHED
+	var half_screen_length = get_viewport().get_visible_rect().size / 2
+	global_position = global_position.clamp(\
+	(Vector2(ACZC_left + half_screen_length.x,\
+	 ACZC_top + half_screen_length.y)),\
+	(Vector2(ACZC_right - half_screen_length.x,\
+	 ACZC_bottom - half_screen_length.y)))
 	
 	
 	
@@ -96,12 +101,13 @@ func Sort_Active_CameraZone(zone_a:Area2D, zone_b:Area2D):
 	# If A's priority is higher, move it before B
 	return zone_a.zone_priority > zone_b.zone_priority
 
-func add_Active_CameraZone(zone:Area2D):
+func Add_Active_CameraZone(zone:Area2D):
 	ActiveCameraZones.append(zone)
 	ActiveCameraZones.sort_custom(Sort_Active_CameraZone)
 	
-
-
+func Remove_Active_CameraZone(zone:Area2D):
+	ActiveCameraZones.erase(zone)
+	ActiveCameraZones.sort_custom(Sort_Active_CameraZone)
 
 	
 #func Set_camera_limit(zone_rect:Rect2i):
