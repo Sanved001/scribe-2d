@@ -203,7 +203,8 @@ Removed the extra part in Real Test Level
 Added A way to toggle VSync
 Added A FPS Counter
 Added A zone_priority export to the camera limit zone 
-
-# Current Commit:
 changed Array name from ActiveCameraZone to ActiveCameraZones in playercamera.gd
 Progress towards camera boundaries and it is still UNFINISHED
+
+# Current Commit:
+Update README.md

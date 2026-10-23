@@ -68,7 +68,7 @@ And you are Done!
 - You may distribute your modifications or additions (such as custom scripts, mechanics, or features) to others, provided that your distribution is shared strictly as a **fork or modification** of this project, credits the original repository, and remains entirely **non-commercial** (free).
 
 
-- You may **not** under any circumstances re-upload, bundle, or distribute the source code or compiled binaries of this game to platforms like Steam, Itch, or any app store as a standalone product."
+- You may **not** under any circumstances re-upload, bundle, or distribute the source code or compiled binaries of this game to platforms like Steam, Itch, or any app store as a standalone product.
 
 ### Disclaimer of Warranty & Limitations of Liability
 
@@ -88,6 +88,7 @@ By submitting a Pull Request, patch, or code contribution to this repository, yo
 2. **Commercial Use:** You acknowledge and agree that this project is intended for commercial sale, and that you will receive no financial compensation, royalties, or equity for your contributions.
 3. **Ownership:** You warrant that your contribution is your own original creation and that you have the full legal right to submit it under these terms.
 4. **Attribution:** The project owner agrees to credit you (via your GitHub profile, alias, or name) in the game's credits, though this does not grant you any ownership stake in the final product.
+5. **No AI:** By submitting code or assets to this repository you warrant that the code written is fully authored and written by a Human and not by a generative AI tool such as Large Language Models, AI coding assistants or other automatic generative tools.
 
 ## Music Used:
 Track: Into The Wonderland
