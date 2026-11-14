@@ -2,9 +2,10 @@ extends Camera2D
 @export var player:CharacterBody2D
 
 @export var smooth_speed:float = 2
+
 @export var lookahead_camera_enabled:bool = true
-@export var lookahead_distance_x:float = 50
-@export var lookahead_distance_y:float = 150
+@export var lookahead_distance_x:float = 100
+@export var lookahead_distance_y:float = 300
 
 var max_velocity = Vector2(200, 300)
 var target_offset: Vector2 = Vector2.ZERO
@@ -41,8 +42,11 @@ func _process(delta: float) -> void:
 	# frame rate independent weight for lerp
 	var fps_independent_weight = 1.0 - exp(-smooth_speed * delta)
 
-	offset = offset.lerp(target_offset, fps_independent_weight)
-	offset.y = min(offset.y, lookahead_distance_y)
+	#offset = offset.lerp(target_offset, fps_independent_weight)
+	#offset.y = min(offset.y, lookahead_distance_y)
+	
+	position = position.lerp(target_offset, fps_independent_weight)
+	position.y = min(position.y, lookahead_distance_y)
 	
 	
 	
@@ -81,18 +85,23 @@ func _process(delta: float) -> void:
 	# ACZC = Active_CameraZoneCollider
 	# GET THE TOP, BOTTOM, LEFT, RIGHT of the Active_CameraZoneCollider
 	var ACZC_extents = Active_CameraZoneCollider.shape.size / 2
-	var ACZC_left = Active_CameraZoneCollider.position.x - ACZC_extents.x
-	var ACZC_right = Active_CameraZoneCollider.position.x + ACZC_extents.x
-	var ACZC_top = Active_CameraZoneCollider.position.y  - ACZC_extents.y
-	var ACZC_bottom = Active_CameraZoneCollider.position.y + ACZC_extents.y
+	var ACZC_left = Active_CameraZoneCollider.global_position.x - ACZC_extents.x
+	var ACZC_right = Active_CameraZoneCollider.global_position.x + ACZC_extents.x
+	var ACZC_top = Active_CameraZoneCollider.global_position.y  - ACZC_extents.y
+	var ACZC_bottom = Active_CameraZoneCollider.global_position.y + ACZC_extents.y
+	
+	limit_left = ACZC_left
+	limit_right = ACZC_right
+	limit_top = ACZC_top
+	limit_bottom = ACZC_bottom
 	
 	# get half screen length... UNFINISHED
-	var half_screen_length = get_viewport().get_visible_rect().size / 2
-	global_position = global_position.clamp(\
-	(Vector2(ACZC_left + half_screen_length.x,\
-	 ACZC_top + half_screen_length.y)),\
-	(Vector2(ACZC_right - half_screen_length.x,\
-	 ACZC_bottom - half_screen_length.y)))
+	#var half_screen_length = get_viewport().get_visible_rects().size / 2
+	#global_position = global_position.clamp(\
+	#(Vector2(ACZC_left + half_screen_length.x,\
+	 #ACZC_top + half_screen_length.y)),\
+	#(Vector2(ACZC_right - half_screen_length.x,\s
+	 #ACZC_bottom - half_screen_length.y)))
 	
 	
 	

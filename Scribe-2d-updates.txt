@@ -206,8 +206,12 @@ Added A zone_priority export to the camera limit zone
 changed Array name from ActiveCameraZone to ActiveCameraZones in playercamera.gd
 Progress towards camera boundaries and it is still UNFINISHED
 Update README.md
-
-# Current Commit:
 Progress towards camera boundaries
 Added a new signal to signalbus to remove a zone from active camera zones
 added a remove active camerazone function to player_camera.gd
+
+# Current Commit:
+Increased lookahead distance
+Now instead of the offset the camera's local position is modified
+Now we use CameraLimitZone's global position to get the camera limits and set them using that
+Added a CameraNode to put the camera in for me to utilize the local positions as offset
