@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://dr4gey7o8pxu0"]
+
+[ext_resource type="Script" uid="uid://pobnporh770b" path="res://scenes/loading_screen.gd" id="1_ep5rh"]
+[ext_resource type="Texture2D" uid="uid://cfys0j2f5os0c" path="res://assets/sprites/player/player.png" id="2_hprjd"]
+
+[sub_resource type="SystemFont" id="SystemFont_riqys"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bhunq"]
+font = SubResource("SystemFont_riqys")
+font_size = 24
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhunq"]
+atlas = ExtResource("2_hprjd")
+region = Rect2(360.98294, 10.997501, 14.037201, 7.969658)
+
+[sub_resource type="GDScript" id="GDScript_riqys"]
+script/source = "extends TextureRect
+
+var speed = 5.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pivot_offset = size / 2.0
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	rotation += speed * delta
+"
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=723325278]
+script = ExtResource("1_ep5rh")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1298653809]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Padding" type="MarginContainer" parent="." unique_id=1275779287]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="LoadingLabel" type="Label" parent="Padding" unique_id=1416458190]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position = Vector2(-60, 10)
+text = "Loading..."
+label_settings = SubResource("LabelSettings_bhunq")
+horizontal_alignment = 2
+uppercase = true
+
+[node name="LoadingIcon" type="TextureRect" parent="Padding" unique_id=1623994912]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_scale = Vector2(5, 5)
+texture = SubResource("AtlasTexture_bhunq")
+script = SubResource("GDScript_riqys")
