@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://volf3pihsc3l" path="res://scripts/Game_UI.gd" id="1_yubou"]
 
-[node name="Game_UI" type="CanvasLayer" unique_id=1250416770 node_paths=PackedStringArray("Health_Label")]
+[node name="Game_UI" type="CanvasLayer" unique_id=1250416770 node_paths=PackedStringArray("Health_Label", "HealthBar_Foreground", "HealthBar_Background")]
 layer = 5
 script = ExtResource("1_yubou")
 Health_Label = NodePath("VBoxContainer/Top_Bar/MarginContainer/HBoxContainer/Health_Label")
+HealthBar_Foreground = NodePath("Healthbar/HealthbarFg")
+HealthBar_Background = NodePath("Healthbar/HealthbarBg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=678358786]
 offset_right = 40.0
@@ -23,3 +25,22 @@ layout_mode = 2
 [node name="Health_Label" type="Label" parent="VBoxContainer/Top_Bar/MarginContainer/HBoxContainer" unique_id=281378910]
 layout_mode = 2
 text = "Health: 100.0"
+
+[node name="Healthbar" type="ColorRect" parent="." unique_id=301804506]
+offset_left = 20.0
+offset_top = 40.0
+offset_right = 220.0
+offset_bottom = 60.0
+color = Color(0, 0, 0, 1)
+
+[node name="HealthbarBg" type="ColorRect" parent="Healthbar" unique_id=1062802145]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 20.0
+color = Color(0.49019608, 0.09803922, 0.09803922, 1)
+
+[node name="HealthbarFg" type="ColorRect" parent="Healthbar" unique_id=1370332663]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 20.0
+color = Color(0.19607843, 1, 0.19607843, 1)
