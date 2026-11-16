@@ -319,11 +319,11 @@ func Respawn_Player(hard_respawn:bool):
 	if GameManager.last_checkpoint_position != Vector2.ZERO:
 		self.global_position = GameManager.last_checkpoint_position
 		health = 100
-		SignalBus.Update_Health_Label.emit("Health: %s" % health)
+		SignalBus.Update_Health_Label.emit(health, false)
 	else: 
 		self.global_position = original_spawn_position
 		health = 100
-		SignalBus.Update_Health_Label.emit("Health: %s" % health)
+		SignalBus.Update_Health_Label.emit(health, false)
 	velocity = Vector2.ZERO
 	
 	reset_physics_interpolation()
@@ -376,7 +376,7 @@ func player_take_damage(damage:float, source_area:Area2D = null):
 		
 
 
-	SignalBus.Update_Health_Label.emit("Health: %s" % health)
+	SignalBus.Update_Health_Label.emit(health)
 	GameManager.player_health = health
 	
 	
