@@ -5,6 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7b57l"]
 
 [node name="CameraLimitZone" type="Area2D" unique_id=678906121]
+collision_layer = 2048
 script = ExtResource("1_4vbie")
 
 [node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="." unique_id=569729685]

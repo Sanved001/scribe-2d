@@ -209,9 +209,11 @@ Update README.md
 Progress towards camera boundaries
 Added a new signal to signalbus to remove a zone from active camera zones
 added a remove active camerazone function to player_camera.gd
-
-# Current Commit:
 Increased lookahead distance
 Now instead of the offset the camera's local position is modified
 Now we use CameraLimitZone's global position to get the camera limits and set them using that
 Added a CameraNode to put the camera in for me to utilize the local positions as offset
+
+# Current Commit:
+Added Collision layer 12 for camera limits
+Shrinked the pressure plate Area2d to not touch the bottom as it was being activated with the tilemap

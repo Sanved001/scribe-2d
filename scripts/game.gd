@@ -11,6 +11,7 @@ extends Node2D
 # LAYER 9: Things That Damage Both Player and Enemies
 # LAYER 10: Interactable Objects
 # LAYER 11: For Respawning Objects or smt 
+# LAYER 12: Camera limit zones and other
 
 @export var Level_Container:Node2D
 

@@ -125,7 +125,7 @@ _data = {
 size = Vector2(576, 224)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufmjp"]
-size = Vector2(306, 467)
+size = Vector2(312, 467)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxm2v"]
 size = Vector2(464, 162)
@@ -180,6 +180,7 @@ libraries/ = SubResource("AnimationLibrary_3ewro")
 
 [node name="CameraLimitZone" type="Area2D" parent="CameraLimitZones" unique_id=678906121]
 position = Vector2(976, -325)
+collision_layer = 2048
 script = ExtResource("7_5gr7r")
 
 [node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone" unique_id=569729685]
@@ -188,14 +189,16 @@ shape = SubResource("RectangleShape2D_5gr7r")
 
 [node name="CameraLimitZone2" type="Area2D" parent="CameraLimitZones" unique_id=739440293]
 position = Vector2(360, -139)
+collision_layer = 2048
 script = ExtResource("7_5gr7r")
 
 [node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone2" unique_id=1023490614]
-position = Vector2(8, -31.5)
+position = Vector2(11, -31.5)
 shape = SubResource("RectangleShape2D_ufmjp")
 
 [node name="CameraLimitZone3" type="Area2D" parent="CameraLimitZones" unique_id=1039607566]
 position = Vector2(47, -18)
+collision_layer = 2048
 script = ExtResource("7_5gr7r")
 
 [node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone3" unique_id=1323445476]
@@ -204,6 +207,7 @@ shape = SubResource("RectangleShape2D_nxm2v")
 
 [node name="CameraLimitZone4" type="Area2D" parent="CameraLimitZones" unique_id=1541223548]
 position = Vector2(590, -314)
+collision_layer = 2048
 script = ExtResource("7_5gr7r")
 
 [node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone4" unique_id=963119758]
@@ -212,6 +216,7 @@ shape = SubResource("RectangleShape2D_pmiui")
 
 [node name="CameraLimitZone5" type="Area2D" parent="CameraLimitZones" unique_id=1477641328]
 position = Vector2(-210, -297)
+collision_layer = 2048
 script = ExtResource("7_5gr7r")
 
 [node name="CameraLimitZoneCollider" type="CollisionShape2D" parent="CameraLimitZones/CameraLimitZone5" unique_id=2024932311]
